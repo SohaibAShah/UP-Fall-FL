@@ -7,3 +7,4 @@ __pycache__/
 wandb/
 upfall-fl.zip
 data/upfall/processed/
+data/upfall/raw/
