@@ -227,4 +227,111 @@ def loadData():
             Y_train_2, Y_val_2, Y_test_2)
 
 
+def splitforClients(total_clients, ratios,
+                    X_train_csv_scaled, X_val_csv_scaled, X_test_csv_scaled,
+                    Y_train_csv, Y_val_csv, Y_test_csv,
+                    X_train_1_scaled, X_val_1_scaled, X_test_1_scaled,
+                    Y_train_1, Y_val_1, Y_test_1,
+                    X_train_2_scaled, X_val_2_scaled, X_test_2_scaled,
+                    Y_train_2, Y_val_2, Y_test_2
+                    ):
+    
+    # Split train data
+    total_samples = X_train_csv_scaled.shape[0]
+    indices = np.random.permutation(total_samples)
+    split_size = [int(total_samples * ratio) for ratio in ratios]
+    
+    X_train_csv_scaled_splits = {}
+    Y_train_csv_splits = {}
+    X_train_1_scaled_splits = {}
+    Y_train_1_splits = {}
+    X_train_2_scaled_splits = {}
+    Y_train_2_splits = {}
 
+    start_idx = 0
+    client_id = 0
+    for size in split_size:
+        end_idx = start_idx + size
+        client_indices = indices[start_idx:end_idx]
+        
+        X_train_csv_scaled_splits[client_id] = X_train_csv_scaled[client_indices]
+        Y_train_csv_splits[client_id] = Y_train_csv[client_indices]
+        
+        X_train_1_scaled_splits[client_id] = X_train_1_scaled[client_indices]
+        Y_train_1_splits[client_id] = Y_train_1[client_indices]
+        
+        X_train_2_scaled_splits[client_id] = X_train_2_scaled[client_indices]
+        Y_train_2_splits[client_id] = Y_train_2[client_indices]
+        
+        start_idx = end_idx
+        client_id += 1
+
+    # Split Validation data
+    total_samples = X_val_csv_scaled.shape[0]
+    indices = np.random.permutation(total_samples)
+    split_size = [int(total_samples * ratio) for ratio in ratios]
+
+    X_val_csv_scaled_splits = {}
+    Y_val_csv_splits = {}
+    X_val_1_scaled_splits = {}
+    Y_val_1_splits = {}
+    X_val_2_scaled_splits = {}
+    Y_val_2_splits = {}
+
+    start_idx = 0
+    client_id = 0
+    for size in split_size:
+        end_idx = start_idx + size
+        client_indices = indices[start_idx:end_idx]
+
+        X_val_csv_scaled_splits[client_id] = X_val_csv_scaled[client_indices]
+        Y_val_csv_splits[client_id] = Y_val_csv[client_indices]
+
+        X_val_1_scaled_splits[client_id] = X_val_1_scaled[client_indices]
+        Y_val_1_splits[client_id] = Y_val_1[client_indices]
+
+        X_val_2_scaled_splits[client_id] = X_val_2_scaled[client_indices]
+        Y_val_2_splits[client_id] = Y_val_2[client_indices]
+
+        start_idx = end_idx
+        client_id += 1
+
+    # Split Test data
+    total_samples = X_test_csv_scaled.shape[0]
+    indices = np.random.permutation(total_samples)
+    split_size = [int(total_samples * ratio) for ratio in ratios]
+
+    X_test_csv_scaled_splits = {}
+    Y_test_csv_splits = {}
+    X_test_1_scaled_splits = {}
+    Y_test_1_splits = {}
+    X_test_2_scaled_splits = {}
+    Y_test_2_splits = {}
+
+    start_idx = 0
+    client_id = 0
+    for size in split_size:
+        end_idx = start_idx + size
+        client_indices = indices[start_idx:end_idx]
+
+        X_test_csv_scaled_splits[client_id] = X_test_csv_scaled[client_indices]
+        Y_test_csv_splits[client_id] = Y_test_csv[client_indices]
+
+        X_test_1_scaled_splits[client_id] = X_test_1_scaled[client_indices]
+        Y_test_1_splits[client_id] = Y_test_1[client_indices]
+
+        X_test_2_scaled_splits[client_id] = X_test_2_scaled[client_indices]
+        Y_test_2_splits[client_id] = Y_test_2[client_indices]
+
+        start_idx = end_idx
+        client_id += 1
+
+    return (X_train_csv_scaled_splits, Y_train_csv_splits,
+            X_train_1_scaled_splits, Y_train_1_splits,
+            X_train_2_scaled_splits, Y_train_2_splits,
+            X_val_csv_scaled_splits, Y_val_csv_splits,
+            X_val_1_scaled_splits, Y_val_1_splits,
+            X_val_2_scaled_splits, Y_val_2_splits,
+            X_test_csv_scaled_splits, Y_test_csv_splits,
+            X_test_1_scaled_splits, Y_test_1_splits,
+            X_test_2_scaled_splits, Y_test_2_splits)
