@@ -70,7 +70,7 @@ class Client(object):
         for name, param in model.state_dict().items():
             if name in self.local_model.state_dict():
                 self.local_model.state_dict()[name].copy_(param.clone())
-        optimizer = optim.Adam(self.local_model.parameters(), lr=0.001, momentum=0.0001)
+        optimizer = optim.Adam(self.local_model.parameters(), lr=0.001)
         self.local_model.train()
 
         for epoch in range(3):
