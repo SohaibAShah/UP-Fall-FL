@@ -67,7 +67,7 @@ def main():
         
     print("\n--- Processing Complete ---")
     print(f"Cleaned CSVs saved in: {IMUWRIST_DIR}")
-    print(f"Final .npy arrays saved in: {SENSOR_DIR}")
+    print(f"Final CSVs saved in: {SENSOR_DIR}")
 
 if __name__ == "__main__":
     main()
