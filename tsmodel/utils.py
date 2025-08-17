@@ -66,7 +66,6 @@ def scaled_data(X_train, X_test, X_val):
     X_val_scaled = scaler.transform(X_val)
     return X_train_scaled, X_test_scaled, X_val_scaled
 
-
 def set_seed(seed=0):
     """
     This function sets the random seed for reproducibility.

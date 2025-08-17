@@ -8,3 +8,5 @@ wandb/
 upfall-fl.zip
 data/upfall/processed/
 data/upfall/raw/
+dataset/
+flwr_tsmodel/
