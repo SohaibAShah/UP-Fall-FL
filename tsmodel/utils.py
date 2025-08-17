@@ -1,20 +1,17 @@
 # utils.py 
 # This file contains general utility functions and the custom dataset loader class.
 
-from torch.utils.data import Dataset
-import pandas as pd
 import os
+import torch
 import random
 import numpy as np
 import seaborn as sns
+import matplotlib.pyplot as plt
+from torch.utils.data import Dataset
+from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import classification_report
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, confusion_matrix
-import matplotlib.pyplot as plt
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
+sns.set(style="whitegrid")
 
 # Define dataset loader
 
