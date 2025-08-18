@@ -1,8 +1,8 @@
 from turtle import pd
 import torch, random, numpy as np
 import torch.nn as nn, os, csv
-from utils import CustomDataset, display_result, scaled_data
-from federated_learning import Server, Client
+from utils import CustomDataset, display_result, scaled_data, CustomDatasetIMG
+from fl_combined import Server, Client
 from datetime import datetime
 from torch.utils.data import DataLoader
 from sklearn.metrics import classification_report, confusion_matrix
@@ -135,7 +135,7 @@ def trainValModelCSVIMG2(total_client,num_clients,epoch,max_acc,
 
     y_test, y_predict = [], []
 
-    test_loader = torch.utils.data.DataLoader(CostumDataset(X_val_csv_scaled_splits[total_client-1],X_val_2_scaled_splits[total_client-1],Y_val_csv_splits[total_client-1]), batch_size=32)
+    test_loader = torch.utils.data.DataLoader(CustomDatasetIMG(X_val_csv_scaled_splits[total_client-1],X_val_2_scaled_splits[total_client-1],Y_val_csv_splits[total_client-1]), batch_size=32)
 
     for batch_id, batch in enumerate(test_loader):
         data1 = batch[0]

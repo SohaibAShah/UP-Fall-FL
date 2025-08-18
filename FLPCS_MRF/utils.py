@@ -14,6 +14,18 @@ from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_sc
 sns.set(style="whitegrid")
 
 # Define dataset loader
+class CustomDatasetIMG(Dataset):
+    def __init__(self, features1, features2, labels):
+        self.features1 = features1
+        self.features2 = features2
+        self.labels = labels
+
+    def __len__(self):
+        return len(self.features1)
+    
+    def __getitem__(self, index):
+        return self.features1[index], self.features2[index], self.labels[index]
+
 
 class CustomDataset(Dataset):
     """

@@ -10,3 +10,4 @@ data/upfall/processed/
 data/upfall/raw/
 dataset/
 flwr_tsmodel/
+acc_lossFiles/
