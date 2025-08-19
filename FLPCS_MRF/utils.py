@@ -13,7 +13,22 @@ from sklearn.metrics import classification_report
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, confusion_matrix
 sns.set(style="whitegrid")
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # Define dataset loader
+class CustomDataseRest(Dataset):
+    def __init__(self, features1, features2, features3, labels):
+        self.features1 = features1
+        self.features2 = features2
+        self.features3 = features3
+        self.labels = labels
+
+    def __len__(self):
+        return len(self.features1)
+    
+    def __getitem__(self, index):
+        return self.features1[index], self.features2[index], self.features3[index], self.labels[index]
+    
+
 class CustomDatasetIMG(Dataset):
     def __init__(self, features1, features2, labels):
         self.features1 = features1
@@ -78,6 +93,11 @@ def scaled_data(X_train, X_test, X_val):
     X_val_scaled = scaler.transform(X_val)
     return X_train_scaled, X_test_scaled, X_val_scaled
 
+def scale_data(X_train):
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    return X_train_scaled
+
 def set_seed(seed=0):
     """
     This function sets the random seed for reproducibility.
@@ -92,3 +112,62 @@ def set_seed(seed=0):
         torch.cuda.manual_seed_all(seed)
         torch.cuda.manual_seed(seed)
 
+def train_one_epoch(model, train_loader, criterion, optimizer):
+    model.train()
+    running_loss = 0.0
+    correct = 0
+    total = 0
+
+    for batch_id, batch in enumerate(train_loader):
+        data1 = batch[0].to(device).float()
+        data2 = batch[1].to(device).float()
+        data3 = batch[2].to(device).float()
+        target = torch.squeeze(batch[3]).to(device).float()
+
+        output = model(data1, data2, data3)
+        loss = criterion(output, target)
+
+        # pred = output.detach().max(1)[1]
+        # target_ =  target.detach().max(1)[1]
+        # correct += pred.eq(target.detach().max(1)[1]).sum().item()
+
+        # 反向传播
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+
+        # 统计
+        running_loss += loss.item() * data1.size()[0]
+        _, predicted = output.max(1)
+        total += target.size(0)
+        correct += predicted.eq(target.max(1)[1]).sum().item()
+
+    epoch_loss = running_loss / len(train_loader.dataset)
+    epoch_acc = 100.0 * correct / total
+    return epoch_loss, epoch_acc
+
+def validate(model, val_loader, criterion):
+    model.eval()
+    running_loss = 0.0
+    correct = 0
+    total = 0
+
+    with torch.no_grad():
+        for batch_id, batch in enumerate(val_loader):
+            data1 = batch[0].to(device).float()
+            data2 = batch[1].to(device).float()
+            data3 = batch[2].to(device).float()
+            target = torch.squeeze(batch[3]).to(device).float()
+
+            output = model(data1, data2, data3)
+            loss = criterion(output, target)
+
+            # 统计
+            running_loss += loss.item() * data1.size()[0]
+            _, predicted = output.max(1)
+            total += target.size(0)
+            correct += predicted.eq(target.max(1)[1]).sum().item()
+
+    epoch_loss = running_loss / len(val_loader.dataset)
+    epoch_acc = 100.0 * correct / total
+    return epoch_loss, epoch_acc

@@ -3,7 +3,7 @@
 
 import argparse # Import the argparse library
 from utils import set_seed # Import from local utils.py
-from data_preprocessing import loadData, splitForClients # Import from local data_preprocessing.py
+from load_data import loadData, splitForClients # Import from local data_preprocessing.py
 from models.timeseries_model import trainValSensorModel 
 from models.tscamera1_model import trainValModelCSVIMG1 
 from models.tscamera2_model import trainValModelCSVIMG2

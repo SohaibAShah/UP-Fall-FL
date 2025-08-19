@@ -54,10 +54,13 @@ class Server(object):
             total_loss += nn.functional.cross_entropy(output, target, reduction='sum').item()
 
             pred = output.detach().max(1)[1]
-            correct += pred.eq(target.detach().max(1)[1].view_as(pred)).cpu().sum().item()
+            target = target.detach().max(1)[1].view_as(pred)
+            correct += pred.eq(target).cpu().sum().item()
+           #display_result(float(target), float(pred))
 
         acc = 100.0 *(float(correct) / float(dataset_size))
         loss = total_loss / dataset_size
+        
 
         return acc, loss
     
