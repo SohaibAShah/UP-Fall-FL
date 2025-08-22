@@ -3,6 +3,10 @@ import numpy as np
 import torch
 from sklearn.preprocessing import StandardScaler
 
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
 def set_seed(seed=42):
     """Sets the seed for reproducibility."""
     np.random.seed(seed)
@@ -16,21 +20,6 @@ def set_seed(seed=42):
 file_path = '/home/syed/PhD/UP-Fall-FL/dataset/Sensor + Image/sensor.csv'
 image_data_path = '/home/syed/PhD/UP-Fall-FL/dataset/Sensor + Image'
 
-
-import pandas as pd
-import numpy as np
-import torch
-from sklearn.preprocessing import StandardScaler
-
-def set_seed(seed=42):
-    """Sets the seed for reproducibility."""
-    np.random.seed(seed)
-    torch.manual_seed(seed)
-    if torch.cuda.is_available():
-        torch.cuda.manual_seed(seed)
-        torch.cuda.manual_seed_all(seed)
-        torch.backends.cudnn.deterministic = True
-        torch.backends.cudnn.benchmark = False
 
 def loadSensorIMGClientsData(file_path, image_data_path):
     """
@@ -146,6 +135,227 @@ def loadSensorIMGClientsData(file_path, image_data_path):
     
     return X_train_splits, X_test_splits, Y_train_splits, Y_test_splits, sensor_clients
 
+
+def plot_class_distributions(Y_train_splits, Y_test_splits, clients_info):
+    """
+    Generates and saves bar charts for the class distribution of each client.
+    """
+    print("\n--- Generating Class Distribution Plots ---")
+    
+    # Define class names for plotting, corresponding to labels 0-11
+    class_names = [
+        'Special Fall', 'Falling Hands', 'Falling Knees', 'Falling Backwards', 
+        'Falling Sideward', 'Falling off Chair', 'Walking', 'Standing', 
+        'Sitting', 'Picking Object', 'Jumping', 'Laying'
+    ]
+    
+    # Get a list of client names from the info dictionary
+    for client_index, (client_name, columns) in enumerate(sensor_clients.items()):
+        # Loop through each client to create a separate plot
+
+        # Check if data exists for this client
+        if client_index not in Y_train_splits or client_index not in Y_test_splits:
+            print(f"  - Skipping Client {client_index} ({client_name}): No label data found.")
+            continue
+
+        y_train_indices = torch.argmax(Y_train_splits[client_index], dim=1).cpu().numpy()
+        y_test_indices = torch.argmax(Y_test_splits[client_index], dim=1).cpu().numpy()
+
+        train_counts = pd.Series(y_train_indices).value_counts()
+        test_counts = pd.Series(y_test_indices).value_counts()
+        
+        df = pd.DataFrame({'Train': train_counts, 'Test': test_counts}).fillna(0)
+        
+        # --- BUG FIX: Ensure the DataFrame has an entry for all 12 classes ---
+        # Reindex the DataFrame with all possible class labels (0-11), filling any missing classes with 0.
+        full_class_index = np.arange(len(class_names))
+        df = df.reindex(full_class_index, fill_value=0)
+        
+        # --- Plotting ---
+        plt.figure(figsize=(14, 7))
+        
+        x = np.arange(len(class_names))
+        width = 0.35
+
+        rects1 = plt.bar(x - width/2, df['Train'], width, label='Train Set')
+        rects2 = plt.bar(x + width/2, df['Test'], width, label='Test Set')
+
+        plt.ylabel('Number of Samples')
+        plt.xlabel('Activity Class')
+        plt.title(f'Class Distribution for Client {client_index}: {client_name}')
+        plt.xticks(x, class_names, rotation=45, ha="right")
+        plt.legend()
+        
+        plt.bar_label(rects1, padding=3)
+        plt.bar_label(rects2, padding=3)
+        
+        plt.tight_layout()
+
+        plot_filename = f"./class_dist_client_{client_index}_{client_name}.png"
+        plt.savefig(plot_filename)
+        plt.close()
+
+        print(f"  - Saved plot for Client {client_index} ({client_name}) to {plot_filename}")
+
+def plot_aggregated_class_distributions(Y_train_splits, Y_test_splits, clients_info):
+    """
+    Generates two charts showing the aggregated class distribution for all clients,
+    one for the training set and one for the testing set.
+    """
+    print("\n--- Generating Aggregated Class Distribution Plots ---")
+
+    class_names = [
+        'Special Fall', 'Falling Hands', 'Falling Knees', 'Falling Backwards',
+        'Falling Sideward', 'Falling off Chair', 'Walking', 'Standing',
+        'Sitting', 'Picking Object', 'Jumping', 'Laying'
+    ]
+
+     # --- 1. Aggregate Data ---
+    train_counts_per_client = {}
+    test_counts_per_client = {}
+    
+    # Get a list of client names from the info dictionary
+    for client_id, (client_name, columns) in enumerate(sensor_clients.items()):
+        # Loop through each client to create a separate plot
+
+        # Check if data exists for this client
+        if client_id not in Y_train_splits or client_id not in Y_test_splits:
+            print(f"  - Skipping Client {client_id} ({client_name}): No label data found.")
+            continue
+
+       
+
+        # Convert one-hot tensors to class indices
+        y_train_indices = torch.argmax(Y_train_splits[client_id], dim=1).cpu().numpy()
+        y_test_indices = torch.argmax(Y_test_splits[client_id], dim=1).cpu().numpy()
+
+        # Store the value counts for each client
+        train_counts_per_client[client_name] = pd.Series(y_train_indices).value_counts()
+        test_counts_per_client[client_name] = pd.Series(y_test_indices).value_counts()
+
+    # Create DataFrames, ensuring all classes (0-11) and clients are included
+    full_class_index = np.arange(len(class_names))
+    train_df = pd.DataFrame(train_counts_per_client).reindex(full_class_index, fill_value=0)
+    test_df = pd.DataFrame(test_counts_per_client).reindex(full_class_index, fill_value=0)
+
+    # --- 2. Plot Training Data Chart ---
+    fig, ax = plt.subplots(figsize=(16, 8))
+    
+    # **BUG FIX: Remove the .T to plot with classes on the x-axis**
+    train_df.plot(kind='bar', stacked=True, ax=ax, colormap='viridis')
+    
+    ax.set_title('Aggregated Class Distribution (Training Set)', fontsize=16)
+    ax.set_ylabel('Number of Samples')
+    ax.set_xlabel('Activity Class')
+    ax.set_xticklabels(class_names, rotation=45, ha="right")
+    ax.legend(title='Clients', bbox_to_anchor=(1.02, 1), loc='upper left')
+    
+    plt.tight_layout()
+    train_plot_filename = "./aggregated_class_dist_train.png"
+    plt.savefig(train_plot_filename)
+    plt.close()
+    print(f"  - Saved training data distribution plot to {train_plot_filename}")
+
+    # --- 3. Plot Testing Data Chart ---
+    fig, ax = plt.subplots(figsize=(16, 8))
+
+    # **FIX: Remove the .T to plot with classes on the x-axis**
+    test_df.plot(kind='bar', stacked=True, ax=ax, colormap='viridis')
+
+    ax.set_title('Aggregated Class Distribution (Test Set)', fontsize=16)
+    ax.set_ylabel('Number of Samples')
+    ax.set_xlabel('Activity Class')
+    ax.set_xticklabels(class_names, rotation=45, ha="right")
+    ax.legend(title='Clients', bbox_to_anchor=(1.02, 1), loc='upper left')
+
+    plt.tight_layout()
+    test_plot_filename = "./aggregated_class_dist_test.png"
+    plt.savefig(test_plot_filename)
+    plt.close()
+    print(f"  - Saved testing data distribution plot to {test_plot_filename}")
+
+
+def plot_aggregated_class_percent_distributions(Y_train_splits, Y_test_splits, clients_info):
+    """
+    Generates two 100% percentage stacked bar charts for the aggregated class distribution,
+    one for the training set and one for the testing set.
+    """
+    print("\n--- Generating Aggregated Percentage Class Distribution Plots ---")
+
+    class_names = [
+        'Special Fall', 'Falling Hands', 'Falling Knees', 'Falling Backwards',
+        'Falling Sideward', 'Falling off Chair', 'Walking', 'Standing',
+        'Sitting', 'Picking Object', 'Jumping', 'Laying'
+    ]
+     # --- 1. Aggregate Data ---
+    train_counts_per_client = {}
+    test_counts_per_client = {}
+    
+    # Get a list of client names from the info dictionary
+    for client_id, (client_name, columns) in enumerate(sensor_clients.items()):
+        # Loop through each client to create a separate plot
+
+        # Check if data exists for this client
+        if client_id not in Y_train_splits or client_id not in Y_test_splits:
+            print(f"  - Skipping Client {client_id} ({client_name}): No label data found.")
+            continue
+
+        y_train_indices = torch.argmax(Y_train_splits[client_id], dim=1).cpu().numpy()
+        y_test_indices = torch.argmax(Y_test_splits[client_id], dim=1).cpu().numpy()
+
+        train_counts_per_client[client_name] = pd.Series(y_train_indices).value_counts()
+        test_counts_per_client[client_name] = pd.Series(y_test_indices).value_counts()
+
+    full_class_index = np.arange(len(class_names))
+    train_df = pd.DataFrame(train_counts_per_client).reindex(full_class_index, fill_value=0)
+    test_df = pd.DataFrame(test_counts_per_client).reindex(full_class_index, fill_value=0)
+
+    # --- 2. Convert Counts to Percentages ---
+    # Calculate the total samples for each class (row-wise sum)
+    train_totals = train_df.sum(axis=1)
+    test_totals = test_df.sum(axis=1)
+
+    # Divide each client's count by the class total and multiply by 100
+    # Add a small epsilon to totals to avoid division by zero if a class has no samples
+    train_df_percent = train_df.div(train_totals + 1e-9, axis=0) * 100
+    test_df_percent = test_df.div(test_totals + 1e-9, axis=0) * 100
+
+    # --- 3. Plot Training Data Chart ---
+    fig, ax = plt.subplots(figsize=(16, 8))
+    # Plot the percentage dataframe
+    train_df_percent.plot(kind='bar', stacked=True, ax=ax, colormap='viridis')
+    
+    ax.set_title('Client Contribution per Class (Training Set)', fontsize=16)
+    ax.set_ylabel('Percentage (%)')
+    ax.set_xlabel('Activity Class')
+    ax.set_xticklabels(class_names, rotation=45, ha="right")
+    ax.legend(title='Clients', bbox_to_anchor=(1.02, 1), loc='upper left')
+    ax.set_ylim(0, 100) # Set y-axis to go from 0 to 100
+    
+    plt.tight_layout()
+    train_plot_filename = "./aggregated_percentage_dist_train.png"
+    plt.savefig(train_plot_filename)
+    plt.close()
+    print(f"  - Saved training data percentage plot to {train_plot_filename}")
+
+    # --- 4. Plot Testing Data Chart ---
+    fig, ax = plt.subplots(figsize=(16, 8))
+    # Plot the transposed percentage dataframe
+    test_df_percent.plot(kind='bar', stacked=True, ax=ax, colormap='viridis')
+
+    ax.set_title('Client Contribution per Class (Test Set)', fontsize=16)
+    ax.set_ylabel('Percentage (%)')
+    ax.set_xlabel('Activity Class')
+    ax.set_xticklabels(class_names, rotation=45, ha="right")
+    ax.legend(title='Clients', bbox_to_anchor=(1.02, 1), loc='upper left')
+    ax.set_ylim(0, 100) # Set y-axis to go from 0 to 100
+
+    plt.tight_layout()
+    test_plot_filename = "./aggregated_percentage_dist_test.png"
+    plt.savefig(test_plot_filename)
+    plt.close()
+    print(f"  - Saved testing data percentage plot to {test_plot_filename}")
+
 # --- How to Use ---
 if __name__ == '__main__':
     try:
@@ -160,6 +370,15 @@ if __name__ == '__main__':
             print(f"  - Y_train shape: {Y_train[client_index].shape}")
             print(f"  - X_test shape:  {X_test[client_index].shape}")
             print(f"  - Y_test shape:  {Y_test[client_index].shape}")
+
+        # --- NEW: Call the new visualization function ---
+        # plot_aggregated_class_distributions(Y_train, Y_test, sensor_clients)
+
+        # --- NEW: Call the new visualization function ---
+        plot_aggregated_class_percent_distributions(Y_train, Y_test, sensor_clients)
+
+        # Generate class distribution plots
+        # plot_class_distributions(Y_train, Y_test, sensor_clients)
 
     except FileNotFoundError:
         print("\nError: 'sensor.csv' not found.")
