@@ -130,8 +130,8 @@ def loadClientsData():
 
         X_csv_train_scaled = scale_data(X_csv_train)
 
-        # print('X_csv_train_scaled shape : ', X_csv_train_scaled.shape)
-        # print('Y_csv_train shape : ', Y_csv_train.shape)
+        print('X_csv_train_scaled shape : ', X_csv_train_scaled.shape)
+        print('Y_csv_train shape : ', Y_csv_train.shape)
 
         X_train_1 = img_1_train
         y_train_1 = label_1_train
@@ -142,8 +142,8 @@ def loadClientsData():
 
         Y_train_1 = torch.nn.functional.one_hot(torch.from_numpy(y_train_1).long(), 12).float()
 
-        # print('X_train_1 shape : ', X_train_1.shape)
-        # print('y_train_1 shape : ', Y_train_1.shape)
+        print('X_train_1 shape : ', X_train_1.shape)
+        print('y_train_1 shape : ', Y_train_1.shape)
 
         X_train_2 = img_2_train
         y_train_2 = label_2_train
@@ -154,8 +154,8 @@ def loadClientsData():
 
         Y_train_2 = torch.nn.functional.one_hot(torch.from_numpy(y_train_2).long(), 12).float()
 
-        # print('X_train_2 shape : ', X_train_2.shape)
-        # print('y_train_2 shape : ', Y_train_2.shape)
+        print('X_train_2 shape : ', X_train_2.shape)
+        print('y_train_2 shape : ', Y_train_2.shape)
 
 
         # print('(y_train_1 == y_csv_train).all():',(y_train_1 == y_csv_train).all())

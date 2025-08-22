@@ -353,3 +353,12 @@ def splitForClients(total_client,ratios,
         Y_train_1_splits, Y_test_1_splits, Y_val_1_splits, \
         X_train_2_scaled_splits, X_test_2_scaled_splits, X_val_2_scaled_splits, \
         Y_train_2_splits, Y_test_2_splits, Y_val_2_splits
+
+
+
+def main():
+    loadData()
+
+
+if __name__ == "__main__":
+    main()
