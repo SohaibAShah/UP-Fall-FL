@@ -27,7 +27,7 @@ def main():
     )
     parser.add_argument('--epochs', type=int, default=200, help='Number of global training rounds (epochs).')
     parser.add_argument('--total_clients', type=int, default=12, help='The total number of clients available for the simulation.')
-    parser.add_argument('--num_clients_per_round', type=int, default=12, help='The number of clients to select for training in each round.')
+    parser.add_argument('--num_clients_per_round', type=int, default=6, help='The number of clients to select for training in each round.')
     parser.add_argument('--max_acc', type=float, default=80.0, help='The accuracy threshold (in percent) for saving the best model.')
     
     args = parser.parse_args()

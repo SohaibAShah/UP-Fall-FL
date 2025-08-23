@@ -26,7 +26,7 @@ def loadClientsData():
     Y_test_2_splits = {}
     clint_index = 0
     for sub_ in subs:
-        SUB_train = pd.read_csv('./dataset/Sensor + Image/{}_sensor_train.csv'.format(sub_), skiprows=1)
+        SUB_train = pd.read_csv('/home/syed/PhD/UP-Fall-FL/dataset/Sensor + Image/{}_sensor_train.csv'.format(sub_), skiprows=1)
         SUB_train.head()
         # print('{}_SUB.shap'.format(sub_),SUB_train.shape)
 
@@ -52,9 +52,9 @@ def loadClientsData():
         SUB_train.head()
 
         cam = '1'
-        image_train = './dataset/Sensor + Image' + '/' + '{}_image_1_train.npy'.format(sub_)
-        name_train = './dataset/Sensor + Image' + '/' + '{}_name_1_train.npy'.format(sub_)
-        label_train = './dataset/Sensor + Image' + '/' + '{}_label_1_train.npy'.format(sub_)
+        image_train = '/home/syed/PhD/UP-Fall-FL/dataset/Sensor + Image' + '/' + '{}_image_1_train.npy'.format(sub_)
+        name_train = '/home/syed/PhD/UP-Fall-FL/dataset/Sensor + Image' + '/' + '{}_name_1_train.npy'.format(sub_)
+        label_train = '/home/syed/PhD/UP-Fall-FL/dataset/Sensor + Image' + '/' + '{}_label_1_train.npy'.format(sub_)
 
         img_1_train = np.load(image_train)
         label_1_train = np.load(label_train)
@@ -62,9 +62,9 @@ def loadClientsData():
 
         cam = '2'
 
-        image_train = './dataset/Sensor + Image' + '/' + '{}_image_2_train.npy'.format(sub_)
-        name_train = './dataset/Sensor + Image' + '/' + '{}_name_2_train.npy'.format(sub_)
-        label_train = './dataset/Sensor + Image' + '/' + '{}_label_2_train.npy'.format(sub_)
+        image_train = '/home/syed/PhD/UP-Fall-FL/dataset/Sensor + Image' + '/' + '{}_image_2_train.npy'.format(sub_)
+        name_train = '/home/syed/PhD/UP-Fall-FL/dataset/Sensor + Image' + '/' + '{}_name_2_train.npy'.format(sub_)
+        label_train = '/home/syed/PhD/UP-Fall-FL/dataset/Sensor + Image' + '/' + '{}_label_2_train.npy'.format(sub_)
 
         img_2_train = np.load(image_train)
         label_2_train = np.load(label_train)
@@ -170,7 +170,7 @@ def loadClientsData():
         X_train_1_scaled = X_train_1 / 255.0
         X_train_2_scaled = X_train_2 / 255.0
 
-        SUB_test = pd.read_csv('./dataset/Sensor + Image/{}_sensor_test.csv'.format(sub_), skiprows=1)
+        SUB_test = pd.read_csv('/home/syed/PhD/UP-Fall-FL/dataset/Sensor + Image/{}_sensor_test.csv'.format(sub_), skiprows=1)
         SUB_test.head()
         # print('{}_SUB.shap'.format(sub_), SUB_test.shape)
 

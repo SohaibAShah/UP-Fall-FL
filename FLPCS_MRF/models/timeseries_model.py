@@ -162,7 +162,7 @@ def trainValSensorModel(total_client,num_clients,epoch,max_acc,
     print(classification_report(y_test, y_predict,
                                 target_names=[f'A{i}' for i in range(1, 13)], digits=4))
     print('max_acc', max_acc)
-    csv_file_name = "./acc_lossFiles/{}_totalClient_{}_NumClient_{}_epoch_{}.csv".format(model_name, total_client,
+    csv_file_name = "/home/syed/PhD/UP-Fall-FL/acc_lossFiles/{}_totalClient_{}_NumClient_{}_epoch_{}.csv".format(model_name, total_client,
                                                                                          num_clients, epoch,
                                                                                          datetime.now().strftime(
                                                                                              '%Y-%m-%d-%H-%M-%S'))
@@ -201,7 +201,7 @@ def trainValSensorModel(total_client,num_clients,epoch,max_acc,
     plt.ylabel('True label', fontsize=15)
     plt.xlabel('Predicted label', fontsize=15)
     plt.savefig(
-        "./acc_lossFiles/{}_totalClient_{}_NumClient_{}_epoch_{}.png".format(model_name, total_client, num_clients,
+        "/home/syed/PhD/UP-Fall-FL/acc_lossFiles/{}_totalClient_{}_NumClient_{}_epoch_{}.png".format(model_name, total_client, num_clients,
                                                                              epoch,
                                                                              datetime.now().strftime(
                                                                                  '%Y-%m-%d-%H-%M-%S')))

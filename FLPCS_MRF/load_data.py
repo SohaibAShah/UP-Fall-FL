@@ -11,7 +11,7 @@ from utils import set_seed, scaled_data # Import from local utils.py
 
 
 def loadData():
-    SUB = pd.read_csv('./dataset/Sensor + Image/sensor.csv', skiprows=1)
+    SUB = pd.read_csv('/home/syed/PhD/UP-Fall-FL/dataset/Sensor + Image/sensor.csv', skiprows=1)
     SUB.head()
     print(SUB.shape)
 
@@ -38,9 +38,9 @@ def loadData():
 
     cam = '1'
 
-    image = './dataset/Sensor + Image' + '/' + 'image_' + cam + '.npy'
-    name = './dataset/Sensor + Image' + '/' + 'name_' + cam + '.npy'
-    label = './dataset/Sensor + Image' + '/' + 'label_' + cam + '.npy'
+    image = '/home/syed/PhD/UP-Fall-FL/dataset/Sensor + Image' + '/' + 'image_' + cam + '.npy'
+    name = '/home/syed/PhD/UP-Fall-FL/dataset/Sensor + Image' + '/' + 'name_' + cam + '.npy'
+    label = '/home/syed/PhD/UP-Fall-FL/dataset/Sensor + Image' + '/' + 'label_' + cam + '.npy'
 
     img_1 = np.load(image)
     label_1 = np.load(label)
@@ -48,9 +48,9 @@ def loadData():
 
     cam = '2'
 
-    image = './dataset/Sensor + Image' + '/' + 'image_' + cam + '.npy'
-    name = './dataset/Sensor + Image' + '/' + 'name_' + cam + '.npy'
-    label = './dataset/Sensor + Image' + '/' + 'label_' + cam + '.npy'
+    image = '/home/syed/PhD/UP-Fall-FL/dataset/Sensor + Image' + '/' + 'image_' + cam + '.npy'
+    name = '/home/syed/PhD/UP-Fall-FL/dataset/Sensor + Image' + '/' + 'name_' + cam + '.npy'
+    label = '/home/syed/PhD/UP-Fall-FL/dataset/Sensor + Image' + '/' + 'label_' + cam + '.npy'
 
     img_2 = np.load(image)
     label_2 = np.load(label)

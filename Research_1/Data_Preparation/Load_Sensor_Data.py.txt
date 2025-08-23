@@ -1,0 +1,96 @@
+import pandas as pd
+import os
+import re 
+import numpy as np
+import cv2
+from matplotlib.pyplot import imread
+import matplotlib.pyplot as plt
+from zipfile import ZipFile
+import shutil
+
+def read_data(data): 
+    
+    data.reset_index(inplace = True)
+    data.rename(columns={'level_0': 'Time'}, inplace = True)
+    data.rename(columns={'x-axis (deg/s).4': 'Raw Brainwave Signal '}, inplace = True)
+    data.rename(columns={'Unnamed: 42': 'Tag'}, inplace = True)
+    
+    TimeStamp = data.iloc[:,0]
+    ankle = data.iloc[: , 1:8]
+    pocket = data.iloc[:, 8:15]
+    waist = data.iloc[:,15:22]
+    neck = data.iloc[:,22:29]
+    wrist = data.iloc[:,29:36]
+    EEG = data.iloc[:,36]
+    Infraded = data.iloc[:,37:43]
+    label = data.iloc[:,46]
+        
+    ankle.columns = ['X-axis Accelerometer (g)', 'Y-axis Accelerometer (g)' , 'Z-axis Accelerometer (g)',
+                     'Roll Gyroscrope (deg/s)', 'Pitch Gyroscope (deg/s)', 'Yaw Gyroscope (deg/s)' ,'Luminosity (lux)']
+
+    pocket.columns = ['X-axis Accelerometer (g)', 'Y-axis Accelerometer (g)' , 'Z-axis Accelerometer (g)',
+                     'Roll Gyroscrope (deg/s)', 'Pitch Gyroscope (deg/s)', 'Yaw Gyroscope (deg/s)' ,'Luminosity (lux)']
+
+    waist.columns = ['X-axis Accelerometer (g)', 'Y-axis Accelerometer (g)' , 'Z-axis Accelerometer (g)',
+                     'Roll Gyroscrope (deg/s)', 'Pitch Gyroscope (deg/s)', 'Yaw Gyroscope (deg/s)' ,'Luminosity (lux)']
+
+    neck.columns = ['X-axis Accelerometer (g)', 'Y-axis Accelerometer (g)' , 'Z-axis Accelerometer (g)',
+                     'Roll Gyroscrope (deg/s)', 'Pitch Gyroscope (deg/s)', 'Yaw Gyroscope (deg/s)' ,'Luminosity (lux)']
+
+    wrist.columns = ['X-axis Accelerometer (g)', 'Y-axis Accelerometer (g)' , 'Z-axis Accelerometer (g)',
+                     'Roll Gyroscrope (deg/s)', 'Pitch Gyroscope (deg/s)', 'Yaw Gyroscope (deg/s)' ,'Luminosity (lux)']
+
+    Infraded.columns = ['Infrared 1', 'Infrared 2', 'Infrared 3', 'Infrared 4', 'Infrared 5', 'Infrared 6']
+
+    handled_data = pd.concat([TimeStamp, ankle,pocket,waist,neck,wrist,EEG,Infraded ], 
+                            axis = 1, 
+                            keys = ['TimeStamp','Wearable Ankle', 'Wearable Pocket','Wearable Waist', 
+                                    'Wearable Neck', 'Wearable Wrist','EEG Headset'  ,'Infrared'],
+                             
+                            names = ['Deviece Name', 'Channel Name'])
+    handled_data[('Tag' , 'Label')]= label
+    
+    return handled_data
+
+
+def concat_data():
+    concat_Sub = []
+    list_Sub = []
+    sum_shape = 0
+    sum_csv = 0
+    for sub_ in range(1,17 + 1 ) :
+        Sub = 'Subject' + str(sub_)
+        list_Sub.append(Sub)
+        concat_Act = []
+        list_Act = []
+        for act_ in range(1,11+1):
+            Act = 'Activity'+ str(act_)
+            list_Act.append(Act)
+            concat_Trial = []
+            list_Trial  = []
+            for trial_ in range(1,3+1):
+                Trial = 'Trial'+ str(trial_)
+                list_Trial.append(Trial)
+                if ( (sub_ == 8 and act_ == 11) and ( trial_ == 2 or trial_ == 3) ) :
+                    print('----------------------------NULL---------------------------------')
+                    continue 
+                else :
+                    path = Sub + '/' + Act + '/' + Trial + '/' + Sub + Act + Trial + '.csv'
+                data = pd.read_csv(path,skiprows=1)
+                print('path : {} . Shape : ({},{})'.format(path, data.shape[0], data.shape[1]))
+                sum_shape += data.shape[0]
+                sum_csv +=1 
+                handled  = read_data(data)
+                concat_Trial.append(handled)
+            TRIAL = pd.concat(concat_Trial,keys = list_Trial)
+            concat_Act.append(TRIAL)
+        ACT = pd.concat(concat_Act, keys = list_Act)
+        concat_Sub.append(ACT)
+    SUB = pd.concat(concat_Sub,keys = list_Sub)
+    return SUB
+
+
+if __name__ == "__main__":
+	SUB = concat_data()
+	SUB.to_csv(path_or_buf='UP-Fall Dataset/new/sensor.csv', index = False)
+	
