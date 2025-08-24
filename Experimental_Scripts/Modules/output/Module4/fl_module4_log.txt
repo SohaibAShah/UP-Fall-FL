@@ -1,0 +1,87 @@
+2025-08-24 15:27:52,942 [INFO] Loading and processing data...
+2025-08-24 15:34:59,239 [INFO] Step 1: Loading and processing data...
+2025-08-24 15:34:59,240 [INFO] Step 2: Loading sensor CSV data...
+2025-08-24 15:35:00,922 [INFO] Step 3: Cleaning column names...
+2025-08-24 15:35:00,923 [INFO] Step 4: Dropping NA and duplicate rows...
+2025-08-24 15:35:01,356 [INFO] Step 5: Loading image and label data...
+2025-08-24 15:35:01,744 [INFO] Step 6: Aligning timestamps between sensor and image data...
+2025-08-24 15:53:16,459 [INFO] Step 1: Loading and processing data...
+2025-08-24 15:53:16,459 [INFO] Step 2: Loading sensor CSV data...
+2025-08-24 15:53:18,267 [INFO] Step 3: Cleaning column names...
+2025-08-24 15:53:18,268 [INFO] Step 4: Dropping NA and duplicate rows...
+2025-08-24 15:53:18,753 [INFO] Step 5: Loading image and label data...
+2025-08-24 15:53:19,954 [INFO] Step 6: Aligning timestamps between sensor and image data...
+2025-08-24 16:08:20,753 [INFO] Loading and processing data...
+2025-08-24 16:08:24,565 [INFO] Aligning timestamps (optimized method)...
+2025-08-24 16:08:34,803 [INFO] Data loading complete. Train samples: 154867
+2025-08-24 16:22:34,666 [INFO] Loading and processing data...
+2025-08-24 16:22:38,565 [INFO] Aligning timestamps (optimized method)...
+2025-08-24 16:22:47,804 [INFO] Data loading complete. Train samples: 154867
+2025-08-24 16:22:51,881 [INFO] 
+--- Training EarlyFusion Model ---
+2025-08-24 16:23:32,635 [INFO] Loading and processing data...
+2025-08-24 16:23:35,529 [INFO] Aligning timestamps (optimized method)...
+2025-08-24 16:23:43,626 [INFO] Data loading complete. Train samples: 154867
+2025-08-24 16:23:47,924 [INFO] 
+--- Training EarlyFusion Model ---
+2025-08-24 16:37:04,391 [INFO] Loading and processing data...
+2025-08-24 16:37:08,268 [INFO] Aligning timestamps (optimized method)...
+2025-08-24 16:37:17,541 [INFO] Data loading complete. Train samples: 154867
+2025-08-24 16:37:21,999 [INFO] 
+--- Training EarlyFusion Model ---
+2025-08-24 16:37:51,696 [INFO] Loading and processing data...
+2025-08-24 16:37:54,537 [INFO] Aligning timestamps (optimized method)...
+2025-08-24 16:38:02,232 [INFO] Data loading complete. Train samples: 154867
+2025-08-24 16:38:06,819 [INFO] 
+--- Training EarlyFusion Model ---
+2025-08-24 16:38:39,985 [INFO] Epoch 1/10 | Val F1 (Fall): 0.9687
+2025-08-24 16:39:10,083 [INFO] Epoch 2/10 | Val F1 (Fall): 0.9824
+2025-08-24 16:39:38,084 [INFO] Epoch 3/10 | Val F1 (Fall): 0.9775
+2025-08-24 16:40:08,610 [INFO] Epoch 4/10 | Val F1 (Fall): 0.9849
+2025-08-24 16:40:37,390 [INFO] Epoch 5/10 | Val F1 (Fall): 0.9883
+2025-08-24 16:41:08,376 [INFO] Epoch 6/10 | Val F1 (Fall): 0.9907
+2025-08-24 16:41:36,694 [INFO] Epoch 7/10 | Val F1 (Fall): 0.9912
+2025-08-24 16:42:05,710 [INFO] Epoch 8/10 | Val F1 (Fall): 0.9929
+2025-08-24 16:42:35,825 [INFO] Epoch 9/10 | Val F1 (Fall): 0.9934
+2025-08-24 16:43:04,855 [INFO] Epoch 10/10 | Val F1 (Fall): 0.9941
+2025-08-24 16:43:04,857 [INFO] --- Evaluating EarlyFusion on Clean Data ---
+2025-08-24 16:43:07,366 [INFO] --- Evaluating EarlyFusion on Noisy Data ---
+2025-08-24 16:43:09,631 [INFO] 
+--- Training LateFusion Model ---
+2025-08-24 16:43:38,329 [INFO] Epoch 1/10 | Val F1 (Fall): 0.9718
+2025-08-24 16:44:09,127 [INFO] Epoch 2/10 | Val F1 (Fall): 0.9782
+2025-08-24 16:44:37,419 [INFO] Epoch 3/10 | Val F1 (Fall): 0.9899
+2025-08-24 16:45:09,878 [INFO] Epoch 4/10 | Val F1 (Fall): 0.9903
+2025-08-24 16:45:41,729 [INFO] Epoch 5/10 | Val F1 (Fall): 0.9956
+2025-08-24 16:46:12,109 [INFO] Epoch 6/10 | Val F1 (Fall): 0.9938
+2025-08-24 16:46:42,295 [INFO] Epoch 7/10 | Val F1 (Fall): 0.9966
+2025-08-24 16:47:15,672 [INFO] Epoch 8/10 | Val F1 (Fall): 0.9978
+2025-08-24 16:47:49,930 [INFO] Epoch 9/10 | Val F1 (Fall): 0.9979
+2025-08-24 16:48:21,827 [INFO] Epoch 10/10 | Val F1 (Fall): 0.9985
+2025-08-24 16:48:21,829 [INFO] --- Evaluating LateFusion on Clean Data ---
+2025-08-24 16:48:24,089 [INFO] --- Evaluating LateFusion on Noisy Data ---
+2025-08-24 16:48:26,392 [INFO] 
+--- Training ResidualFusion Model ---
+2025-08-24 16:49:01,388 [INFO] Epoch 1/10 | Val F1 (Fall): 0.9762
+2025-08-24 16:49:35,763 [INFO] Epoch 2/10 | Val F1 (Fall): 0.9801
+2025-08-24 16:50:10,652 [INFO] Epoch 3/10 | Val F1 (Fall): 0.9811
+2025-08-24 16:50:45,762 [INFO] Epoch 4/10 | Val F1 (Fall): 0.9823
+2025-08-24 16:51:19,692 [INFO] Epoch 5/10 | Val F1 (Fall): 0.9901
+2025-08-24 16:51:55,561 [INFO] Epoch 6/10 | Val F1 (Fall): 0.9933
+2025-08-24 16:52:31,224 [INFO] Epoch 7/10 | Val F1 (Fall): 0.9949
+2025-08-24 16:53:06,130 [INFO] Epoch 8/10 | Val F1 (Fall): 0.9967
+2025-08-24 16:53:40,972 [INFO] Epoch 9/10 | Val F1 (Fall): 0.9979
+2025-08-24 16:54:17,504 [INFO] Epoch 10/10 | Val F1 (Fall): 0.9978
+2025-08-24 16:54:17,506 [INFO] --- Evaluating ResidualFusion on Clean Data ---
+2025-08-24 16:54:19,995 [INFO] --- Evaluating ResidualFusion on Noisy Data ---
+2025-08-24 16:54:22,441 [INFO] 
+--- Final Comparison ---
+
+         Model  Clean F1 (Fall)  Noisy F1 (Fall)  Performance Drop
+   EarlyFusion         0.994525         0.474123          0.520402
+    LateFusion         0.998062         0.501316          0.496746
+ResidualFusion         0.997720         0.496714          0.501007
+2025-08-24 16:54:22,448 [INFO] 
+--- Running Stretch Goal: Visualizing Gate Values ---
+2025-08-24 16:55:01,595 [INFO] 
+✅ All simulations complete. Results saved in '/home/syed/PhD/UP-Fall-FL/Experimental_Scripts/Modules/output/Module4'.

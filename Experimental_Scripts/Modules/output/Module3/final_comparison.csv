@@ -1,0 +1,4 @@
+Algorithm,Rounds-to-Target-F1,Final-Worst-Client-F1
+FedAvg,10,0.9047619047619048
+FedProx (μ=0.01),11,0.9782608695652174
+SCAFFOLD,-1,0.5945945945945946
