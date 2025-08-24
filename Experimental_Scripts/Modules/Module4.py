@@ -26,6 +26,7 @@ def setup_logging(log_dir):
     console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setFormatter(log_formatter)
     root_logger.addHandler(console_handler)
+    logging.info("Logging setup complete.")
 
 def set_seed(seed=42):
     np.random.seed(seed)
@@ -34,11 +35,14 @@ def set_seed(seed=42):
         torch.cuda.manual_seed_all(seed)
         torch.backends.cudnn.deterministic = True
         torch.backends.cudnn.benchmark = False
+    logging.info(f"Random seed set to {seed}.")
+
 
 def add_noise_to_images(image_data, noise_level=0.5):
     """Adds Gaussian noise to images to simulate a noisy sensor."""
     noisy_images = image_data + np.random.normal(0, noise_level, image_data.shape)
     return np.clip(noisy_images, 0., 1.)
+    logging.info(f"Adding Gaussian noise to images with noise_level={noise_level}.")
 
 # --- 2. Data Loading and Preprocessing ---
 
@@ -72,13 +76,15 @@ def load_and_process_data(data_dir):
 
     # Align the sensor dataframe to the exact order
     sub = sub.set_index('TimeStamps_Time').loc[common_timestamps]
-    
+    logging.info("Timestamps aligned.")
+
     feature_cols = [col for col in sub.columns if 'Infrared' not in col and col not in ['Activity', 'Subject', 'Trial', 'Tag']]
     X_csv = sub[feature_cols].values
     y = sub['Activity'].values
     
     fall_activity_ids = {2, 3, 4, 5, 6}
     y_binary = np.array([0 if activity_id in fall_activity_ids else 1 for activity_id in y])
+    logging.info("Labels binarized.")
     
     set_seed(42)
     indices = np.arange(len(y_binary))
@@ -163,6 +169,8 @@ class ResidualFusionModel(nn.Module):
 # --- 4. Training and Evaluation Logic ---
 
 def train_model(model, train_loader, val_loader, config):
+    logging.info("Starting model training...")
+    
     model.to(config['device'])
     optimizer = torch.optim.Adam(model.parameters(), lr=config['learning_rate'])
     criterion = nn.CrossEntropyLoss()
@@ -186,6 +194,7 @@ def train_model(model, train_loader, val_loader, config):
                 preds = torch.argmax(outputs, dim=1).cpu().numpy()
                 all_preds.extend(preds); all_labels.extend(y_b.numpy())
         f1 = f1_score(all_labels, all_preds, pos_label=0); logging.info(f"Epoch {epoch+1}/{config['epochs']} | Val F1 (Fall): {f1:.4f}")
+    logging.info("Model training complete.")
 
 def evaluate_model(model, data_loader, device):
     model.to(device); model.eval()
@@ -197,6 +206,8 @@ def evaluate_model(model, data_loader, device):
             outputs = model(x_csv.to(device), x_img1.to(device), x_img2.to(device))
             preds = torch.argmax(outputs, dim=1).cpu().numpy()
             all_preds.extend(preds); all_labels.extend(y.numpy())
+    logging.info("Evaluation complete.")
+
     return classification_report(all_labels, all_preds, target_names=['Fall', 'No Fall'], output_dict=True, zero_division=0)
 
 # --- 5. Main Execution Block ---
