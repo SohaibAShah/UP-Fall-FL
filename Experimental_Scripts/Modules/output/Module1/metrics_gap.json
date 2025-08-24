@@ -1,0 +1,6 @@
+{
+    "Accuracy": 0.849112426035503,
+    "F1-Score (Fall)": 0.7465208747514911,
+    "Sensitivity (Fall)": 0.6953703703703704,
+    "Specificity (No Fall)": 0.6953703703703704
+}
