@@ -208,7 +208,7 @@ if __name__ == "__main__":
 
     # Hyperparameters
     set_seed(42)
-    FILE_PATH = '/home/syed/PhD/UP_Fall_Dataset/Sensor + Image/sensor.csv' # IMPORTANT: Ensure 'sensor.csv' is in the same directory
+    FILE_PATH = '/home/syed/PhD/UP_Fall_Dataset/Sensor + Image/sensor.csv'sensor.csv' # IMPORTANT: Ensure 'sensor.csv' is in the same directory
     WINDOW_SIZE, STEP, BATCH_SIZE, EPOCHS, LEARNING_RATE = 200, 100, 128, 50, 0.001
     DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     logging.info(f"Using device: {DEVICE}")
