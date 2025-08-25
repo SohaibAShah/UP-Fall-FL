@@ -1,119 +1,83 @@
-Module 1 — IMU Fall Detection with a Tiny 1D-CNN (Foundations)
-Intuition
-Start with a single, always-available, low-power modality: the IMU (accelerometer/gyroscope). You’ll learn to window raw signals and train a lightweight 1D-CNN for binary classification (fall vs non-fall).
-Key Equations
+Of course. Here is the provided information converted into a clean, well-structured Markdown format.
 
-Windowing: Given continuous IMU stream $ a(t) $, form windows $ X \in \mathbb{R}^{T \times C} $ with length $ T $ and channels $ C $ (e.g., $ a_x, a_y, a_z, g_x, g_y, g_z $).
-Model $ f_\theta $: Logits $ z = f_\theta(X) $; probabilities $ p = \sigma(z) $ for binary classification.
-Loss (Binary Cross-Entropy): $ L = -[y \log p + (1-y) \log(1-p)] $.
-Convolution (1D): $ y[n] = \sum_{k=0}^{K-1} w[k] x[n-k] + b $.
+# Module 1: IMU Fall Detection with a Tiny 1D-CNN
 
-Mini-Example
-Use 2 s windows at 100 Hz ($ T=200 $), $ C=6 $ channels. Two Conv1D blocks (kernel size 5), global average pooling, and a sigmoid head.
-Small Assignment
+This project demonstrates how to build and train a lightweight 1D Convolutional Neural Network (1D-CNN) for fall detection using Inertial Measurement Unit (IMU) sensor data. It starts with the foundational concept of using a single, low-power modality (accelerometer/gyroscope) for binary classification (fall vs. non-fall).
 
-Preprocess: Z-score each channel per subject; build subject-wise train/test split.
-Train the 1D-CNN; report accuracy, F1, sensitivity, specificity. Plot a confusion matrix.
-Stretch: Replace global average pooling with temporal attention and compare metrics.
+---
+## Intuition 💡
+The core idea is to start with a simple, always-available sensor like an IMU. We process the raw, continuous signal by slicing it into small, fixed-size "windows" and feed these windows into a lightweight neural network to learn the difference between normal activities and falls.
 
-Fall Detection Neural Networks
-This repository contains code to train and compare two different types of neural networks for detecting falls using sensor data. The models are implemented in PyTorch and focus on processing time-series data from sensors to classify activities as "Fall" (0) or "No Fall" (1).
-Overview
-The code is designed to:
+---
+## Key Concepts and Equations 🧠
+* **Windowing**: Given a continuous IMU stream $ a(t) $, we form windows $X \in \mathbb{R}^{T \times C}$. Here, $ T $is the window length (e.g., 200 samples for a 2-second window at 100 Hz), and$ C $is the number of channels (e.g., 6 channels for$ a_x, a_y, a_z, g_x, g_y, g_z $).
 
-Load and preprocess sensor data from a CSV file.
-Train two 1D Convolutional Neural Network (CNN) variants: one with Global Average Pooling (GAP) and another with Temporal Attention.
-Evaluate model performance using metrics like accuracy, F1-score, sensitivity, and specificity.
-Visualize results with confusion matrices and compare the two models.
+* **Model ($f_\theta$)**: The neural network model takes a window $X$ and outputs logits $z = f_\theta(X)$. For binary classification, these are converted to probabilities using the sigmoid function: $p = \sigma(z)$.
 
-1. Setup and Helper Functions 🛠️
-This initial section imports all the necessary libraries and defines small, reusable functions that will be used throughout the script.
+* **Loss Function (Binary Cross-Entropy)**: The model's error is calculated using the binary cross-entropy loss, which measures the difference between the predicted probability $p$ and the true label $ y $:
+    $$L = -[y \log p + (1-y) \log(1-p)]$$
 
-Imports: It brings in libraries like pandas for handling data, numpy for numerical operations, torch for building the neural network, sklearn for performance metrics, and matplotlib/seaborn for plotting graphs.
-set_seed(seed=42): This function is crucial for reproducibility. Machine learning involves a lot of randomness (like initial model weights). By setting a "seed," we ensure that every time the code runs, the random numbers generated are the same, leading to the exact same results.
-calculate_specificity(...): This calculates how well the model can correctly identify "No Fall" cases. It's an important metric in health applications to avoid false alarms.
-plot_confusion_matrix(...): This function creates a visual grid that shows the model's performance. It displays how many "Falls" and "No Falls" were predicted correctly and incorrectly. The labels are explicitly set to ['Fall (0)', 'No Fall (1)'] to match your requirement.
+* **1D Convolution**: The core operation of the CNN, where a learned filter (or kernel) $w$ slides across the input signal $x$ to produce a feature map $ y $:
+    $$y[n] = \sum_{k=0}^{K-1} w[k] x[n-k] + b$$
 
-2. Data Loading and Preprocessing 🧹
-This is the most critical part for preparing the data. The load_and_preprocess_data function performs several key steps to get the raw sensor.csv file ready for the AI model.
+---
+## Project Assignment Overview 📝
+### Mini-Example
+* **Data Windows**: Use 2-second windows sampled at 100 Hz, resulting in a window length of $T=200$ samples.
+* **Channels**: Use $C=6$ channels (3-axis accelerometer + 3-axis gyroscope).
+* **Architecture**: A simple 1D-CNN with two convolutional blocks (kernel size 5), followed by a global average pooling layer and a final sigmoid output layer.
 
-Load and Clean: It loads the data and cleans up the column names to make them easier to work with.
-Filter Data: It applies specific exclusion rules (like removing certain subjects or activities) as defined in the original notebook.
-Binary Labeling: This is where your new requirement is implemented.
+### Tasks
+1.  **Preprocessing**: Apply Z-score normalization to each sensor channel on a per-subject basis and create a subject-wise train/test data split.
+2.  **Training & Evaluation**: Train the 1D-CNN and report its **accuracy, F1, sensitivity,** and **specificity**. Visualize the results with a confusion matrix.
+3.  **Stretch**: Replace the global average pooling layer with a **temporal attention** mechanism and compare the performance metrics of the two models.
 
-It defines a set of fall_activity_ids ({2, 3, 4, 5, 6}).
-It then creates a new column called 'Fall'. If a row's Activity ID is in the fall_activity_ids set, it's labeled 0 (Fall); otherwise, it's labeled 1 (No Fall).
+---
+## Code Implementation Details
+### 1. Setup and Helper Functions 🛠️
+The script begins by importing essential libraries like `pandas`, `numpy`, `torch`, `sklearn`, and `matplotlib`. Key helper functions are defined:
+* **`set_seed(seed=42)`**: Ensures reproducible results by controlling sources of randomness.
+* **`calculate_specificity(...)`**: Computes the model's ability to correctly identify "No Fall" cases.
+* **`plot_confusion_matrix(...)`**: Creates a visual grid to show correct and incorrect predictions for both "Fall" (0) and "No Fall" (1) classes.
 
+### 2. Data Loading and Preprocessing 🧹
+This is a critical stage where the raw `sensor.csv` data is prepared for the model.
+* **Load and Clean**: Loads the data and standardizes column names.
+* **Filter and Label**: Applies specific exclusion rules and converts multi-class activity data into binary labels. Activities `{2, 3, 4, 5, 6}` are labeled as **Fall (0)**, and all others are **No Fall (1)**.
+* **Windowing**: The continuous sensor data is sliced into 2-second windows with a 50% overlap. A window is labeled a "Fall" if any data point within it is a fall.
+* **Subject-wise Split**: Data is split by subject to ensure the model is tested on data from completely unseen individuals.
+* **Z-Score Normalization**: Scales the data to have a mean of 0 and a standard deviation of 1, which helps optimize the training process.
 
-Windowing: Human activities happen over time, not in an instant. This step converts the continuous stream of sensor data into small, overlapping chunks called "windows."
+### 3. Model Architectures 🧠
+Two 1D-CNN architectures are implemented to learn patterns from the time-series sensor data.
 
-The code uses a window size of 200 samples (equal to 2 seconds of data) with a 50% overlap.
-A window is labeled as a Fall (0) if any single data point within that window is a fall. This ensures no fall event is missed.
+#### `CNN_GAP` (Global Average Pooling)
+This is the baseline model. It uses two `Conv1d` layers to detect features, an `AdaptiveAvgPool1d` layer to summarize these features by taking their average, and a final `Linear` layer for the classification decision.
 
+#### `CNN_Attention` (Temporal Attention)
+This advanced model replaces the simple pooling layer with a custom **`TemporalAttention`** layer. Instead of averaging all features equally, the attention mechanism learns to assign more weight to the most critical moments within a window (e.g., the moment of impact during a fall), potentially leading to better predictions. 
 
-Subject-wise Split: To ensure the model is tested on completely unseen individuals, the data is split into training and testing sets based on subject IDs. The model trains on one group of subjects and is evaluated on a different group.
-Z-Score Normalization: It scales the sensor data so that each feature (e.g., x-axis acceleration) has a mean of 0 and a standard deviation of 1. This helps the model train faster and more effectively. Crucially, it learns the scaling parameters only from the training data to avoid leaking information from the test set.
-Final Reshape: The data is reshaped into the format PyTorch expects: (batch_size, channels, window_length).
+### 4. Training and Evaluation Logic 🏋️‍♂️
+These functions manage the model's learning and performance assessment.
+* **`train_model(...)`**: Orchestrates the training loop. It feeds data to the model, calculates the error (loss) using `BCEWithLogitsLoss`, and uses the `Adam` optimizer to adjust the model's parameters to minimize this error.
+* **`evaluate_model(...)`**: Assesses the trained model's performance on the unseen test data by calculating key metrics like Accuracy, F1-Score, Sensitivity (Recall), and Specificity.
 
-3. Model Architectures 🧠
-This section defines the "brain" of the operation—the two neural network models that will learn to detect falls. Both are 1D Convolutional Neural Networks (1D-CNNs), which are excellent for finding patterns in time-series data like sensor signals.
+### 5. Main Execution Block ▶️
+This final section runs the entire experiment. It sets hyperparameters, loads the data, and then creates, trains, and evaluates both the `CNN_GAP` and `CNN_Attention` models, printing a final table to compare their performance.
 
-CNN_GAP (Global Average Pooling)
-This is the baseline model.
+---
+## Getting Started
+### Prerequisites
+Ensure you have Python installed along with the required libraries: `pandas`, `numpy`, `torch`, `sklearn`, `matplotlib`, and `seaborn`.
 
-Two Conv1d layers: These layers act like pattern detectors, scanning the input windows to find features indicative of falls (e.g., sudden changes in acceleration).
-AdaptiveAvgPool1d: After patterns are detected, this layer simplifies the information by taking the average of all the features. It's a simple and effective way to summarize what the convolutional layers found.
-Linear layer: This is the final decision-making layer. It takes the summarized features and outputs a single value (a logit) that represents the likelihood of a fall.
+### Usage
+1.  Place the `sensor.csv` file in the same directory as the script.
+2.  Execute the Python script to start the training and evaluation process.
 
+---
+## License
+This project is licensed under the MIT License.
 
-CNN_Attention (Temporal Attention)
-This is the more advanced model. It's identical to the CNN_GAP model, but it replaces the simple pooling layer with a custom TemporalAttention layer.
-
-How Attention Works: Instead of treating all parts of the 2-second window equally (like averaging), the attention mechanism learns to pay more attention to the most important moments within the window. For a fall, this might be the moment of impact. This allows the model to focus on the most relevant information and potentially make better predictions.
-
-
-
-4. Training and Evaluation Logic 🏋️‍♂️
-These functions control the learning process and measure how well the models perform.
-
-train_model(...): This function orchestrates the training loop.
-
-It iterates through the training data for a set number of epochs (cycles).
-In each cycle, it feeds the data to the model, calculates the error (loss) using BCEWithLogitsLoss (a stable loss function for binary tasks), and adjusts the model's internal parameters using the Adam optimizer to reduce that error.
-
-
-evaluate_model(...): This function assesses the trained model's performance on the unseen test data.
-
-It makes predictions for the entire test set.
-It calculates four key metrics:
-
-Accuracy: The overall percentage of correct predictions.
-F1-Score (Fall): A balanced measure of the model's ability to correctly identify falls.
-Sensitivity (Fall): The percentage of actual falls that the model correctly identified (also known as recall).
-Specificity (No Fall): The percentage of actual "No Fall" activities that the model correctly identified.
-
-
-
-
-
-5. Main Execution Block ▶️
-This is the final part that runs the entire experiment from start to finish.
-
-Set Hyperparameters: It defines key settings like the file path, window size, number of training epochs, and learning rate.
-Load Data: It calls the load_and_preprocess_data function to prepare the datasets.
-Run Experiment 1 (CNN-GAP): It creates, trains, and evaluates the baseline model, then prints its metrics and plots its confusion matrix.
-Run Experiment 2 (CNN-Attention): It does the same for the more advanced attention-based model.
-Final Comparison: It displays a final summary table that directly compares the performance metrics of both models, making it easy to see which one performed better.
-
-Getting Started
-
-Prerequisites: Ensure you have Python installed with the required libraries (pandas, numpy, torch, sklearn, matplotlib, seaborn).
-Data: Place the sensor.csv file in the appropriate directory.
-Run the Code: Execute the main script to train and evaluate the models.
-
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
-Acknowledgments
-
-Inspired by fall detection research in wearable sensors.
-Built with PyTorch for deep learning.
+## Acknowledgments
+* Inspired by fall detection research using wearable sensors.
+* Deep learning components built with PyTorch.

@@ -193,7 +193,7 @@ def evaluate_gated_model(model, data_loader, device, threshold):
 # --- 5. Main Execution Block ---
 
 if __name__ == "__main__":
-    OUTPUT_DIR = '/home/syed/PhD/UP-Fall-FL/Experimental_Scripts/Modules/output/Module4'
+    OUTPUT_DIR = '/home/syed/PhD/UP-Fall-FL/Experimental_Scripts/Modules/output/Module5'
     os.makedirs(OUTPUT_DIR, exist_ok=True); setup_logging(OUTPUT_DIR)
     config = {'epochs': 10, 'learning_rate': 0.001, 'dropout_prob': 0.3,
               'device': torch.device("cuda" if torch.cuda.is_available() else "cpu")}
