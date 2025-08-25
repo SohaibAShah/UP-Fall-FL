@@ -1,26 +1,31 @@
-Of course. Let's break down the code and then analyze the log output to understand the Pareto selection behavior.
+# Module 6: Client Selection with Pareto Metrics
 
------
-Module 6 — Client selection with Pareto metrics (tie‑in to 
-2
-)
-Intuition
+## Intuition 💡
+In Federated Learning, clients can be unreliable—some may have noisy data, missing sensors, or old information. Simply averaging updates from all clients can harm the model. **Pareto-optimal selection** is a strategy to choose a subset of the "best" clients in each round based on multiple criteria, improving the stability and performance of the global model without requiring extra communication.
 
-Some clients are noisy (bad labels), incomplete (missing sensors), or stale (old data). Selecting a Pareto‑optimal subset each round improves stability without extra communication.
-Key equations
+---
+## Key Concepts 🧠
 
-Define a metric vector s_k = [loss_k, recency_k, completeness_k, diversity_k, size_k].
-Pareto dominance: s_a dominates s_b if s_a is no worse in all metrics and strictly better in at least one.
-Selection: choose a maximal non‑dominated set (Pareto front), then subsample to the round’s budget.
-Mini‑example
+* **Metric Vector**: For each client *k*, we define a vector of metrics, $s_k$, that describes its quality and state. This can include factors like:
+    $$s_k = [\text{loss}_k, \text{recency}_k, \text{completeness}_k, \text{diversity}_k, \text{size}_k]$$
 
-Compute per‑client loss, last‑seen timestamp, modality completeness ratio, feature diversity proxy (e.g., variance), and dataset size. Build the Pareto front and sample K clients.
-Small assignment
+* **Pareto Dominance**: A client *a* **dominates** client *b* if client *a* is no worse than client *b* in all metrics and is strictly better in at least one.
 
-Add Pareto client selection to Module 4/5 FL training.
-Compare convergence, final F1, and variance across rounds vs random selection.
-Stretch: adapt sampling probabilities within the Pareto front proportional to a “need” score (e.g., under‑represented modalities). 
-2
+* **Selection**: The server identifies the **Pareto front**, which is the set of all clients that are not dominated by any other client. From this optimal set, the server then subsamples the number of clients needed for the training round. 
+
+---
+## Mini-Example 🧪
+In each round, the server computes the following for every client: its training loss, when it was last seen, the completeness of its sensor data, a proxy for its data diversity (like feature variance), and its dataset size. Using these metrics, it builds the Pareto front and samples *K* clients to participate.
+
+---
+## Small Assignment 🎯
+
+* Integrate Pareto client selection into the federated training pipeline from the previous modules.
+* Compare its performance against random client selection, focusing on convergence speed, final F1-score, and the variance of the F1-score across rounds.
+
+---
+## Stretch Goal 🌟
+Enhance the selection process by adapting the sampling probabilities *within* the Pareto front. Give higher priority to clients with a greater "need" score, such as those with under-represented data modalities.
 
 ### Code Explanation
 

@@ -1,20 +1,37 @@
-# Module 2 — Federated learning (FedAvg) on non‑IID clients
-Intuition
+Of course. Here is the provided text converted into a clean, well-structured Markdown format.
 
-With FL, each device trains locally and shares only model updates. Non‑IID data (different daily routines, mobility aids) makes naive averaging unstable, but FedAvg is the baseline protocol to understand first.
-Key equations
+***
 
-Local empirical risk at client k: F_k(θ) = (1/|D_k|) ∑_{(x,y)∈D_k} ℓ(fθ(x), y).
-FedAvg local update: θ_k^{t+1} = θ^t − η ∑_{e=1}^{E} ∇θ F_k(θ) (E local epochs).
-Server aggregation: θ^{t+1} = ∑{k∈S_t} (|D_k|/∑{j∈S_t}|D_j|) θ_k^{t+1}.
-Mini‑example
+# Module 2: Federated Learning (FedAvg) on Non-IID Clients
 
-Simulate 50 clients; give each a different fall:non‑fall ratio (label‑skew). Train 5 local epochs per round; sample 10 clients per round.
-Small assignment
+## Intuition 💡
+In Federated Learning (FL), each device trains a model on its local data and shares only the model updates (not the data itself) with a central server. When clients have **Non-IID** (non-uniform) data, which is common in the real world due to different daily routines or the use of mobility aids, the simple averaging of model updates can become unstable. However, **Federated Averaging (FedAvg)** is the foundational baseline protocol to understand first.
 
-Implement FedAvg with subject‑wise partitions as clients.
-Compare IID vs non‑IID partitions. Plot accuracy vs rounds and communication (MB).
-Stretch: add client sampling probability proportional to recent loss.
+---
+## Key Equations 🧠
+
+* **Local Empirical Risk**: The loss function for a single client *k* is the average loss over their local dataset $D_k$:
+    $$F_k(\theta) = \frac{1}{|D_k|} \sum_{(x,y)\in D_k} \ell(f_\theta(x), y)$$
+
+* **FedAvg Local Update**: Each client updates its model for *E* local epochs by performing gradient descent on its local data, starting from the current global model $\theta^t$:
+    $$\theta_k^{t+1} = \theta^t - \eta \sum_{e=1}^{E} \nabla_\theta F_k(\theta)$$
+
+* **Server Aggregation**: The server creates the new global model $\theta^{t+1}$ by performing a weighted average of the updated local models from the selected clients $S_t$. Each client's contribution is weighted by the size of its local dataset $|D_k|$:
+    $$\theta^{t+1} = \sum_{k \in S_t} \frac{|D_k|}{\sum_{j \in S_t} |D_j|} \theta_k^{t+1}$$
+
+---
+## Mini-Example 🧪
+Simulate 50 clients, where each is given a different ratio of fall-to-non-fall data to create a **label-skew** non-IID scenario. In each communication round, sample 10 clients and have them train for 5 local epochs.
+
+---
+## Small Assignment 🎯
+* Implement the **FedAvg** algorithm, using subject-wise data partitions to create clients.
+* Compare the performance of the model when trained on **IID vs. Non-IID** data partitions.
+* Plot the global model's **accuracy vs. communication rounds** and **accuracy vs. communication cost (MB)**.
+
+---
+## Stretch Goal 🌟
+* Enhance the client selection process by making the sampling probability for each client proportional to its **most recent training loss**.
 
 # Explanation of the Federated Learning Fall Detection Script
 

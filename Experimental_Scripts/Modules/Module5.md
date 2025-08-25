@@ -1,20 +1,33 @@
-Module 5 — Missing modalities and an IMU‑driven gate (energy/latency aware)
-Intuition
+# Module 5: Missing Modalities and an IMU-Driven Gate
 
-Real deployments lose sensors (camera off, occlusions). Train the model to be robust when a modality is missing, and gate the heavy branch to save energy.
-Key equations
+## Intuition 💡
+In real-world deployments, sensors can fail (e.g., a camera is turned off or blocked). This module focuses on training a model to be robust against missing data from a modality. It also introduces an energy-saving technique where a lightweight sensor (IMU) acts as a "gate" to decide when to activate a more power-hungry sensor (camera).
 
-Modality dropout during training: sample a mask m ∈ {0,1}^M and zero out missing modalities; minimize E_m [ℓ(fθ(X ⊙ m), y)].
-Energy/latency budget model: expected cost C = C_light + p_trigger · C_heavy, where p_trigger is gate’s trigger probability.
-Gate as a classifier: p_trigger = σ(g(ϕ_IMU(X_I))); wake heavy branch if p_trigger > τ.
-Mini‑example
+---
+## Key Equations 🧠
 
-Train residual fusion with 30% probability of dropping RGB at training time. Deploy with a gate that triggers RGB only when IMU confidence is low or “fall‑like.”
-Small assignment
+* **Modality Dropout**: During training, we randomly create a binary mask, $m$, and multiply it with the input data, $X$, to simulate missing sensors. The model then learns to minimize the expected loss across these different dropout scenarios:
+    $$\min_{\theta} \mathbb{E}_m [\ell(f_\theta(X \odot m), y)]$$
 
-Measure accuracy with and without modality dropout when RGB is absent at test time.
-Estimate expected latency/energy before vs after gating (even simple timing/energy proxies are fine).
-Stretch: learn τ to meet a target energy budget (constrained optimization).
+* **Energy/Latency Budget Model**: The expected computational cost can be modeled as the cost of the lightweight sensor ($C_{light}$) plus the cost of the heavy sensor ($C_{heavy}$) multiplied by the probability that the gate activates it ($p_{trigger}$):
+    $$C = C_{light} + p_{trigger} \cdot C_{heavy}$$
+
+* **Gate as a Classifier**: The gate itself is a simple classifier that uses only the IMU features ($\phi_{IMU}$) to produce a trigger probability, $p_{trigger}$. The more complex camera branch is only activated if this probability exceeds a certain threshold, $\tau$:
+    $$p_{trigger} = \sigma(g(\phi_{IMU}(X_I)))$$
+
+---
+## Mini-Example 🧪
+Train a residual fusion model where, during each training step, there is a 30% chance that the RGB camera data is dropped (zeroed out). When deployed, this model uses a gate that only activates the RGB processing when the IMU data indicates low confidence or a high likelihood of a fall.
+
+---
+## Small Assignment 🎯
+
+* Train two models—one with modality dropout and one without. Measure and compare their accuracy on a test set where the RGB data is completely absent.
+* Estimate the expected latency or energy savings achieved by the gating mechanism compared to always having the camera on. Simple proxies for cost are acceptable.
+
+---
+## Stretch Goal 🌟
+Instead of using a fixed threshold $\tau$, develop a method to learn or select a $\tau$ that meets a predefined target energy budget (e.g., "the camera can only be active 25% of the time").
 
 -----
 
