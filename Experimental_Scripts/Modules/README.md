@@ -1,5 +1,3 @@
-Below is a concise, progressive tutorial track from simple to advanced. Each module gives you: intuition, core equations, a worked mini-example, and a small assignment. Where a concept aligns directly with a paper from the report, I cite it using the report’s numbering (e.g., [2,6,8,10]).
-
 ### Module 1 — IMU fall detection with a tiny 1D‑CNN (foundations)
 Intuition
 - Start with a single, always-available, low-power modality: the IMU (accelerometer/gyroscope). You’ll learn to window raw signals and train a lightweight 1D‑CNN for binary classification (fall vs non‑fall).
@@ -244,5 +242,3 @@ How the modules map to the report
 - Communication‑efficient vision updates and topologies: Module 10 aligns with [10,9].
 - Hierarchical and multi‑stage pipelines: Module 11 echoes [3,4].
 - Earlier multimodal FL framing/context: [1] provides background for Module 4.
-
-If you tell me your compute and device access (e.g., Raspberry Pi, Jetson, or an MCU) and which dataset(s) you plan to start with, I can turn any module above into a more concrete lab with pseudocode and recommended hyperparameters. References: [1,2,3,4,6,8,9,10].
