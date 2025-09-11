@@ -611,3 +611,611 @@
 
 2025-08-24 23:06:22,059 [INFO] 
 ✅ All simulations complete. Results saved in '/home/syed/PhD/UP-Fall-FL/Experimental_Scripts/Modules/output/Module6'.
+2025-09-11 19:36:18,300 [INFO] Loading and processing data for federated clients...
+2025-09-11 19:36:33,995 [INFO] Data loading complete. 11 clients created.
+2025-09-11 19:36:34,204 [INFO] 
+--- Running Experiment 1: Random Selection ---
+2025-09-11 19:36:34,319 [INFO] --- Round 1/20 ---
+2025-09-11 19:36:52,408 [INFO]   > Pre-selection | Client  1: Loss=0.0758, Acc=0.9713, Completeness=1.0
+2025-09-11 19:37:03,750 [INFO]   > Pre-selection | Client  2: Loss=0.0854, Acc=0.9647, Completeness=0.5
+2025-09-11 19:37:16,648 [INFO]   > Pre-selection | Client  3: Loss=0.0712, Acc=0.9719, Completeness=1.0
+2025-09-11 19:37:29,820 [INFO]   > Pre-selection | Client  4: Loss=0.0692, Acc=0.9720, Completeness=1.0
+2025-09-11 19:37:40,348 [INFO]   > Pre-selection | Client  6: Loss=0.0923, Acc=0.9634, Completeness=1.0
+2025-09-11 19:37:54,529 [INFO]   > Pre-selection | Client  7: Loss=0.0464, Acc=0.9795, Completeness=1.0
+2025-09-11 19:38:05,399 [INFO]   > Pre-selection | Client  8: Loss=0.1193, Acc=0.9499, Completeness=1.0
+2025-09-11 19:38:17,891 [INFO]   > Pre-selection | Client 10: Loss=0.0723, Acc=0.9699, Completeness=0.5
+2025-09-11 19:38:30,369 [INFO]   > Pre-selection | Client 11: Loss=0.0495, Acc=0.9786, Completeness=1.0
+2025-09-11 19:38:43,779 [INFO]   > Pre-selection | Client 12: Loss=0.0516, Acc=0.9782, Completeness=1.0
+2025-09-11 19:38:56,544 [INFO]   > Pre-selection | Client 13: Loss=0.0836, Acc=0.9671, Completeness=1.0
+2025-09-11 19:38:56,544 [INFO]   > Selected clients (random): [7, 6, 8, 3]
+2025-09-11 19:39:00,528 [INFO]   > Global F1-Score after aggregation: 0.3882
+
+2025-09-11 19:39:00,529 [INFO] --- Round 2/20 ---
+2025-09-11 19:39:13,442 [INFO]   > Pre-selection | Client  1: Loss=0.0447, Acc=0.9845, Completeness=1.0
+2025-09-11 19:39:25,595 [INFO]   > Pre-selection | Client  2: Loss=0.0581, Acc=0.9786, Completeness=0.5
+2025-09-11 19:39:38,439 [INFO]   > Pre-selection | Client  3: Loss=0.0332, Acc=0.9888, Completeness=1.0
+2025-09-11 19:39:51,045 [INFO]   > Pre-selection | Client  4: Loss=0.0442, Acc=0.9843, Completeness=1.0
+2025-09-11 19:40:00,954 [INFO]   > Pre-selection | Client  6: Loss=0.0472, Acc=0.9834, Completeness=1.0
+2025-09-11 19:40:13,462 [INFO]   > Pre-selection | Client  7: Loss=0.0183, Acc=0.9944, Completeness=1.0
+2025-09-11 19:40:24,629 [INFO]   > Pre-selection | Client  8: Loss=0.0671, Acc=0.9758, Completeness=1.0
+2025-09-11 19:40:36,261 [INFO]   > Pre-selection | Client 10: Loss=0.0520, Acc=0.9820, Completeness=0.5
+2025-09-11 19:40:49,403 [INFO]   > Pre-selection | Client 11: Loss=0.0271, Acc=0.9911, Completeness=1.0
+2025-09-11 19:41:02,366 [INFO]   > Pre-selection | Client 12: Loss=0.0332, Acc=0.9899, Completeness=1.0
+2025-09-11 19:41:14,941 [INFO]   > Pre-selection | Client 13: Loss=0.0628, Acc=0.9778, Completeness=1.0
+2025-09-11 19:41:14,942 [INFO]   > Selected clients (random): [10, 12, 8, 7]
+2025-09-11 19:41:18,719 [INFO]   > Global F1-Score after aggregation: 0.4146
+
+2025-09-11 19:41:18,719 [INFO] --- Round 3/20 ---
+2025-09-11 19:41:32,080 [INFO]   > Pre-selection | Client  1: Loss=0.0378, Acc=0.9872, Completeness=1.0
+2025-09-11 19:41:44,594 [INFO]   > Pre-selection | Client  2: Loss=0.0722, Acc=0.9768, Completeness=0.5
+2025-09-11 19:41:56,907 [INFO]   > Pre-selection | Client  3: Loss=0.0422, Acc=0.9866, Completeness=1.0
+2025-09-11 19:42:09,304 [INFO]   > Pre-selection | Client  4: Loss=0.0489, Acc=0.9835, Completeness=1.0
+2025-09-11 19:42:19,593 [INFO]   > Pre-selection | Client  6: Loss=0.0618, Acc=0.9806, Completeness=1.0
+2025-09-11 19:42:32,238 [INFO]   > Pre-selection | Client  7: Loss=0.0106, Acc=0.9966, Completeness=1.0
+2025-09-11 19:42:43,648 [INFO]   > Pre-selection | Client  8: Loss=0.0509, Acc=0.9811, Completeness=1.0
+2025-09-11 19:42:55,914 [INFO]   > Pre-selection | Client 10: Loss=0.0353, Acc=0.9885, Completeness=0.5
+2025-09-11 19:43:08,875 [INFO]   > Pre-selection | Client 11: Loss=0.0264, Acc=0.9918, Completeness=1.0
+2025-09-11 19:43:21,876 [INFO]   > Pre-selection | Client 12: Loss=0.0147, Acc=0.9957, Completeness=1.0
+2025-09-11 19:43:34,537 [INFO]   > Pre-selection | Client 13: Loss=0.0684, Acc=0.9773, Completeness=1.0
+2025-09-11 19:43:34,537 [INFO]   > Selected clients (random): [1, 4, 3, 6]
+2025-09-11 19:43:38,328 [INFO]   > Global F1-Score after aggregation: 0.5312
+
+2025-09-11 19:43:38,329 [INFO] --- Round 4/20 ---
+2025-09-11 19:43:52,041 [INFO]   > Pre-selection | Client  1: Loss=0.0198, Acc=0.9925, Completeness=1.0
+2025-09-11 19:44:04,582 [INFO]   > Pre-selection | Client  2: Loss=0.0641, Acc=0.9789, Completeness=0.5
+2025-09-11 19:44:18,225 [INFO]   > Pre-selection | Client  3: Loss=0.0174, Acc=0.9943, Completeness=1.0
+2025-09-11 19:44:31,242 [INFO]   > Pre-selection | Client  4: Loss=0.0232, Acc=0.9916, Completeness=1.0
+2025-09-11 19:44:41,907 [INFO]   > Pre-selection | Client  6: Loss=0.0389, Acc=0.9887, Completeness=1.0
+2025-09-11 19:44:54,854 [INFO]   > Pre-selection | Client  7: Loss=0.0109, Acc=0.9961, Completeness=1.0
+2025-09-11 19:45:05,563 [INFO]   > Pre-selection | Client  8: Loss=0.0492, Acc=0.9813, Completeness=1.0
+2025-09-11 19:45:18,066 [INFO]   > Pre-selection | Client 10: Loss=0.0409, Acc=0.9865, Completeness=0.5
+2025-09-11 19:45:30,691 [INFO]   > Pre-selection | Client 11: Loss=0.0203, Acc=0.9936, Completeness=1.0
+2025-09-11 19:45:43,936 [INFO]   > Pre-selection | Client 12: Loss=0.0232, Acc=0.9934, Completeness=1.0
+2025-09-11 19:45:56,364 [INFO]   > Pre-selection | Client 13: Loss=0.0459, Acc=0.9855, Completeness=1.0
+2025-09-11 19:45:56,364 [INFO]   > Selected clients (random): [7, 2, 8, 3]
+2025-09-11 19:46:00,249 [INFO]   > Global F1-Score after aggregation: 0.4249
+
+2025-09-11 19:46:00,250 [INFO] --- Round 5/20 ---
+2025-09-11 19:46:13,252 [INFO]   > Pre-selection | Client  1: Loss=0.0210, Acc=0.9923, Completeness=1.0
+2025-09-11 19:46:24,736 [INFO]   > Pre-selection | Client  2: Loss=0.0335, Acc=0.9884, Completeness=0.5
+2025-09-11 19:46:37,562 [INFO]   > Pre-selection | Client  3: Loss=0.0128, Acc=0.9955, Completeness=1.0
+2025-09-11 19:46:50,537 [INFO]   > Pre-selection | Client  4: Loss=0.0221, Acc=0.9924, Completeness=1.0
+2025-09-11 19:47:00,801 [INFO]   > Pre-selection | Client  6: Loss=0.0395, Acc=0.9885, Completeness=1.0
+2025-09-11 19:47:13,713 [INFO]   > Pre-selection | Client  7: Loss=0.0066, Acc=0.9978, Completeness=1.0
+2025-09-11 19:47:24,341 [INFO]   > Pre-selection | Client  8: Loss=0.0390, Acc=0.9853, Completeness=1.0
+2025-09-11 19:47:37,063 [INFO]   > Pre-selection | Client 10: Loss=0.0441, Acc=0.9859, Completeness=0.5
+2025-09-11 19:47:49,997 [INFO]   > Pre-selection | Client 11: Loss=0.0188, Acc=0.9944, Completeness=1.0
+2025-09-11 19:48:02,934 [INFO]   > Pre-selection | Client 12: Loss=0.0287, Acc=0.9916, Completeness=1.0
+2025-09-11 19:48:15,236 [INFO]   > Pre-selection | Client 13: Loss=0.0456, Acc=0.9854, Completeness=1.0
+2025-09-11 19:48:15,236 [INFO]   > Selected clients (random): [4, 7, 12, 13]
+2025-09-11 19:48:19,103 [INFO]   > Global F1-Score after aggregation: 0.5263
+
+2025-09-11 19:48:19,103 [INFO] --- Round 6/20 ---
+2025-09-11 19:48:32,022 [INFO]   > Pre-selection | Client  1: Loss=0.0210, Acc=0.9925, Completeness=1.0
+2025-09-11 19:48:43,307 [INFO]   > Pre-selection | Client  2: Loss=0.0369, Acc=0.9865, Completeness=0.5
+2025-09-11 19:48:55,906 [INFO]   > Pre-selection | Client  3: Loss=0.0149, Acc=0.9948, Completeness=1.0
+2025-09-11 19:49:08,153 [INFO]   > Pre-selection | Client  4: Loss=0.0171, Acc=0.9938, Completeness=1.0
+2025-09-11 19:49:18,224 [INFO]   > Pre-selection | Client  6: Loss=0.0328, Acc=0.9885, Completeness=1.0
+2025-09-11 19:49:30,733 [INFO]   > Pre-selection | Client  7: Loss=0.0045, Acc=0.9984, Completeness=1.0
+2025-09-11 19:49:42,134 [INFO]   > Pre-selection | Client  8: Loss=0.0426, Acc=0.9845, Completeness=1.0
+2025-09-11 19:49:54,476 [INFO]   > Pre-selection | Client 10: Loss=0.0368, Acc=0.9871, Completeness=0.5
+2025-09-11 19:50:07,758 [INFO]   > Pre-selection | Client 11: Loss=0.0167, Acc=0.9947, Completeness=1.0
+2025-09-11 19:50:20,762 [INFO]   > Pre-selection | Client 12: Loss=0.0123, Acc=0.9962, Completeness=1.0
+2025-09-11 19:50:38,587 [INFO]   > Pre-selection | Client 13: Loss=0.0250, Acc=0.9912, Completeness=1.0
+2025-09-11 19:50:38,588 [INFO]   > Selected clients (random): [1, 13, 11, 8]
+2025-09-11 19:50:44,135 [INFO]   > Global F1-Score after aggregation: 0.5588
+
+2025-09-11 19:50:44,135 [INFO] --- Round 7/20 ---
+2025-09-11 19:51:03,901 [INFO]   > Pre-selection | Client  1: Loss=0.0144, Acc=0.9946, Completeness=1.0
+2025-09-11 19:51:24,526 [INFO]   > Pre-selection | Client  2: Loss=0.0425, Acc=0.9853, Completeness=0.5
+2025-09-11 19:51:49,946 [INFO]   > Pre-selection | Client  3: Loss=0.0154, Acc=0.9953, Completeness=1.0
+2025-09-11 19:52:13,971 [INFO]   > Pre-selection | Client  4: Loss=0.0172, Acc=0.9938, Completeness=1.0
+2025-09-11 19:52:34,132 [INFO]   > Pre-selection | Client  6: Loss=0.0417, Acc=0.9877, Completeness=1.0
+2025-09-11 19:52:57,688 [INFO]   > Pre-selection | Client  7: Loss=0.0062, Acc=0.9976, Completeness=1.0
+2025-09-11 19:53:18,956 [INFO]   > Pre-selection | Client  8: Loss=0.0381, Acc=0.9859, Completeness=1.0
+2025-09-11 19:53:41,924 [INFO]   > Pre-selection | Client 10: Loss=0.0448, Acc=0.9852, Completeness=0.5
+2025-09-11 19:54:04,345 [INFO]   > Pre-selection | Client 11: Loss=0.0087, Acc=0.9970, Completeness=1.0
+2025-09-11 19:54:29,230 [INFO]   > Pre-selection | Client 12: Loss=0.0256, Acc=0.9945, Completeness=1.0
+2025-09-11 19:54:52,036 [INFO]   > Pre-selection | Client 13: Loss=0.0192, Acc=0.9934, Completeness=1.0
+2025-09-11 19:54:52,036 [INFO]   > Selected clients (random): [2, 1, 6, 4]
+2025-09-11 19:55:00,282 [INFO]   > Global F1-Score after aggregation: 0.5033
+
+2025-09-11 19:55:00,282 [INFO] --- Round 8/20 ---
+2025-09-11 19:55:24,943 [INFO]   > Pre-selection | Client  1: Loss=0.0123, Acc=0.9954, Completeness=1.0
+2025-09-11 19:55:46,594 [INFO]   > Pre-selection | Client  2: Loss=0.0278, Acc=0.9903, Completeness=0.5
+2025-09-11 19:56:04,087 [INFO]   > Pre-selection | Client  3: Loss=0.0168, Acc=0.9943, Completeness=1.0
+2025-09-11 19:56:17,153 [INFO]   > Pre-selection | Client  4: Loss=0.0122, Acc=0.9957, Completeness=1.0
+2025-09-11 19:56:27,744 [INFO]   > Pre-selection | Client  6: Loss=0.0235, Acc=0.9929, Completeness=1.0
+2025-09-11 19:56:41,539 [INFO]   > Pre-selection | Client  7: Loss=0.0062, Acc=0.9979, Completeness=1.0
+2025-09-11 19:56:53,175 [INFO]   > Pre-selection | Client  8: Loss=0.0393, Acc=0.9854, Completeness=1.0
+2025-09-11 19:57:06,048 [INFO]   > Pre-selection | Client 10: Loss=0.0373, Acc=0.9866, Completeness=0.5
+2025-09-11 19:57:19,706 [INFO]   > Pre-selection | Client 11: Loss=0.0085, Acc=0.9971, Completeness=1.0
+2025-09-11 19:57:32,939 [INFO]   > Pre-selection | Client 12: Loss=0.0299, Acc=0.9935, Completeness=1.0
+2025-09-11 19:57:45,608 [INFO]   > Pre-selection | Client 13: Loss=0.0229, Acc=0.9929, Completeness=1.0
+2025-09-11 19:57:45,609 [INFO]   > Selected clients (random): [4, 7, 1, 3]
+2025-09-11 19:57:49,505 [INFO]   > Global F1-Score after aggregation: 0.4680
+
+2025-09-11 19:57:49,505 [INFO] --- Round 9/20 ---
+2025-09-11 19:58:02,592 [INFO]   > Pre-selection | Client  1: Loss=0.0105, Acc=0.9962, Completeness=1.0
+2025-09-11 19:58:14,553 [INFO]   > Pre-selection | Client  2: Loss=0.0356, Acc=0.9876, Completeness=0.5
+2025-09-11 19:58:27,339 [INFO]   > Pre-selection | Client  3: Loss=0.0124, Acc=0.9961, Completeness=1.0
+2025-09-11 19:58:40,853 [INFO]   > Pre-selection | Client  4: Loss=0.0121, Acc=0.9957, Completeness=1.0
+2025-09-11 19:58:51,646 [INFO]   > Pre-selection | Client  6: Loss=0.0479, Acc=0.9878, Completeness=1.0
+2025-09-11 19:59:04,901 [INFO]   > Pre-selection | Client  7: Loss=0.0046, Acc=0.9985, Completeness=1.0
+2025-09-11 19:59:16,434 [INFO]   > Pre-selection | Client  8: Loss=0.0450, Acc=0.9844, Completeness=1.0
+2025-09-11 19:59:29,098 [INFO]   > Pre-selection | Client 10: Loss=0.0471, Acc=0.9842, Completeness=0.5
+2025-09-11 19:59:42,325 [INFO]   > Pre-selection | Client 11: Loss=0.0104, Acc=0.9965, Completeness=1.0
+2025-09-11 19:59:55,084 [INFO]   > Pre-selection | Client 12: Loss=0.0340, Acc=0.9922, Completeness=1.0
+2025-09-11 20:00:07,490 [INFO]   > Pre-selection | Client 13: Loss=0.0290, Acc=0.9906, Completeness=1.0
+2025-09-11 20:00:07,491 [INFO]   > Selected clients (random): [12, 3, 2, 6]
+2025-09-11 20:00:11,290 [INFO]   > Global F1-Score after aggregation: 0.5839
+
+2025-09-11 20:00:11,290 [INFO] --- Round 10/20 ---
+2025-09-11 20:00:23,924 [INFO]   > Pre-selection | Client  1: Loss=0.0126, Acc=0.9956, Completeness=1.0
+2025-09-11 20:00:35,634 [INFO]   > Pre-selection | Client  2: Loss=0.0218, Acc=0.9919, Completeness=0.5
+2025-09-11 20:00:48,516 [INFO]   > Pre-selection | Client  3: Loss=0.0095, Acc=0.9967, Completeness=1.0
+2025-09-11 20:01:01,210 [INFO]   > Pre-selection | Client  4: Loss=0.0124, Acc=0.9958, Completeness=1.0
+2025-09-11 20:01:11,588 [INFO]   > Pre-selection | Client  6: Loss=0.0303, Acc=0.9909, Completeness=1.0
+2025-09-11 20:01:24,632 [INFO]   > Pre-selection | Client  7: Loss=0.0056, Acc=0.9981, Completeness=1.0
+2025-09-11 20:01:35,628 [INFO]   > Pre-selection | Client  8: Loss=0.0458, Acc=0.9835, Completeness=1.0
+2025-09-11 20:01:48,030 [INFO]   > Pre-selection | Client 10: Loss=0.0436, Acc=0.9847, Completeness=0.5
+2025-09-11 20:02:00,895 [INFO]   > Pre-selection | Client 11: Loss=0.0102, Acc=0.9966, Completeness=1.0
+2025-09-11 20:02:14,095 [INFO]   > Pre-selection | Client 12: Loss=0.0160, Acc=0.9959, Completeness=1.0
+2025-09-11 20:02:26,346 [INFO]   > Pre-selection | Client 13: Loss=0.0296, Acc=0.9911, Completeness=1.0
+2025-09-11 20:02:26,347 [INFO]   > Selected clients (random): [4, 12, 10, 3]
+2025-09-11 20:02:29,901 [INFO]   > Global F1-Score after aggregation: 0.5678
+
+2025-09-11 20:02:29,902 [INFO] --- Round 11/20 ---
+2025-09-11 20:02:42,355 [INFO]   > Pre-selection | Client  1: Loss=0.0141, Acc=0.9952, Completeness=1.0
+2025-09-11 20:02:53,801 [INFO]   > Pre-selection | Client  2: Loss=0.0270, Acc=0.9898, Completeness=0.5
+2025-09-11 20:03:06,490 [INFO]   > Pre-selection | Client  3: Loss=0.0087, Acc=0.9970, Completeness=1.0
+2025-09-11 20:03:18,974 [INFO]   > Pre-selection | Client  4: Loss=0.0102, Acc=0.9964, Completeness=1.0
+2025-09-11 20:03:29,040 [INFO]   > Pre-selection | Client  6: Loss=0.0358, Acc=0.9893, Completeness=1.0
+2025-09-11 20:03:41,982 [INFO]   > Pre-selection | Client  7: Loss=0.0079, Acc=0.9975, Completeness=1.0
+2025-09-11 20:03:52,736 [INFO]   > Pre-selection | Client  8: Loss=0.0486, Acc=0.9828, Completeness=1.0
+2025-09-11 20:04:05,143 [INFO]   > Pre-selection | Client 10: Loss=0.0249, Acc=0.9910, Completeness=0.5
+2025-09-11 20:04:17,679 [INFO]   > Pre-selection | Client 11: Loss=0.0124, Acc=0.9959, Completeness=1.0
+2025-09-11 20:04:30,656 [INFO]   > Pre-selection | Client 12: Loss=0.0103, Acc=0.9970, Completeness=1.0
+2025-09-11 20:04:42,797 [INFO]   > Pre-selection | Client 13: Loss=0.0352, Acc=0.9885, Completeness=1.0
+2025-09-11 20:04:42,797 [INFO]   > Selected clients (random): [11, 10, 1, 6]
+2025-09-11 20:04:46,649 [INFO]   > Global F1-Score after aggregation: 0.5001
+
+2025-09-11 20:04:46,649 [INFO] --- Round 12/20 ---
+2025-09-11 20:04:59,777 [INFO]   > Pre-selection | Client  1: Loss=0.0122, Acc=0.9952, Completeness=1.0
+2025-09-11 20:05:11,689 [INFO]   > Pre-selection | Client  2: Loss=0.0294, Acc=0.9897, Completeness=0.5
+2025-09-11 20:05:24,736 [INFO]   > Pre-selection | Client  3: Loss=0.0107, Acc=0.9962, Completeness=1.0
+2025-09-11 20:05:37,645 [INFO]   > Pre-selection | Client  4: Loss=0.0162, Acc=0.9938, Completeness=1.0
+2025-09-11 20:05:48,273 [INFO]   > Pre-selection | Client  6: Loss=0.0204, Acc=0.9932, Completeness=1.0
+2025-09-11 20:06:01,606 [INFO]   > Pre-selection | Client  7: Loss=0.0074, Acc=0.9972, Completeness=1.0
+2025-09-11 20:06:12,935 [INFO]   > Pre-selection | Client  8: Loss=0.0506, Acc=0.9816, Completeness=1.0
+2025-09-11 20:06:25,752 [INFO]   > Pre-selection | Client 10: Loss=0.0161, Acc=0.9940, Completeness=0.5
+2025-09-11 20:06:39,358 [INFO]   > Pre-selection | Client 11: Loss=0.0088, Acc=0.9971, Completeness=1.0
+2025-09-11 20:06:52,813 [INFO]   > Pre-selection | Client 12: Loss=0.0168, Acc=0.9956, Completeness=1.0
+2025-09-11 20:07:05,732 [INFO]   > Pre-selection | Client 13: Loss=0.0316, Acc=0.9903, Completeness=1.0
+2025-09-11 20:07:05,732 [INFO]   > Selected clients (random): [4, 2, 3, 8]
+2025-09-11 20:07:09,388 [INFO]   > Global F1-Score after aggregation: 0.4965
+
+2025-09-11 20:07:09,388 [INFO] --- Round 13/20 ---
+2025-09-11 20:07:22,486 [INFO]   > Pre-selection | Client  1: Loss=0.0117, Acc=0.9956, Completeness=1.0
+2025-09-11 20:07:34,394 [INFO]   > Pre-selection | Client  2: Loss=0.0215, Acc=0.9923, Completeness=0.5
+2025-09-11 20:07:47,537 [INFO]   > Pre-selection | Client  3: Loss=0.0089, Acc=0.9971, Completeness=1.0
+2025-09-11 20:08:00,124 [INFO]   > Pre-selection | Client  4: Loss=0.0102, Acc=0.9965, Completeness=1.0
+2025-09-11 20:08:10,872 [INFO]   > Pre-selection | Client  6: Loss=0.0281, Acc=0.9914, Completeness=1.0
+2025-09-11 20:08:23,841 [INFO]   > Pre-selection | Client  7: Loss=0.0092, Acc=0.9969, Completeness=1.0
+2025-09-11 20:08:35,206 [INFO]   > Pre-selection | Client  8: Loss=0.0347, Acc=0.9873, Completeness=1.0
+2025-09-11 20:08:47,621 [INFO]   > Pre-selection | Client 10: Loss=0.0289, Acc=0.9903, Completeness=0.5
+2025-09-11 20:09:00,343 [INFO]   > Pre-selection | Client 11: Loss=0.0115, Acc=0.9965, Completeness=1.0
+2025-09-11 20:09:13,966 [INFO]   > Pre-selection | Client 12: Loss=0.0359, Acc=0.9940, Completeness=1.0
+2025-09-11 20:09:26,557 [INFO]   > Pre-selection | Client 13: Loss=0.0359, Acc=0.9896, Completeness=1.0
+2025-09-11 20:09:26,558 [INFO]   > Selected clients (random): [2, 3, 4, 13]
+2025-09-11 20:09:30,046 [INFO]   > Global F1-Score after aggregation: 0.5235
+
+2025-09-11 20:09:30,046 [INFO] --- Round 14/20 ---
+2025-09-11 20:09:42,910 [INFO]   > Pre-selection | Client  1: Loss=0.0143, Acc=0.9948, Completeness=1.0
+2025-09-11 20:09:54,815 [INFO]   > Pre-selection | Client  2: Loss=0.0164, Acc=0.9942, Completeness=0.5
+2025-09-11 20:10:07,448 [INFO]   > Pre-selection | Client  3: Loss=0.0068, Acc=0.9974, Completeness=1.0
+2025-09-11 20:10:20,622 [INFO]   > Pre-selection | Client  4: Loss=0.0066, Acc=0.9975, Completeness=1.0
+2025-09-11 20:10:30,829 [INFO]   > Pre-selection | Client  6: Loss=0.0283, Acc=0.9912, Completeness=1.0
+2025-09-11 20:10:43,793 [INFO]   > Pre-selection | Client  7: Loss=0.0097, Acc=0.9970, Completeness=1.0
+2025-09-11 20:10:55,062 [INFO]   > Pre-selection | Client  8: Loss=0.0421, Acc=0.9846, Completeness=1.0
+2025-09-11 20:11:08,046 [INFO]   > Pre-selection | Client 10: Loss=0.0292, Acc=0.9890, Completeness=0.5
+2025-09-11 20:11:21,508 [INFO]   > Pre-selection | Client 11: Loss=0.0098, Acc=0.9965, Completeness=1.0
+2025-09-11 20:11:34,766 [INFO]   > Pre-selection | Client 12: Loss=0.0311, Acc=0.9938, Completeness=1.0
+2025-09-11 20:11:47,401 [INFO]   > Pre-selection | Client 13: Loss=0.0218, Acc=0.9926, Completeness=1.0
+2025-09-11 20:11:47,402 [INFO]   > Selected clients (random): [6, 3, 12, 8]
+2025-09-11 20:11:51,504 [INFO]   > Global F1-Score after aggregation: 0.4964
+
+2025-09-11 20:11:51,504 [INFO] --- Round 15/20 ---
+2025-09-11 20:12:04,374 [INFO]   > Pre-selection | Client  1: Loss=0.0156, Acc=0.9942, Completeness=1.0
+2025-09-11 20:12:16,065 [INFO]   > Pre-selection | Client  2: Loss=0.0206, Acc=0.9931, Completeness=0.5
+2025-09-11 20:12:28,955 [INFO]   > Pre-selection | Client  3: Loss=0.0073, Acc=0.9977, Completeness=1.0
+2025-09-11 20:12:41,878 [INFO]   > Pre-selection | Client  4: Loss=0.0102, Acc=0.9965, Completeness=1.0
+2025-09-11 20:12:52,514 [INFO]   > Pre-selection | Client  6: Loss=0.0250, Acc=0.9927, Completeness=1.0
+2025-09-11 20:13:05,393 [INFO]   > Pre-selection | Client  7: Loss=0.0094, Acc=0.9972, Completeness=1.0
+2025-09-11 20:13:16,650 [INFO]   > Pre-selection | Client  8: Loss=0.0289, Acc=0.9891, Completeness=1.0
+2025-09-11 20:13:29,166 [INFO]   > Pre-selection | Client 10: Loss=0.0351, Acc=0.9879, Completeness=0.5
+2025-09-11 20:13:42,151 [INFO]   > Pre-selection | Client 11: Loss=0.0120, Acc=0.9964, Completeness=1.0
+2025-09-11 20:13:55,388 [INFO]   > Pre-selection | Client 12: Loss=0.0137, Acc=0.9965, Completeness=1.0
+2025-09-11 20:14:07,835 [INFO]   > Pre-selection | Client 13: Loss=0.0272, Acc=0.9919, Completeness=1.0
+2025-09-11 20:14:07,836 [INFO]   > Selected clients (random): [10, 4, 3, 8]
+2025-09-11 20:14:11,525 [INFO]   > Global F1-Score after aggregation: 0.4742
+
+2025-09-11 20:14:11,525 [INFO] --- Round 16/20 ---
+2025-09-11 20:14:24,192 [INFO]   > Pre-selection | Client  1: Loss=0.0180, Acc=0.9938, Completeness=1.0
+2025-09-11 20:14:36,060 [INFO]   > Pre-selection | Client  2: Loss=0.0255, Acc=0.9913, Completeness=0.5
+2025-09-11 20:14:48,680 [INFO]   > Pre-selection | Client  3: Loss=0.0060, Acc=0.9980, Completeness=1.0
+2025-09-11 20:15:01,200 [INFO]   > Pre-selection | Client  4: Loss=0.0074, Acc=0.9976, Completeness=1.0
+2025-09-11 20:15:11,742 [INFO]   > Pre-selection | Client  6: Loss=0.0297, Acc=0.9911, Completeness=1.0
+2025-09-11 20:15:24,856 [INFO]   > Pre-selection | Client  7: Loss=0.0093, Acc=0.9971, Completeness=1.0
+2025-09-11 20:15:36,144 [INFO]   > Pre-selection | Client  8: Loss=0.0264, Acc=0.9898, Completeness=1.0
+2025-09-11 20:15:48,686 [INFO]   > Pre-selection | Client 10: Loss=0.0252, Acc=0.9908, Completeness=0.5
+2025-09-11 20:16:01,730 [INFO]   > Pre-selection | Client 11: Loss=0.0138, Acc=0.9959, Completeness=1.0
+2025-09-11 20:16:13,495 [INFO]   > Pre-selection | Client 12: Loss=0.0205, Acc=0.9952, Completeness=1.0
+2025-09-11 20:16:26,233 [INFO]   > Pre-selection | Client 13: Loss=0.0319, Acc=0.9896, Completeness=1.0
+2025-09-11 20:16:26,233 [INFO]   > Selected clients (random): [10, 11, 1, 6]
+2025-09-11 20:16:29,782 [INFO]   > Global F1-Score after aggregation: 0.4913
+
+2025-09-11 20:16:29,782 [INFO] --- Round 17/20 ---
+2025-09-11 20:16:42,580 [INFO]   > Pre-selection | Client  1: Loss=0.0117, Acc=0.9958, Completeness=1.0
+2025-09-11 20:16:53,976 [INFO]   > Pre-selection | Client  2: Loss=0.0273, Acc=0.9902, Completeness=0.5
+2025-09-11 20:17:06,889 [INFO]   > Pre-selection | Client  3: Loss=0.0077, Acc=0.9976, Completeness=1.0
+2025-09-11 20:17:19,260 [INFO]   > Pre-selection | Client  4: Loss=0.0103, Acc=0.9963, Completeness=1.0
+2025-09-11 20:17:29,592 [INFO]   > Pre-selection | Client  6: Loss=0.0261, Acc=0.9927, Completeness=1.0
+2025-09-11 20:17:42,339 [INFO]   > Pre-selection | Client  7: Loss=0.0106, Acc=0.9967, Completeness=1.0
+2025-09-11 20:17:53,358 [INFO]   > Pre-selection | Client  8: Loss=0.0308, Acc=0.9886, Completeness=1.0
+2025-09-11 20:18:05,527 [INFO]   > Pre-selection | Client 10: Loss=0.0143, Acc=0.9949, Completeness=0.5
+2025-09-11 20:18:18,998 [INFO]   > Pre-selection | Client 11: Loss=0.0084, Acc=0.9972, Completeness=1.0
+2025-09-11 20:18:32,265 [INFO]   > Pre-selection | Client 12: Loss=0.0304, Acc=0.9931, Completeness=1.0
+2025-09-11 20:18:44,967 [INFO]   > Pre-selection | Client 13: Loss=0.0323, Acc=0.9907, Completeness=1.0
+2025-09-11 20:18:44,967 [INFO]   > Selected clients (random): [6, 11, 8, 4]
+2025-09-11 20:18:48,759 [INFO]   > Global F1-Score after aggregation: 0.5022
+
+2025-09-11 20:18:48,760 [INFO] --- Round 18/20 ---
+2025-09-11 20:19:01,778 [INFO]   > Pre-selection | Client  1: Loss=0.0119, Acc=0.9959, Completeness=1.0
+2025-09-11 20:19:13,359 [INFO]   > Pre-selection | Client  2: Loss=0.0304, Acc=0.9901, Completeness=0.5
+2025-09-11 20:19:25,956 [INFO]   > Pre-selection | Client  3: Loss=0.0103, Acc=0.9967, Completeness=1.0
+2025-09-11 20:19:39,103 [INFO]   > Pre-selection | Client  4: Loss=0.0079, Acc=0.9972, Completeness=1.0
+2025-09-11 20:19:48,851 [INFO]   > Pre-selection | Client  6: Loss=0.0176, Acc=0.9940, Completeness=1.0
+2025-09-11 20:20:03,109 [INFO]   > Pre-selection | Client  7: Loss=0.0105, Acc=0.9969, Completeness=1.0
+2025-09-11 20:20:14,397 [INFO]   > Pre-selection | Client  8: Loss=0.0281, Acc=0.9900, Completeness=1.0
+2025-09-11 20:20:26,634 [INFO]   > Pre-selection | Client 10: Loss=0.0202, Acc=0.9926, Completeness=0.5
+2025-09-11 20:20:39,407 [INFO]   > Pre-selection | Client 11: Loss=0.0052, Acc=0.9984, Completeness=1.0
+2025-09-11 20:20:52,905 [INFO]   > Pre-selection | Client 12: Loss=0.0299, Acc=0.9938, Completeness=1.0
+2025-09-11 20:21:06,376 [INFO]   > Pre-selection | Client 13: Loss=0.0322, Acc=0.9902, Completeness=1.0
+2025-09-11 20:21:06,376 [INFO]   > Selected clients (random): [13, 11, 3, 1]
+2025-09-11 20:21:10,244 [INFO]   > Global F1-Score after aggregation: 0.5937
+
+2025-09-11 20:21:10,244 [INFO] --- Round 19/20 ---
+2025-09-11 20:21:24,187 [INFO]   > Pre-selection | Client  1: Loss=0.0097, Acc=0.9968, Completeness=1.0
+2025-09-11 20:21:37,160 [INFO]   > Pre-selection | Client  2: Loss=0.0383, Acc=0.9873, Completeness=0.5
+2025-09-11 20:21:50,345 [INFO]   > Pre-selection | Client  3: Loss=0.0073, Acc=0.9975, Completeness=1.0
+2025-09-11 20:22:03,408 [INFO]   > Pre-selection | Client  4: Loss=0.0099, Acc=0.9964, Completeness=1.0
+2025-09-11 20:22:14,043 [INFO]   > Pre-selection | Client  6: Loss=0.0355, Acc=0.9906, Completeness=1.0
+2025-09-11 20:22:26,902 [INFO]   > Pre-selection | Client  7: Loss=0.0105, Acc=0.9966, Completeness=1.0
+2025-09-11 20:22:38,443 [INFO]   > Pre-selection | Client  8: Loss=0.0416, Acc=0.9867, Completeness=1.0
+2025-09-11 20:22:51,161 [INFO]   > Pre-selection | Client 10: Loss=0.0261, Acc=0.9906, Completeness=0.5
+2025-09-11 20:23:04,290 [INFO]   > Pre-selection | Client 11: Loss=0.0036, Acc=0.9987, Completeness=1.0
+2025-09-11 20:23:17,719 [INFO]   > Pre-selection | Client 12: Loss=0.0377, Acc=0.9927, Completeness=1.0
+2025-09-11 20:23:30,093 [INFO]   > Pre-selection | Client 13: Loss=0.0176, Acc=0.9939, Completeness=1.0
+2025-09-11 20:23:30,093 [INFO]   > Selected clients (random): [8, 2, 11, 3]
+2025-09-11 20:23:33,594 [INFO]   > Global F1-Score after aggregation: 0.5112
+
+2025-09-11 20:23:33,594 [INFO] --- Round 20/20 ---
+2025-09-11 20:23:46,729 [INFO]   > Pre-selection | Client  1: Loss=0.0125, Acc=0.9956, Completeness=1.0
+2025-09-11 20:23:58,529 [INFO]   > Pre-selection | Client  2: Loss=0.0248, Acc=0.9911, Completeness=0.5
+2025-09-11 20:24:11,445 [INFO]   > Pre-selection | Client  3: Loss=0.0062, Acc=0.9978, Completeness=1.0
+2025-09-11 20:24:24,314 [INFO]   > Pre-selection | Client  4: Loss=0.0114, Acc=0.9964, Completeness=1.0
+2025-09-11 20:24:34,649 [INFO]   > Pre-selection | Client  6: Loss=0.0417, Acc=0.9895, Completeness=1.0
+2025-09-11 20:24:48,002 [INFO]   > Pre-selection | Client  7: Loss=0.0125, Acc=0.9964, Completeness=1.0
+2025-09-11 20:24:59,562 [INFO]   > Pre-selection | Client  8: Loss=0.0315, Acc=0.9892, Completeness=1.0
+2025-09-11 20:25:12,339 [INFO]   > Pre-selection | Client 10: Loss=0.0328, Acc=0.9889, Completeness=0.5
+2025-09-11 20:25:25,288 [INFO]   > Pre-selection | Client 11: Loss=0.0030, Acc=0.9991, Completeness=1.0
+2025-09-11 20:25:38,927 [INFO]   > Pre-selection | Client 12: Loss=0.0374, Acc=0.9935, Completeness=1.0
+2025-09-11 20:25:51,436 [INFO]   > Pre-selection | Client 13: Loss=0.0237, Acc=0.9926, Completeness=1.0
+2025-09-11 20:25:51,437 [INFO]   > Selected clients (random): [1, 12, 2, 3]
+2025-09-11 20:25:55,379 [INFO]   > Global F1-Score after aggregation: 0.5060
+
+2025-09-11 20:25:55,381 [INFO] 
+--- Running Experiment 2: Pareto Selection ---
+2025-09-11 20:25:55,487 [INFO] --- Round 1/20 ---
+2025-09-11 20:26:08,565 [INFO]   > Pre-selection | Client  1: Loss=0.0758, Acc=0.9713, Completeness=1.0
+2025-09-11 20:26:20,249 [INFO]   > Pre-selection | Client  2: Loss=0.0854, Acc=0.9647, Completeness=0.5
+2025-09-11 20:26:32,946 [INFO]   > Pre-selection | Client  3: Loss=0.0712, Acc=0.9719, Completeness=1.0
+2025-09-11 20:26:46,121 [INFO]   > Pre-selection | Client  4: Loss=0.0692, Acc=0.9720, Completeness=1.0
+2025-09-11 20:26:56,505 [INFO]   > Pre-selection | Client  6: Loss=0.0923, Acc=0.9634, Completeness=1.0
+2025-09-11 20:27:09,440 [INFO]   > Pre-selection | Client  7: Loss=0.0464, Acc=0.9795, Completeness=1.0
+2025-09-11 20:27:20,641 [INFO]   > Pre-selection | Client  8: Loss=0.1193, Acc=0.9499, Completeness=1.0
+2025-09-11 20:27:33,179 [INFO]   > Pre-selection | Client 10: Loss=0.0723, Acc=0.9699, Completeness=0.5
+2025-09-11 20:27:46,664 [INFO]   > Pre-selection | Client 11: Loss=0.0495, Acc=0.9786, Completeness=1.0
+2025-09-11 20:28:00,163 [INFO]   > Pre-selection | Client 12: Loss=0.0516, Acc=0.9782, Completeness=1.0
+2025-09-11 20:28:13,327 [INFO]   > Pre-selection | Client 13: Loss=0.0836, Acc=0.9671, Completeness=1.0
+2025-09-11 20:28:13,330 [INFO]   > Selected clients (pareto): [7, 11, 12]
+2025-09-11 20:28:17,071 [INFO]   > Global F1-Score after aggregation: 0.3033
+
+2025-09-11 20:28:17,071 [INFO] --- Round 2/20 ---
+2025-09-11 20:28:30,190 [INFO]   > Pre-selection | Client  1: Loss=0.0657, Acc=0.9774, Completeness=1.0
+2025-09-11 20:28:42,535 [INFO]   > Pre-selection | Client  2: Loss=0.0741, Acc=0.9710, Completeness=0.5
+2025-09-11 20:28:55,550 [INFO]   > Pre-selection | Client  3: Loss=0.0763, Acc=0.9734, Completeness=1.0
+2025-09-11 20:29:08,728 [INFO]   > Pre-selection | Client  4: Loss=0.0650, Acc=0.9764, Completeness=1.0
+2025-09-11 20:29:19,634 [INFO]   > Pre-selection | Client  6: Loss=0.1023, Acc=0.9607, Completeness=1.0
+2025-09-11 20:29:32,914 [INFO]   > Pre-selection | Client  7: Loss=0.0161, Acc=0.9951, Completeness=1.0
+2025-09-11 20:29:44,947 [INFO]   > Pre-selection | Client  8: Loss=0.1156, Acc=0.9575, Completeness=1.0
+2025-09-11 20:29:57,734 [INFO]   > Pre-selection | Client 10: Loss=0.0794, Acc=0.9715, Completeness=0.5
+2025-09-11 20:30:10,877 [INFO]   > Pre-selection | Client 11: Loss=0.0151, Acc=0.9947, Completeness=1.0
+2025-09-11 20:30:24,615 [INFO]   > Pre-selection | Client 12: Loss=0.0180, Acc=0.9949, Completeness=1.0
+2025-09-11 20:30:37,856 [INFO]   > Pre-selection | Client 13: Loss=0.0863, Acc=0.9677, Completeness=1.0
+2025-09-11 20:30:37,857 [INFO]   > Selected clients (pareto): [11, 12]
+2025-09-11 20:30:42,262 [INFO]   > Global F1-Score after aggregation: 0.4320
+
+2025-09-11 20:30:42,262 [INFO] --- Round 3/20 ---
+2025-09-11 20:30:55,034 [INFO]   > Pre-selection | Client  1: Loss=0.0702, Acc=0.9774, Completeness=1.0
+2025-09-11 20:31:06,548 [INFO]   > Pre-selection | Client  2: Loss=0.0931, Acc=0.9690, Completeness=0.5
+2025-09-11 20:31:19,260 [INFO]   > Pre-selection | Client  3: Loss=0.0736, Acc=0.9764, Completeness=1.0
+2025-09-11 20:31:31,472 [INFO]   > Pre-selection | Client  4: Loss=0.0746, Acc=0.9766, Completeness=1.0
+2025-09-11 20:31:41,918 [INFO]   > Pre-selection | Client  6: Loss=0.1145, Acc=0.9608, Completeness=1.0
+2025-09-11 20:31:54,730 [INFO]   > Pre-selection | Client  7: Loss=0.0197, Acc=0.9935, Completeness=1.0
+2025-09-11 20:32:06,143 [INFO]   > Pre-selection | Client  8: Loss=0.1121, Acc=0.9575, Completeness=1.0
+2025-09-11 20:32:19,059 [INFO]   > Pre-selection | Client 10: Loss=0.0833, Acc=0.9746, Completeness=0.5
+2025-09-11 20:32:31,946 [INFO]   > Pre-selection | Client 11: Loss=0.0057, Acc=0.9981, Completeness=1.0
+2025-09-11 20:32:45,643 [INFO]   > Pre-selection | Client 12: Loss=0.0076, Acc=0.9978, Completeness=1.0
+2025-09-11 20:32:58,314 [INFO]   > Pre-selection | Client 13: Loss=0.1039, Acc=0.9685, Completeness=1.0
+2025-09-11 20:32:58,315 [INFO]   > Selected clients (pareto): [11, 12]
+2025-09-11 20:33:01,823 [INFO]   > Global F1-Score after aggregation: 0.4708
+
+2025-09-11 20:33:01,823 [INFO] --- Round 4/20 ---
+2025-09-11 20:33:15,320 [INFO]   > Pre-selection | Client  1: Loss=0.0725, Acc=0.9781, Completeness=1.0
+2025-09-11 20:33:27,152 [INFO]   > Pre-selection | Client  2: Loss=0.0939, Acc=0.9697, Completeness=0.5
+2025-09-11 20:33:40,223 [INFO]   > Pre-selection | Client  3: Loss=0.0778, Acc=0.9750, Completeness=1.0
+2025-09-11 20:33:52,930 [INFO]   > Pre-selection | Client  4: Loss=0.0772, Acc=0.9778, Completeness=1.0
+2025-09-11 20:34:03,445 [INFO]   > Pre-selection | Client  6: Loss=0.1092, Acc=0.9665, Completeness=1.0
+2025-09-11 20:34:16,232 [INFO]   > Pre-selection | Client  7: Loss=0.0168, Acc=0.9947, Completeness=1.0
+2025-09-11 20:34:27,710 [INFO]   > Pre-selection | Client  8: Loss=0.1200, Acc=0.9526, Completeness=1.0
+2025-09-11 20:34:40,432 [INFO]   > Pre-selection | Client 10: Loss=0.0899, Acc=0.9715, Completeness=0.5
+2025-09-11 20:34:53,600 [INFO]   > Pre-selection | Client 11: Loss=0.0038, Acc=0.9988, Completeness=1.0
+2025-09-11 20:35:06,575 [INFO]   > Pre-selection | Client 12: Loss=0.0038, Acc=0.9987, Completeness=1.0
+2025-09-11 20:35:19,038 [INFO]   > Pre-selection | Client 13: Loss=0.1083, Acc=0.9688, Completeness=1.0
+2025-09-11 20:35:19,039 [INFO]   > Selected clients (pareto): [12]
+2025-09-11 20:35:22,659 [INFO]   > Global F1-Score after aggregation: 0.4933
+
+2025-09-11 20:35:22,660 [INFO] --- Round 5/20 ---
+2025-09-11 20:35:35,583 [INFO]   > Pre-selection | Client  1: Loss=0.1021, Acc=0.9732, Completeness=1.0
+2025-09-11 20:35:47,202 [INFO]   > Pre-selection | Client  2: Loss=0.1297, Acc=0.9581, Completeness=0.5
+2025-09-11 20:35:59,600 [INFO]   > Pre-selection | Client  3: Loss=0.1496, Acc=0.9590, Completeness=1.0
+2025-09-11 20:36:12,259 [INFO]   > Pre-selection | Client  4: Loss=0.1161, Acc=0.9676, Completeness=1.0
+2025-09-11 20:36:22,552 [INFO]   > Pre-selection | Client  6: Loss=0.1845, Acc=0.9539, Completeness=1.0
+2025-09-11 20:36:35,397 [INFO]   > Pre-selection | Client  7: Loss=0.0358, Acc=0.9913, Completeness=1.0
+2025-09-11 20:36:46,588 [INFO]   > Pre-selection | Client  8: Loss=0.1905, Acc=0.9468, Completeness=1.0
+2025-09-11 20:36:59,209 [INFO]   > Pre-selection | Client 10: Loss=0.1242, Acc=0.9661, Completeness=0.5
+2025-09-11 20:37:12,558 [INFO]   > Pre-selection | Client 11: Loss=0.0143, Acc=0.9963, Completeness=1.0
+2025-09-11 20:37:25,992 [INFO]   > Pre-selection | Client 12: Loss=0.0028, Acc=0.9993, Completeness=1.0
+2025-09-11 20:37:38,848 [INFO]   > Pre-selection | Client 13: Loss=0.1524, Acc=0.9585, Completeness=1.0
+2025-09-11 20:37:38,849 [INFO]   > Selected clients (pareto): [12]
+2025-09-11 20:37:42,849 [INFO]   > Global F1-Score after aggregation: 0.5253
+
+2025-09-11 20:37:42,850 [INFO] --- Round 6/20 ---
+2025-09-11 20:37:56,131 [INFO]   > Pre-selection | Client  1: Loss=0.0981, Acc=0.9724, Completeness=1.0
+2025-09-11 20:38:07,829 [INFO]   > Pre-selection | Client  2: Loss=0.1550, Acc=0.9509, Completeness=0.5
+2025-09-11 20:38:20,412 [INFO]   > Pre-selection | Client  3: Loss=0.1645, Acc=0.9526, Completeness=1.0
+2025-09-11 20:38:33,199 [INFO]   > Pre-selection | Client  4: Loss=0.1330, Acc=0.9596, Completeness=1.0
+2025-09-11 20:38:43,646 [INFO]   > Pre-selection | Client  6: Loss=0.2577, Acc=0.9259, Completeness=1.0
+2025-09-11 20:38:56,487 [INFO]   > Pre-selection | Client  7: Loss=0.0298, Acc=0.9914, Completeness=1.0
+2025-09-11 20:39:07,546 [INFO]   > Pre-selection | Client  8: Loss=0.2015, Acc=0.9445, Completeness=1.0
+2025-09-11 20:39:20,640 [INFO]   > Pre-selection | Client 10: Loss=0.1298, Acc=0.9615, Completeness=0.5
+2025-09-11 20:39:34,076 [INFO]   > Pre-selection | Client 11: Loss=0.0195, Acc=0.9952, Completeness=1.0
+2025-09-11 20:39:47,526 [INFO]   > Pre-selection | Client 12: Loss=0.0011, Acc=0.9997, Completeness=1.0
+2025-09-11 20:39:59,888 [INFO]   > Pre-selection | Client 13: Loss=0.1823, Acc=0.9480, Completeness=1.0
+2025-09-11 20:39:59,889 [INFO]   > Selected clients (pareto): [12]
+2025-09-11 20:40:03,338 [INFO]   > Global F1-Score after aggregation: 0.4291
+
+2025-09-11 20:40:03,338 [INFO] --- Round 7/20 ---
+2025-09-11 20:40:16,128 [INFO]   > Pre-selection | Client  1: Loss=0.1805, Acc=0.9634, Completeness=1.0
+2025-09-11 20:40:28,053 [INFO]   > Pre-selection | Client  2: Loss=0.2421, Acc=0.9436, Completeness=0.5
+2025-09-11 20:40:40,451 [INFO]   > Pre-selection | Client  3: Loss=0.2679, Acc=0.9532, Completeness=1.0
+2025-09-11 20:40:52,731 [INFO]   > Pre-selection | Client  4: Loss=0.1879, Acc=0.9638, Completeness=1.0
+2025-09-11 20:41:03,068 [INFO]   > Pre-selection | Client  6: Loss=0.3400, Acc=0.9375, Completeness=1.0
+2025-09-11 20:41:16,213 [INFO]   > Pre-selection | Client  7: Loss=0.0505, Acc=0.9898, Completeness=1.0
+2025-09-11 20:41:27,121 [INFO]   > Pre-selection | Client  8: Loss=0.3546, Acc=0.9326, Completeness=1.0
+2025-09-11 20:41:39,582 [INFO]   > Pre-selection | Client 10: Loss=0.2187, Acc=0.9521, Completeness=0.5
+2025-09-11 20:41:52,705 [INFO]   > Pre-selection | Client 11: Loss=0.0374, Acc=0.9924, Completeness=1.0
+2025-09-11 20:42:06,031 [INFO]   > Pre-selection | Client 12: Loss=0.0018, Acc=0.9996, Completeness=1.0
+2025-09-11 20:42:18,713 [INFO]   > Pre-selection | Client 13: Loss=0.2984, Acc=0.9459, Completeness=1.0
+2025-09-11 20:42:18,714 [INFO]   > Selected clients (pareto): [12]
+2025-09-11 20:42:22,557 [INFO]   > Global F1-Score after aggregation: 0.4567
+
+2025-09-11 20:42:22,557 [INFO] --- Round 8/20 ---
+2025-09-11 20:42:35,436 [INFO]   > Pre-selection | Client  1: Loss=0.1424, Acc=0.9631, Completeness=1.0
+2025-09-11 20:42:47,556 [INFO]   > Pre-selection | Client  2: Loss=0.2305, Acc=0.9322, Completeness=0.5
+2025-09-11 20:43:00,408 [INFO]   > Pre-selection | Client  3: Loss=0.2410, Acc=0.9491, Completeness=1.0
+2025-09-11 20:43:13,134 [INFO]   > Pre-selection | Client  4: Loss=0.1602, Acc=0.9585, Completeness=1.0
+2025-09-11 20:43:23,649 [INFO]   > Pre-selection | Client  6: Loss=0.3175, Acc=0.9235, Completeness=1.0
+2025-09-11 20:43:36,836 [INFO]   > Pre-selection | Client  7: Loss=0.0464, Acc=0.9897, Completeness=1.0
+2025-09-11 20:43:48,535 [INFO]   > Pre-selection | Client  8: Loss=0.2725, Acc=0.9376, Completeness=1.0
+2025-09-11 20:44:00,728 [INFO]   > Pre-selection | Client 10: Loss=0.1698, Acc=0.9503, Completeness=0.5
+2025-09-11 20:44:13,394 [INFO]   > Pre-selection | Client 11: Loss=0.0371, Acc=0.9912, Completeness=1.0
+2025-09-11 20:44:26,419 [INFO]   > Pre-selection | Client 12: Loss=0.0006, Acc=0.9999, Completeness=1.0
+2025-09-11 20:44:39,170 [INFO]   > Pre-selection | Client 13: Loss=0.2444, Acc=0.9423, Completeness=1.0
+2025-09-11 20:44:39,171 [INFO]   > Selected clients (pareto): [12]
+2025-09-11 20:44:42,901 [INFO]   > Global F1-Score after aggregation: 0.4545
+
+2025-09-11 20:44:42,901 [INFO] --- Round 9/20 ---
+2025-09-11 20:44:56,732 [INFO]   > Pre-selection | Client  1: Loss=0.1799, Acc=0.9626, Completeness=1.0
+2025-09-11 20:45:08,828 [INFO]   > Pre-selection | Client  2: Loss=0.2983, Acc=0.9256, Completeness=0.5
+2025-09-11 20:45:21,567 [INFO]   > Pre-selection | Client  3: Loss=0.3272, Acc=0.9450, Completeness=1.0
+2025-09-11 20:45:34,370 [INFO]   > Pre-selection | Client  4: Loss=0.2174, Acc=0.9524, Completeness=1.0
+2025-09-11 20:45:44,964 [INFO]   > Pre-selection | Client  6: Loss=0.3874, Acc=0.9297, Completeness=1.0
+2025-09-11 20:45:57,791 [INFO]   > Pre-selection | Client  7: Loss=0.0781, Acc=0.9875, Completeness=1.0
+2025-09-11 20:46:08,929 [INFO]   > Pre-selection | Client  8: Loss=0.3520, Acc=0.9299, Completeness=1.0
+2025-09-11 20:46:21,527 [INFO]   > Pre-selection | Client 10: Loss=0.2169, Acc=0.9507, Completeness=0.5
+2025-09-11 20:46:34,206 [INFO]   > Pre-selection | Client 11: Loss=0.0474, Acc=0.9907, Completeness=1.0
+2025-09-11 20:46:47,336 [INFO]   > Pre-selection | Client 12: Loss=0.0011, Acc=0.9997, Completeness=1.0
+2025-09-11 20:46:59,788 [INFO]   > Pre-selection | Client 13: Loss=0.3254, Acc=0.9330, Completeness=1.0
+2025-09-11 20:46:59,789 [INFO]   > Selected clients (pareto): [12]
+2025-09-11 20:47:03,403 [INFO]   > Global F1-Score after aggregation: 0.4480
+
+2025-09-11 20:47:03,403 [INFO] --- Round 10/20 ---
+2025-09-11 20:47:16,515 [INFO]   > Pre-selection | Client  1: Loss=0.2060, Acc=0.9576, Completeness=1.0
+2025-09-11 20:47:28,253 [INFO]   > Pre-selection | Client  2: Loss=0.2947, Acc=0.9306, Completeness=0.5
+2025-09-11 20:47:40,758 [INFO]   > Pre-selection | Client  3: Loss=0.3149, Acc=0.9453, Completeness=1.0
+2025-09-11 20:47:53,339 [INFO]   > Pre-selection | Client  4: Loss=0.2734, Acc=0.9451, Completeness=1.0
+2025-09-11 20:48:03,646 [INFO]   > Pre-selection | Client  6: Loss=0.3727, Acc=0.9402, Completeness=1.0
+2025-09-11 20:48:16,494 [INFO]   > Pre-selection | Client  7: Loss=0.0654, Acc=0.9878, Completeness=1.0
+2025-09-11 20:48:27,728 [INFO]   > Pre-selection | Client  8: Loss=0.3691, Acc=0.9283, Completeness=1.0
+2025-09-11 20:48:40,332 [INFO]   > Pre-selection | Client 10: Loss=0.2488, Acc=0.9449, Completeness=0.5
+2025-09-11 20:48:53,215 [INFO]   > Pre-selection | Client 11: Loss=0.0615, Acc=0.9895, Completeness=1.0
+2025-09-11 20:49:06,624 [INFO]   > Pre-selection | Client 12: Loss=0.0023, Acc=0.9996, Completeness=1.0
+2025-09-11 20:49:19,333 [INFO]   > Pre-selection | Client 13: Loss=0.4088, Acc=0.9310, Completeness=1.0
+2025-09-11 20:49:19,334 [INFO]   > Selected clients (pareto): [12]
+2025-09-11 20:49:23,008 [INFO]   > Global F1-Score after aggregation: 0.5214
+
+2025-09-11 20:49:23,009 [INFO] --- Round 11/20 ---
+2025-09-11 20:49:35,598 [INFO]   > Pre-selection | Client  1: Loss=0.1651, Acc=0.9602, Completeness=1.0
+2025-09-11 20:49:47,271 [INFO]   > Pre-selection | Client  2: Loss=0.2691, Acc=0.9259, Completeness=0.5
+2025-09-11 20:49:59,899 [INFO]   > Pre-selection | Client  3: Loss=0.2799, Acc=0.9512, Completeness=1.0
+2025-09-11 20:50:12,490 [INFO]   > Pre-selection | Client  4: Loss=0.2031, Acc=0.9555, Completeness=1.0
+2025-09-11 20:50:22,984 [INFO]   > Pre-selection | Client  6: Loss=0.3139, Acc=0.9408, Completeness=1.0
+2025-09-11 20:50:35,623 [INFO]   > Pre-selection | Client  7: Loss=0.0595, Acc=0.9883, Completeness=1.0
+2025-09-11 20:50:46,394 [INFO]   > Pre-selection | Client  8: Loss=0.3202, Acc=0.9295, Completeness=1.0
+2025-09-11 20:50:58,677 [INFO]   > Pre-selection | Client 10: Loss=0.2028, Acc=0.9484, Completeness=0.5
+2025-09-11 20:51:11,559 [INFO]   > Pre-selection | Client 11: Loss=0.0422, Acc=0.9910, Completeness=1.0
+2025-09-11 20:51:24,831 [INFO]   > Pre-selection | Client 12: Loss=0.0006, Acc=0.9999, Completeness=1.0
+2025-09-11 20:51:37,229 [INFO]   > Pre-selection | Client 13: Loss=0.2996, Acc=0.9495, Completeness=1.0
+2025-09-11 20:51:37,230 [INFO]   > Selected clients (pareto): [12]
+2025-09-11 20:51:41,319 [INFO]   > Global F1-Score after aggregation: 0.4221
+
+2025-09-11 20:51:41,319 [INFO] --- Round 12/20 ---
+2025-09-11 20:51:53,949 [INFO]   > Pre-selection | Client  1: Loss=0.2596, Acc=0.9559, Completeness=1.0
+2025-09-11 20:52:05,370 [INFO]   > Pre-selection | Client  2: Loss=0.3784, Acc=0.9145, Completeness=0.5
+2025-09-11 20:52:18,156 [INFO]   > Pre-selection | Client  3: Loss=0.4340, Acc=0.9482, Completeness=1.0
+2025-09-11 20:52:30,713 [INFO]   > Pre-selection | Client  4: Loss=0.3284, Acc=0.9445, Completeness=1.0
+2025-09-11 20:52:41,254 [INFO]   > Pre-selection | Client  6: Loss=0.5024, Acc=0.9359, Completeness=1.0
+2025-09-11 20:52:54,088 [INFO]   > Pre-selection | Client  7: Loss=0.0999, Acc=0.9862, Completeness=1.0
+2025-09-11 20:53:04,903 [INFO]   > Pre-selection | Client  8: Loss=0.4635, Acc=0.9287, Completeness=1.0
+2025-09-11 20:53:17,667 [INFO]   > Pre-selection | Client 10: Loss=0.2831, Acc=0.9390, Completeness=0.5
+2025-09-11 20:53:30,591 [INFO]   > Pre-selection | Client 11: Loss=0.0869, Acc=0.9866, Completeness=1.0
+2025-09-11 20:53:43,772 [INFO]   > Pre-selection | Client 12: Loss=0.0023, Acc=0.9996, Completeness=1.0
+2025-09-11 20:53:55,968 [INFO]   > Pre-selection | Client 13: Loss=0.4950, Acc=0.9247, Completeness=1.0
+2025-09-11 20:53:55,969 [INFO]   > Selected clients (pareto): [12]
+2025-09-11 20:53:59,292 [INFO]   > Global F1-Score after aggregation: 0.4154
+
+2025-09-11 20:53:59,292 [INFO] --- Round 13/20 ---
+2025-09-11 20:54:12,147 [INFO]   > Pre-selection | Client  1: Loss=0.2019, Acc=0.9466, Completeness=1.0
+2025-09-11 20:54:23,595 [INFO]   > Pre-selection | Client  2: Loss=0.3617, Acc=0.8777, Completeness=0.5
+2025-09-11 20:54:36,193 [INFO]   > Pre-selection | Client  3: Loss=0.2973, Acc=0.9399, Completeness=1.0
+2025-09-11 20:54:49,187 [INFO]   > Pre-selection | Client  4: Loss=0.2893, Acc=0.9205, Completeness=1.0
+2025-09-11 20:54:59,659 [INFO]   > Pre-selection | Client  6: Loss=0.3601, Acc=0.9288, Completeness=1.0
+2025-09-11 20:55:12,798 [INFO]   > Pre-selection | Client  7: Loss=0.0542, Acc=0.9882, Completeness=1.0
+2025-09-11 20:55:24,214 [INFO]   > Pre-selection | Client  8: Loss=0.4466, Acc=0.8854, Completeness=1.0
+2025-09-11 20:55:36,840 [INFO]   > Pre-selection | Client 10: Loss=0.2120, Acc=0.9345, Completeness=0.5
+2025-09-11 20:55:50,446 [INFO]   > Pre-selection | Client 11: Loss=0.0737, Acc=0.9808, Completeness=1.0
+2025-09-11 20:56:03,883 [INFO]   > Pre-selection | Client 12: Loss=0.0017, Acc=0.9997, Completeness=1.0
+2025-09-11 20:56:16,931 [INFO]   > Pre-selection | Client 13: Loss=0.2540, Acc=0.9413, Completeness=1.0
+2025-09-11 20:56:16,932 [INFO]   > Selected clients (pareto): [12]
+2025-09-11 20:56:20,585 [INFO]   > Global F1-Score after aggregation: 0.4809
+
+2025-09-11 20:56:20,585 [INFO] --- Round 14/20 ---
+2025-09-11 20:56:33,163 [INFO]   > Pre-selection | Client  1: Loss=0.2368, Acc=0.9454, Completeness=1.0
+2025-09-11 20:56:44,642 [INFO]   > Pre-selection | Client  2: Loss=0.4032, Acc=0.8796, Completeness=0.5
+2025-09-11 20:56:56,942 [INFO]   > Pre-selection | Client  3: Loss=0.4192, Acc=0.9265, Completeness=1.0
+2025-09-11 20:57:09,136 [INFO]   > Pre-selection | Client  4: Loss=0.2856, Acc=0.9430, Completeness=1.0
+2025-09-11 20:57:19,440 [INFO]   > Pre-selection | Client  6: Loss=0.4811, Acc=0.9195, Completeness=1.0
+2025-09-11 20:57:32,300 [INFO]   > Pre-selection | Client  7: Loss=0.0666, Acc=0.9879, Completeness=1.0
+2025-09-11 20:57:43,396 [INFO]   > Pre-selection | Client  8: Loss=0.4843, Acc=0.9099, Completeness=1.0
+2025-09-11 20:57:55,923 [INFO]   > Pre-selection | Client 10: Loss=0.3088, Acc=0.9325, Completeness=0.5
+2025-09-11 20:58:08,899 [INFO]   > Pre-selection | Client 11: Loss=0.0712, Acc=0.9843, Completeness=1.0
+2025-09-11 20:58:22,249 [INFO]   > Pre-selection | Client 12: Loss=0.0025, Acc=0.9996, Completeness=1.0
+2025-09-11 20:58:34,736 [INFO]   > Pre-selection | Client 13: Loss=0.4054, Acc=0.9309, Completeness=1.0
+2025-09-11 20:58:34,737 [INFO]   > Selected clients (pareto): [12]
+2025-09-11 20:58:38,755 [INFO]   > Global F1-Score after aggregation: 0.4236
+
+2025-09-11 20:58:38,755 [INFO] --- Round 15/20 ---
+2025-09-11 20:58:51,406 [INFO]   > Pre-selection | Client  1: Loss=0.3189, Acc=0.9392, Completeness=1.0
+2025-09-11 20:59:03,168 [INFO]   > Pre-selection | Client  2: Loss=0.4420, Acc=0.8889, Completeness=0.5
+2025-09-11 20:59:16,006 [INFO]   > Pre-selection | Client  3: Loss=0.4733, Acc=0.9329, Completeness=1.0
+2025-09-11 20:59:28,828 [INFO]   > Pre-selection | Client  4: Loss=0.3292, Acc=0.9174, Completeness=1.0
+2025-09-11 20:59:39,432 [INFO]   > Pre-selection | Client  6: Loss=0.7638, Acc=0.8822, Completeness=1.0
+2025-09-11 20:59:52,521 [INFO]   > Pre-selection | Client  7: Loss=0.0920, Acc=0.9841, Completeness=1.0
+2025-09-11 21:00:03,687 [INFO]   > Pre-selection | Client  8: Loss=0.7059, Acc=0.8752, Completeness=1.0
+2025-09-11 21:00:16,598 [INFO]   > Pre-selection | Client 10: Loss=0.3482, Acc=0.9206, Completeness=0.5
+2025-09-11 21:00:29,392 [INFO]   > Pre-selection | Client 11: Loss=0.0763, Acc=0.9831, Completeness=1.0
+2025-09-11 21:00:42,820 [INFO]   > Pre-selection | Client 12: Loss=0.0003, Acc=0.9999, Completeness=1.0
+2025-09-11 21:00:55,381 [INFO]   > Pre-selection | Client 13: Loss=0.5349, Acc=0.9063, Completeness=1.0
+2025-09-11 21:00:55,382 [INFO]   > Selected clients (pareto): [12]
+2025-09-11 21:00:59,052 [INFO]   > Global F1-Score after aggregation: 0.4703
+
+2025-09-11 21:00:59,052 [INFO] --- Round 16/20 ---
+2025-09-11 21:01:12,221 [INFO]   > Pre-selection | Client  1: Loss=0.6133, Acc=0.9416, Completeness=1.0
+2025-09-11 21:01:23,732 [INFO]   > Pre-selection | Client  2: Loss=0.8072, Acc=0.8497, Completeness=0.5
+2025-09-11 21:01:36,787 [INFO]   > Pre-selection | Client  3: Loss=1.0023, Acc=0.9232, Completeness=1.0
+2025-09-11 21:01:49,956 [INFO]   > Pre-selection | Client  4: Loss=0.4875, Acc=0.9308, Completeness=1.0
+2025-09-11 21:02:00,419 [INFO]   > Pre-selection | Client  6: Loss=1.2489, Acc=0.9002, Completeness=1.0
+2025-09-11 21:02:13,694 [INFO]   > Pre-selection | Client  7: Loss=0.2227, Acc=0.9821, Completeness=1.0
+2025-09-11 21:02:25,111 [INFO]   > Pre-selection | Client  8: Loss=1.4275, Acc=0.8827, Completeness=1.0
+2025-09-11 21:02:38,057 [INFO]   > Pre-selection | Client 10: Loss=0.4602, Acc=0.9142, Completeness=0.5
+2025-09-11 21:02:51,635 [INFO]   > Pre-selection | Client 11: Loss=0.1702, Acc=0.9810, Completeness=1.0
+2025-09-11 21:03:05,424 [INFO]   > Pre-selection | Client 12: Loss=0.0016, Acc=0.9998, Completeness=1.0
+2025-09-11 21:03:18,171 [INFO]   > Pre-selection | Client 13: Loss=0.7560, Acc=0.9159, Completeness=1.0
+2025-09-11 21:03:18,172 [INFO]   > Selected clients (pareto): [12]
+2025-09-11 21:03:21,890 [INFO]   > Global F1-Score after aggregation: 0.4541
+
+2025-09-11 21:03:21,890 [INFO] --- Round 17/20 ---
+2025-09-11 21:03:34,497 [INFO]   > Pre-selection | Client  1: Loss=0.5524, Acc=0.9341, Completeness=1.0
+2025-09-11 21:03:46,075 [INFO]   > Pre-selection | Client  2: Loss=0.8314, Acc=0.8623, Completeness=0.5
+2025-09-11 21:03:58,908 [INFO]   > Pre-selection | Client  3: Loss=0.9713, Acc=0.9215, Completeness=1.0
+2025-09-11 21:04:11,476 [INFO]   > Pre-selection | Client  4: Loss=0.4621, Acc=0.9271, Completeness=1.0
+2025-09-11 21:04:21,826 [INFO]   > Pre-selection | Client  6: Loss=1.1398, Acc=0.8923, Completeness=1.0
+2025-09-11 21:04:34,993 [INFO]   > Pre-selection | Client  7: Loss=0.1793, Acc=0.9821, Completeness=1.0
+2025-09-11 21:04:46,376 [INFO]   > Pre-selection | Client  8: Loss=1.4257, Acc=0.8709, Completeness=1.0
+2025-09-11 21:04:59,113 [INFO]   > Pre-selection | Client 10: Loss=0.5159, Acc=0.9115, Completeness=0.5
+2025-09-11 21:05:12,713 [INFO]   > Pre-selection | Client 11: Loss=0.1982, Acc=0.9797, Completeness=1.0
+2025-09-11 21:05:26,534 [INFO]   > Pre-selection | Client 12: Loss=0.0019, Acc=0.9998, Completeness=1.0
+2025-09-11 21:05:38,968 [INFO]   > Pre-selection | Client 13: Loss=0.7972, Acc=0.9152, Completeness=1.0
+2025-09-11 21:05:38,969 [INFO]   > Selected clients (pareto): [12]
+2025-09-11 21:05:42,612 [INFO]   > Global F1-Score after aggregation: 0.4309
+
+2025-09-11 21:05:42,612 [INFO] --- Round 18/20 ---
+2025-09-11 21:05:55,655 [INFO]   > Pre-selection | Client  1: Loss=0.5228, Acc=0.9306, Completeness=1.0
+2025-09-11 21:06:07,558 [INFO]   > Pre-selection | Client  2: Loss=0.7305, Acc=0.8703, Completeness=0.5
+2025-09-11 21:06:20,678 [INFO]   > Pre-selection | Client  3: Loss=0.9483, Acc=0.9246, Completeness=1.0
+2025-09-11 21:06:33,794 [INFO]   > Pre-selection | Client  4: Loss=0.4686, Acc=0.9166, Completeness=1.0
+2025-09-11 21:06:44,583 [INFO]   > Pre-selection | Client  6: Loss=1.2614, Acc=0.8983, Completeness=1.0
+2025-09-11 21:06:57,336 [INFO]   > Pre-selection | Client  7: Loss=0.2042, Acc=0.9813, Completeness=1.0
+2025-09-11 21:07:08,494 [INFO]   > Pre-selection | Client  8: Loss=1.2659, Acc=0.8718, Completeness=1.0
+2025-09-11 21:07:21,102 [INFO]   > Pre-selection | Client 10: Loss=0.5167, Acc=0.9001, Completeness=0.5
+2025-09-11 21:07:34,223 [INFO]   > Pre-selection | Client 11: Loss=0.1823, Acc=0.9758, Completeness=1.0
+2025-09-11 21:07:47,616 [INFO]   > Pre-selection | Client 12: Loss=0.0013, Acc=0.9997, Completeness=1.0
+2025-09-11 21:08:00,447 [INFO]   > Pre-selection | Client 13: Loss=0.7792, Acc=0.9255, Completeness=1.0
+2025-09-11 21:08:00,448 [INFO]   > Selected clients (pareto): [12]
+2025-09-11 21:08:03,980 [INFO]   > Global F1-Score after aggregation: 0.4652
+
+2025-09-11 21:08:03,980 [INFO] --- Round 19/20 ---
+2025-09-11 21:08:16,989 [INFO]   > Pre-selection | Client  1: Loss=0.5881, Acc=0.9308, Completeness=1.0
+2025-09-11 21:08:28,805 [INFO]   > Pre-selection | Client  2: Loss=0.8680, Acc=0.8429, Completeness=0.5
+2025-09-11 21:08:41,714 [INFO]   > Pre-selection | Client  3: Loss=1.0837, Acc=0.9155, Completeness=1.0
+2025-09-11 21:08:55,229 [INFO]   > Pre-selection | Client  4: Loss=0.4289, Acc=0.9172, Completeness=1.0
+2025-09-11 21:09:06,152 [INFO]   > Pre-selection | Client  6: Loss=1.2300, Acc=0.8878, Completeness=1.0
+2025-09-11 21:09:19,487 [INFO]   > Pre-selection | Client  7: Loss=0.2498, Acc=0.9805, Completeness=1.0
+2025-09-11 21:09:31,208 [INFO]   > Pre-selection | Client  8: Loss=1.5988, Acc=0.8915, Completeness=1.0
+2025-09-11 21:09:44,452 [INFO]   > Pre-selection | Client 10: Loss=0.4692, Acc=0.8943, Completeness=0.5
+2025-09-11 21:09:57,951 [INFO]   > Pre-selection | Client 11: Loss=0.2432, Acc=0.9760, Completeness=1.0
+2025-09-11 21:10:11,351 [INFO]   > Pre-selection | Client 12: Loss=0.0017, Acc=0.9997, Completeness=1.0
+2025-09-11 21:10:23,517 [INFO]   > Pre-selection | Client 13: Loss=0.5732, Acc=0.9114, Completeness=1.0
+2025-09-11 21:10:23,518 [INFO]   > Selected clients (pareto): [12]
+2025-09-11 21:10:27,176 [INFO]   > Global F1-Score after aggregation: 0.4359
+
+2025-09-11 21:10:27,176 [INFO] --- Round 20/20 ---
+2025-09-11 21:10:40,249 [INFO]   > Pre-selection | Client  1: Loss=0.6123, Acc=0.9154, Completeness=1.0
+2025-09-11 21:10:52,273 [INFO]   > Pre-selection | Client  2: Loss=0.9172, Acc=0.8117, Completeness=0.5
+2025-09-11 21:11:04,781 [INFO]   > Pre-selection | Client  3: Loss=1.0282, Acc=0.8962, Completeness=1.0
+2025-09-11 21:11:17,474 [INFO]   > Pre-selection | Client  4: Loss=0.4541, Acc=0.9199, Completeness=1.0
+2025-09-11 21:11:28,259 [INFO]   > Pre-selection | Client  6: Loss=1.4386, Acc=0.8700, Completeness=1.0
+2025-09-11 21:11:42,240 [INFO]   > Pre-selection | Client  7: Loss=0.2192, Acc=0.9795, Completeness=1.0
+2025-09-11 21:11:54,147 [INFO]   > Pre-selection | Client  8: Loss=1.5195, Acc=0.8844, Completeness=1.0
+2025-09-11 21:12:07,224 [INFO]   > Pre-selection | Client 10: Loss=0.4695, Acc=0.8761, Completeness=0.5
+2025-09-11 21:12:20,924 [INFO]   > Pre-selection | Client 11: Loss=0.2752, Acc=0.9659, Completeness=1.0
+2025-09-11 21:12:34,870 [INFO]   > Pre-selection | Client 12: Loss=0.0024, Acc=0.9998, Completeness=1.0
+2025-09-11 21:12:47,572 [INFO]   > Pre-selection | Client 13: Loss=0.5101, Acc=0.9270, Completeness=1.0
+2025-09-11 21:12:47,573 [INFO]   > Selected clients (pareto): [12]
+2025-09-11 21:12:51,371 [INFO]   > Global F1-Score after aggregation: 0.4701
+
+2025-09-11 21:29:09,653 [INFO] 
+✅ All simulations complete. Results saved in '/home/syed/PhD/UP-Fall-FL/Experimental_Scripts/Modules/output/Module6'.

@@ -163,3 +163,59 @@ Random selection, while less sophisticated, avoids this trap.
 By randomly choosing a **diverse group of clients** each round, it forces the global model to learn a little bit from everyone. The updates might be less "perfect" than Client 12's, but they are more varied. This process prevents the model from overfitting to any single client and results in a more robust, generalist model that performs better on the unseen test data.
 
 **In short, your experiment perfectly demonstrates a key FL principle: the diversity of client contributions is often more important for building a strong global model than the isolated performance of a single "best" client.**
+
+
+# Results
+
+---
+
+## **What the Plot Shows**
+
+- **X-axis:** Communication Round (number of global aggregation steps)
+- **Y-axis:** Global Test F1-Score (for the "Fall" class)
+- **Blue (dashed, circles):** Random Selection of clients each round
+- **Orange (solid, squares):** Pareto Selection of clients each round
+
+---
+
+## **What Happened in the Experiments?**
+
+### **Random Selection**
+- In each round, a random subset of clients is chosen to participate.
+- This means the global model receives updates from a **diverse set of clients** with different data distributions.
+- As a result, the global model learns to generalize better across all clients.
+
+### **Pareto Selection**
+- In each round, clients are selected based on being **Pareto-optimal** across several metrics (e.g., loss, accuracy, completeness).
+- In practice, this often means **only the "best" clients** (those with lowest loss/highest accuracy) are chosen repeatedly.
+- If one or a few clients consistently dominate these metrics, the global model is updated mostly (or only) with their data.
+
+---
+
+## **Why is Random Selection Better Here?**
+
+- **Random selection** ensures that the global model is exposed to the **full diversity** of the clients' data, including "hard" or "noisy" cases.
+- **Pareto selection** can lead to **overfitting** to a small subset of "easy" or "dominant" clients, ignoring the rest.
+    - As seen in your logs, often only one or two clients (e.g., Client 12) are selected repeatedly.
+    - The global model becomes specialized for these clients and **fails to generalize** to the broader test set.
+
+---
+
+## **What Do the Results Show?**
+
+- **Random Selection** achieves **higher and more stable F1-scores** over the rounds.
+- **Pareto Selection** starts lower, improves, but then plateaus at a lower F1-score and is less stable.
+- This means that, in your scenario, **diversity of client updates is more important than just picking the "best" clients**.
+
+---
+
+## **Key Takeaways**
+
+- **Diversity beats greed:** In federated learning, using updates from a wide variety of clients leads to a more robust and generalizable global model.
+- **Pareto selection can backfire:** If the Pareto front is dominated by a few clients, the global model will overfit to them and perform poorly on unseen or diverse data.
+- **Random selection is a strong baseline:** It prevents overfitting to any single client and ensures all data distributions are represented.
+
+---
+
+**In summary:**  
+While Pareto selection sounds smart, in practice it can harm generalization if it repeatedly picks only the "star" clients. Random selection, by including everyone, leads to a stronger, fairer global model for fall detection.

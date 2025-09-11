@@ -242,3 +242,26 @@ How the modules map to the report
 - Communication‑efficient vision updates and topologies: Module 10 aligns with [10,9].
 - Hierarchical and multi‑stage pipelines: Module 11 echoes [3,4].
 - Earlier multimodal FL framing/context: [1] provides background for Module 4.
+
+
+### References
+
+[1] Qi, P., Piccialli, F., et al. FL-FD: Federated learning-based fall detection with multimodal data fusion. Information Fusion, 2023.
+
+[2] Wang, B.-q., Ma, Y., et al. Federated Learning for Fall Detection With Multimodal Residual Fusion and Pareto-Optimized Client Selection. IEEE Access, 2025.
+
+[3] Afandy, P. F., Plataniotis, K. N., et al. Federated Learning for Hierarchical Fall Detection and Human Activity Recognition. 2024 IEEE 10th World Forum on Internet of Things (WF-IoT), 2024.
+
+[4] Rahimi Azghadi, S. A., Cao, H., et al. Privacy-Preserving Multi-Stage Fall Detection Framework with Semi-supervised Federated Learning and Robotic Vision Confirmation. arXiv preprint, 2025.
+
+[5] Rahimi Azghadi, S. A., Cao, H., et al. SF2D: Semi-supervised Federated Learning for Fall Detection using (Un)labelled Data in Edge-Cloud. 2025.
+
+[6] Souadia, T., Benkaouha, H., et al. Securing Fall Detection with Federated Learning: A Privacy-Centric Approach for IoT Healthcare. 2025 International Symposium on iNnovative Informatics of Biskra (ISNIB), 2025.
+
+[7] Niyas, S. K., S. P. Federated Learning Based Elderly Fall Detection Using Edge Computing. 2023 International Conference on Next Generation Electronics (NEleX), 2023.
+
+[8] Yu, Z., Li, X., et al. An Elderly Fall Detection Method Based on Federated Learning and Extreme Learning Machine (Fed-ELM). IEEE Access, 2022.
+
+[9] Haref, Q. M., Yang, Z., et al. Fall Detection Using Federated Lightweight CNN Models: A Comparison of Decentralized vs. Centralized Learning. Applied Sciences, 2025.
+
+[10] Kim, B., Noh, B. FLAMe: Federated Learning with Attention Mechanism using Spatio-Temporal Keypoint Transformers for Pedestrian Fall Detection in SmartCities. arXiv preprint, 2024.
