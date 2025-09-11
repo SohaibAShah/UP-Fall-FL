@@ -10,15 +10,21 @@ The core idea is to start with a simple, always-available sensor like an IMU. We
 
 ---
 ## Key Concepts and Equations 🧠
-* **Windowing**: Given a continuous IMU stream $ a(t) $, we form windows $X \in \mathbb{R}^{T \times C}$. Here, $ T $is the window length (e.g., 200 samples for a 2-second window at 100 Hz), and$ C $is the number of channels (e.g., 6 channels for$ a_x, a_y, a_z, g_x, g_y, g_z $).
+* **Windowing**: Given a continuous IMU stream $a(t)$, we form windows $X \in \mathbb{R}^{T \times C}$. Here, $T$ is the window length (e.g., 200 samples for a 2-second window at 100 Hz), and $C$ is the number of channels (e.g., 6 channels for $a_x, a_y, a_z, g_x, g_y, g_z$).
 
 * **Model ($f_\theta$)**: The neural network model takes a window $X$ and outputs logits $z = f_\theta(X)$. For binary classification, these are converted to probabilities using the sigmoid function: $p = \sigma(z)$.
 
-* **Loss Function (Binary Cross-Entropy)**: The model's error is calculated using the binary cross-entropy loss, which measures the difference between the predicted probability $p$ and the true label $ y $:
-    $$L = -[y \log p + (1-y) \log(1-p)]$$
+* **Loss Function (Binary Cross-Entropy)**: The model's error is calculated using the binary cross-entropy loss, which measures the difference between the predicted probability $p$ and the true label $y$:
+  
+  $$
+  L = -[y \log p + (1-y) \log(1-p)]
+  $$
 
-* **1D Convolution**: The core operation of the CNN, where a learned filter (or kernel) $w$ slides across the input signal $x$ to produce a feature map $ y $:
-    $$y[n] = \sum_{k=0}^{K-1} w[k] x[n-k] + b$$
+* **1D Convolution**: The core operation of the CNN, where a learned filter (or kernel) $w$ slides across the input signal $x$ to produce a feature map $y$:
+  
+  $$
+  y[n] = \sum_{k=0}^{K-1} w[k]\, x[n-k] + b
+  $$
 
 ---
 ## Project Assignment Overview 📝

@@ -121,7 +121,7 @@ def load_and_preprocess_data(file_path, window_size=200, step=100):
     logging.info(f"Fall events (0) in train: {np.sum(y_train == 0)}, in test: {np.sum(y_test == 0)}")
     return X_train_final, y_train, X_test_final, y_test
 
-# --- 3. Model Architectures (Unchanged) ---
+# --- 3. Model Architectures ---
 class CNN_GAP(nn.Module):
     def __init__(self, input_channels=6):
         super(CNN_GAP, self).__init__()
