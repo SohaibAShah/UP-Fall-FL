@@ -1,5 +1,3 @@
-Of course. Here is the provided information converted into a clean, well-structured Markdown format.
-
 # Module 1: IMU Fall Detection with a Tiny 1D-CNN
 
 This project demonstrates how to build and train a lightweight 1D Convolutional Neural Network (1D-CNN) for fall detection using Inertial Measurement Unit (IMU) sensor data. It starts with the foundational concept of using a single, low-power modality (accelerometer/gyroscope) for binary classification (fall vs. non-fall).
