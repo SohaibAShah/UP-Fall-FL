@@ -171,113 +171,186 @@ You can **tune the gating threshold** to meet a specific resource budget, and th
 **In practice:**  
 Your system can run efficiently on edge devices, using cameras only when needed, and still accurately detect falls—even if a sensor fails or is missing.
 
-
 ---
 
-# **The Story of Smart, Efficient Fall Detection**
+# **The Story: Smarter, Cheaper Fall Detection**
 
 ### **1. The Problem**
 
-Imagine you’re building a smart fall detection system for elderly care. You have two types of sensors:
-- **IMU (motion sensors):** Always available, cheap, and fast.
-- **Cameras:** Expensive (in terms of energy and computation), but provide rich information.
-
-You want your system to:
-- **Detect falls accurately.**
-- **Save energy by using cameras only when necessary.**
-- **Be robust—even if a camera fails or is missing.**
+You want a model that can detect falls using both IMU (sensor) and camera data.  
+But:  
+- **Cameras are expensive** (energy, computation, privacy).
+- Sometimes, **camera data might be missing** (e.g., sensor failure, privacy mode).
+- You want a model that is **robust** (works even if cameras are missing) and **efficient** (uses cameras only when needed).
 
 ---
 
 ### **2. The Hero: GatedResidualFusionModel**
 
-You design a neural network called **GatedResidualFusionModel**. Here’s how it works:
+This model is designed to:
+- **Fuse IMU and camera data** for best accuracy.
+- **Learn when to use the cameras** (gating).
+- **Fall back to IMU only** if cameras are missing or not needed.
 
-#### **a. Two Brains, One Decision**
-- **IMU Encoder:** Processes the motion data and creates a summary (feature vector).
-- **Image Encoders:** Each camera image is processed separately, then their features are combined.
-- **Fusion:** The IMU and image features are combined, but here’s the twist:  
-  The model can decide, for each sample, whether to use the camera images or just the IMU.
+#### **How does it work?**
 
-#### **b. The Gatekeeper (Gating Mechanism)**
-- The model has a **gate**—a little neural network that looks at the IMU features and outputs a value between 0 and 1 (after a sigmoid).
-- **Gate value close to 1:** "I trust the images, use them!"
-- **Gate value close to 0:** "Just use the IMU, skip the images!"
+```python
+class GatedResidualFusionModel(nn.Module):
+    ...
+    def forward(self, x_csv, x_img1, x_img2, threshold=0.5):
+        # Always process the lightweight IMU data
+        f_csv = self.imu_encoder(x_csv)
+        
+        # The gate decides whether to use the cameras
+        gate_logit = self.gate(f_csv)
+        gate_prob = torch.sigmoid(gate_logit)
+```
 
-#### **c. Two Heads Are Better Than One**
-- The model has two "heads" (output layers):
-  - **Fused Head:** For when both IMU and images are used.
-  - **IMU-only Head:** For when only IMU is used.
-- The final prediction is a blend of these two heads, weighted by the gate value.
+- The **gate** is a neural network that looks at the IMU features and outputs a probability (`gate_prob`) between 0 and 1.
+- This probability represents **how much the model "trusts" the camera data** for this sample.
 
----
+#### **Training: Soft Gating and Modality Dropout**
 
-### **3. Training: Teaching the Model to Be Robust**
+During training, the model always computes both "paths":
+- **IMU-only path** (for when cameras are missing)
+- **Fused path** (IMU + camera)
 
-#### **a. Modality Dropout (The Survival Drill)**
-- During training, sometimes (30% of the time) you **zero out the images**—pretend the cameras are broken!
-- This forces the model to learn to make good predictions **even if the images are missing**.
-- The model learns: "Sometimes I have to rely only on IMU, and that’s okay."
+```python
+if self.training:
+    # Always compute both paths for gradient flow
+    f_img1 = self.img_encoder1(x_img1); f_img2 = self.img_encoder2(x_img2)
+    f_img_combined = F.relu(self.img_fusion(torch.cat((f_img1, f_img2), dim=1)))
+    fused = f_csv + f_img_combined
+    out_fused = self.fused_classifier(fused)
+    out_imu_only = self.imu_only_classifier(f_csv)
+    # The final prediction is a mix, weighted by the gate
+    return gate_prob * out_fused + (1 - gate_prob) * out_imu_only
+```
 
-#### **b. Training Loop**
-- For each batch, you might randomly zero out the images.
-- The model always computes both heads, so it learns from both situations.
-- The loss is computed as usual, and the model gets better at both "with images" and "without images" cases.
+- The output is a **weighted sum**:  
+  - If `gate_prob` is high, the model relies more on the fused (IMU+camera) path.
+  - If `gate_prob` is low, it relies more on the IMU-only path.
 
----
+#### **Modality Dropout: Training for Robustness**
 
-### **4. Inference: Making Smart Decisions**
+In the training loop, you **randomly zero out the camera images** (modality dropout):
 
-#### **a. The Gate Makes the Call**
-- When the model is deployed (inference mode), it looks at the IMU data and the gate decides:
-  - If the gate value is **above a threshold** (say, 0.5), use the images.
-  - If **below**, skip the images and use only IMU.
-- This means the system **dynamically decides** when to spend energy on camera processing.
+```python
+if model.training and np.random.rand() < config['dropout_prob']:
+    x_img1_b.zero_()
+    x_img2_b.zero_()
+```
 
-#### **b. Energy/Latency Savings**
-- You can measure how often the camera is used (trigger rate) and calculate the energy/cost savings.
-
----
-
-### **5. Learning the Best Threshold (τ)**
-
-#### **a. The Energy Budget**
-- Suppose you want to use the cameras only 40% of the time (to save energy).
-- You run the model on the validation set and collect all the gate values.
-- You **sort the gate values** and pick the threshold (τ) so that only the top 40% of samples (with highest gate values) will use the cameras.
-- This is done using `np.quantile`.
-
-#### **b. Deploying with the Learned Threshold**
-- Now, when the model runs, it uses this learned τ as the cutoff.
-- You check: Does the actual camera usage match your budget? How is the accuracy?
+- This forces the model to **learn to handle missing camera data**.
+- The model can't always "cheat" by using the camera; it must learn to use IMU when needed.
 
 ---
 
-### **6. The Results**
+### **3. Inference: Hard Gating**
 
-- **Baseline Model:** Fails when images are missing (never learned to cope).
-- **Robust Model (with modality dropout):** Succeeds even if images are missing.
-- **Gating:** Lets you save energy by using cameras only when needed, with almost no loss in accuracy.
-- **Learned Threshold:** Lets you meet a specific energy budget, with the model adapting its behavior.
+At test time, the model makes a **hard decision**:  
+Should it use the camera for this sample or not?
+
+```python
+else:
+    use_images = (gate_prob > threshold).float()
+    ...
+    # Select the output from the correct head based on the gate's decision
+    return use_images * out_fused + (1 - use_images) * out_imu_only, gate_prob
+```
+
+- If `gate_prob > threshold`, use the fused (IMU+camera) prediction.
+- Otherwise, use the IMU-only prediction.
+- This means the model **dynamically decides** for each sample whether to "pay the price" of using the camera.
 
 ---
 
-## **Summary Table**
+### **4. Assignment 1: Robustness to Missing Modality**
 
-| Component         | What it does                                         |
-|-------------------|-----------------------------------------------------|
-| Gating Mechanism  | Decides, per sample, whether to use images or not   |
-| Modality Dropout  | Trains model to handle missing images robustly      |
-| Threshold τ       | Controls the trade-off between accuracy and energy  |
-| Two Output Heads  | One for fused (IMU+image), one for IMU-only         |
+You train two models:
+- **Baseline:** No modality dropout.
+- **Robust:** With 30% modality dropout.
+
+You test both on data where the camera images are **always missing** (all zeros):
+
+```python
+X_test_img_absent = torch.zeros_like(torch.from_numpy(data_splits['X_test_img1']))
+absent_modality_loader = DataLoader(..., X_test_img_absent, X_test_img_absent, ...)
+f1_baseline_absent, _ = evaluate_gated_model(baseline_model, absent_modality_loader, config['device'], threshold=0.0)
+f1_robust_absent, _ = evaluate_gated_model(robust_model, absent_modality_loader, config['device'], threshold=0.0)
+```
+
+- **Result:**  
+  - Baseline fails (F1=0).
+  - Robust model succeeds (F1 ≈ 0.92).
 
 ---
 
-## **In Short**
+### **5. Assignment 2: Gating for Efficiency**
 
-Your code builds a **smart, energy-efficient, and robust fall detector** that:
-- **Learns to handle missing data** (modality dropout).
-- **Dynamically decides** when to use expensive sensors (gating).
-- **Lets you control energy/accuracy trade-off** by learning the best threshold.
+You evaluate the robust model on normal test data, using a **threshold of 0.5** for the gate.
 
-It’s like training a lifeguard who knows when to call for backup (cameras) and when they can handle things on their own (IMU)—and who can keep working even if the backup is unavailable!
+```python
+f1_gated, trigger_rate = evaluate_gated_model(robust_model, test_loader, config['device'], threshold=0.5)
+```
+
+- **trigger_rate:** Fraction of samples where the camera is used.
+- **You calculate energy/cost savings** by comparing always-using-camera vs. gating.
+
+---
+
+### **6. Stretch Goal: Learning the Threshold τ**
+
+Suppose you want to **limit camera usage to 40%** of the samples (energy budget).
+
+#### **How do you find the right threshold?**
+
+1. **Collect all gate probabilities** on the validation set:
+
+```python
+all_gate_probs = []
+with torch.no_grad():
+    for x_csv, x_img1, x_img2, y in val_loader:
+         _, gate_probs = robust_model(x_csv.to(config['device']), x_img1.to(config['device']), x_img2.to(config['device']), threshold=0.0)
+         all_gate_probs.extend(gate_probs.cpu().numpy().flatten())
+```
+
+2. **Set τ so that only 40% of samples exceed it:**
+
+```python
+learned_threshold = np.quantile(all_gate_probs, 1 - target_trigger_rate)
+```
+
+- This means:  
+  - Only the top 40% of gate probabilities (most confident in camera) will trigger camera usage.
+
+3. **Evaluate with the learned threshold:**
+
+```python
+f1_budget, actual_trigger_rate = evaluate_gated_model(robust_model, test_loader, config['device'], learned_threshold)
+```
+
+- **Result:**  
+  - Camera is used on ≈40% of samples.
+  - F1-score remains high.
+
+---
+
+## **Summary: The Smart, Adaptive Model**
+
+- **During training:**  
+  - The model learns to use both IMU and camera, but is forced (via modality dropout) to also learn to work with IMU alone.
+  - The gate learns to predict, from IMU features, when the camera will be helpful.
+
+- **During inference:**  
+  - The model uses the gate to decide, for each sample, whether to use the camera or not.
+  - You can set the threshold τ to control the trade-off between accuracy and resource usage.
+
+- **You get:**  
+  - **Robustness:** Works even if cameras are missing.
+  - **Efficiency:** Uses cameras only when needed.
+  - **Control:** You can tune τ to meet your energy or privacy budget.
+
+---
+
+**This is a modern, practical approach for edge AI and sensor fusion—smart, adaptive, and resource-aware!**
