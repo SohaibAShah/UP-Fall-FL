@@ -112,3 +112,126 @@ This final section runs the three experiments and visualizes the results.
     * **Accuracy vs. Communication Cost (MB)**: This shows how efficiently each method uses the communication budget.
 
 These plots provide a clear visual comparison of the performance and efficiency of the different federated learning strategies.
+
+---
+
+# Results
+
+
+### **Plot 1: Global Model Accuracy vs. Communication Rounds**
+
+**What it shows:**  
+- The x-axis is the number of communication rounds (how many times the server aggregates client models).
+- The y-axis is the global test accuracy (how well the global model performs on the test set).
+- Three lines represent different federated learning strategies:
+  - **Non-IID (Uniform Sampling):** Blue, dashed line with circles.
+  - **IID (Uniform Sampling):** Orange, solid line with squares.
+  - **Non-IID (Loss-Based Sampling):** Green, dotted line with triangles.
+
+**Interpretation:**  
+- **IID (Uniform Sampling)** achieves higher and more stable accuracy compared to **Non-IID (Uniform Sampling)**. This is expected, as IID data distribution across clients makes federated learning easier and more consistent.
+- **Non-IID (Uniform Sampling)** shows more fluctuation and lower accuracy, reflecting the challenge of learning from heterogeneous (non-IID) data.
+- **Non-IID (Loss-Based Sampling)** outperforms both, reaching high accuracy quickly and maintaining it. This strategy prioritizes clients with higher loss, which helps the global model learn from harder or underrepresented data, improving convergence and final accuracy.
+
+---
+
+### **Plot 2: Global Model Accuracy vs. Communication Cost (MB)**
+
+**What it shows:**  
+- The x-axis is the cumulative communication cost in megabytes (MB), i.e., the total amount of data exchanged between server and clients.
+- The y-axis is again the global test accuracy.
+- The same three strategies are compared.
+
+**Interpretation:**  
+- **IID (Uniform Sampling)** and **Non-IID (Loss-Based Sampling)** both reach high accuracy with less communication cost compared to **Non-IID (Uniform Sampling)**.
+- **Non-IID (Loss-Based Sampling)** is the most communication-efficient: it achieves high accuracy with fewer MBs exchanged, indicating that smarter client selection (based on loss) can reduce communication overhead while improving performance.
+- **Non-IID (Uniform Sampling)** is less efficient, requiring more communication to reach similar or lower accuracy.
+
+---
+
+### **Summary Table**
+
+| Strategy                       | Accuracy | Stability | Communication Efficiency |
+|---------------------------------|----------|-----------|-------------------------|
+| IID (Uniform Sampling)          | High     | Stable    | Good                    |
+| Non-IID (Uniform Sampling)      | Lower    | Fluctuates| Poor                    |
+| Non-IID (Loss-Based Sampling)   | Highest  | Stable    | Best                    |
+
+---
+
+### **Key Takeaways**
+
+- **IID data** makes federated learning easier and more reliable.
+- **Non-IID data** can hurt performance and stability if clients are sampled uniformly.
+- **Loss-based client sampling** in Non-IID settings can significantly improve both accuracy and communication efficiency, making federated learning more practical for real-world, heterogeneous data.
+
+---
+
+## **Why These Effects Occur**
+
+### 1. **IID vs. Non-IID Data**
+- **IID (Independent and Identically Distributed):**
+  - Each client’s data is a good representative sample of the overall data distribution.
+  - When models are aggregated, their updates are consistent and reinforce each other, leading to stable and fast convergence.
+- **Non-IID:**
+  - Each client’s data may be biased or only represent a subset of the global distribution (e.g., some clients see mostly “fall” events, others mostly “no fall”).
+  - Model updates can conflict, causing instability and slower or poorer convergence. The global model may not generalize well.
+
+### 2. **Uniform vs. Loss-Based Sampling**
+- **Uniform Sampling:**
+  - Every client has an equal chance of being selected, regardless of how much their data can help the global model.
+  - In Non-IID settings, this can mean the model spends too much time on “easy” or redundant data, and not enough on “hard” or underrepresented data.
+- **Loss-Based Sampling:**
+  - Clients with higher local loss (i.e., whose data is not well predicted by the current global model) are prioritized.
+  - This focuses learning on the most challenging or least-represented data, speeding up convergence and improving generalization.
+  - It also reduces communication cost, as fewer rounds are needed to reach high accuracy.
+
+---
+
+## **How to Further Improve Federated Learning**
+
+### **A. Algorithmic Improvements**
+- **Personalized FL:**  
+  Instead of a single global model, allow some personalization for each client (e.g., FedPer, pFedMe). This helps in highly Non-IID settings.
+- **Adaptive Aggregation:**  
+  Weight client updates not just by data size, but also by data quality or relevance.
+- **Regularization:**  
+  Use techniques like FedProx to penalize local models that drift too far from the global model, improving stability.
+
+### **B. Data Handling**
+- **Data Augmentation:**  
+  Encourage clients to augment their data to better represent the global distribution.
+- **Client Clustering:**  
+  Group similar clients and aggregate within clusters before global aggregation.
+
+### **C. Communication Efficiency**
+- **Model Compression:**  
+  Use quantization or sparsification to reduce the size of model updates.
+- **Partial Model Updates:**  
+  Only send/receive parts of the model that changed significantly.
+
+### **D. Practical Considerations**
+- **Fairness:**  
+  Ensure that minority clients (with rare data) are not ignored, which can be addressed by loss-based or fairness-aware sampling.
+- **Privacy:**  
+  Use differential privacy or secure aggregation to protect client data.
+
+---
+
+## **Summary Table**
+
+| Challenge         | Solution Example                | Benefit                        |
+|-------------------|--------------------------------|--------------------------------|
+| Non-IID Data      | Loss-based sampling, FedProx   | Better accuracy, stability     |
+| Communication     | Model compression, smart sampling | Lower bandwidth, faster convergence |
+| Personalization   | Local fine-tuning, pFedMe      | Better client-specific results |
+| Fairness          | Fair sampling, reweighting     | Avoids bias, improves equity   |
+
+---
+
+## **References for Further Reading**
+- [Federated Learning: Challenges, Methods, and Future Directions (Kairouz et al., 2021)](https://arxiv.org/abs/1912.04977)
+- [FedProx: Federated Optimization in Heterogeneous Networks](https://arxiv.org/abs/1812.06127)
+- [Personalized Federated Learning: A Meta-Learning Approach](https://arxiv.org/abs/1802.07876)
+
+---
