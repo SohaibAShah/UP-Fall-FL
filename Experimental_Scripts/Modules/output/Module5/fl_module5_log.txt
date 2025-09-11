@@ -1,0 +1,49 @@
+2025-09-11 17:21:09,392 [INFO] Loading and processing data...
+2025-09-11 17:21:22,174 [INFO] Data loading complete. Train samples: 154867
+2025-09-11 17:21:22,512 [INFO] 
+--- Assignment 1: Robustness Evaluation ---
+2025-09-11 17:21:22,512 [INFO] Training baseline model (no dropout)...
+2025-09-11 17:22:05,820 [INFO] Epoch 1/10 | Val F1 (Fall): 0.9622
+2025-09-11 17:22:43,548 [INFO] Epoch 2/10 | Val F1 (Fall): 0.9799
+2025-09-11 17:23:21,700 [INFO] Epoch 3/10 | Val F1 (Fall): 0.9670
+2025-09-11 17:24:00,327 [INFO] Epoch 4/10 | Val F1 (Fall): 0.9804
+2025-09-11 17:24:39,144 [INFO] Epoch 5/10 | Val F1 (Fall): 0.9782
+2025-09-11 17:25:18,266 [INFO] Epoch 6/10 | Val F1 (Fall): 0.9922
+2025-09-11 17:25:56,639 [INFO] Epoch 7/10 | Val F1 (Fall): 0.9914
+2025-09-11 17:26:33,476 [INFO] Epoch 8/10 | Val F1 (Fall): 0.9876
+2025-09-11 17:27:11,687 [INFO] Epoch 9/10 | Val F1 (Fall): 0.9958
+2025-09-11 17:27:50,174 [INFO] Epoch 10/10 | Val F1 (Fall): 0.9759
+2025-09-11 17:27:50,174 [INFO] Training robust model (with 30% dropout)...
+2025-09-11 17:28:26,270 [INFO] Epoch 1/10 | Val F1 (Fall): 0.9651
+2025-09-11 17:29:02,816 [INFO] Epoch 2/10 | Val F1 (Fall): 0.9741
+2025-09-11 17:29:39,841 [INFO] Epoch 3/10 | Val F1 (Fall): 0.9753
+2025-09-11 17:30:18,014 [INFO] Epoch 4/10 | Val F1 (Fall): 0.9738
+2025-09-11 17:30:55,959 [INFO] Epoch 5/10 | Val F1 (Fall): 0.9776
+2025-09-11 17:31:33,614 [INFO] Epoch 6/10 | Val F1 (Fall): 0.9787
+2025-09-11 17:32:10,999 [INFO] Epoch 7/10 | Val F1 (Fall): 0.9763
+2025-09-11 17:32:50,415 [INFO] Epoch 8/10 | Val F1 (Fall): 0.9831
+2025-09-11 17:33:29,105 [INFO] Epoch 9/10 | Val F1 (Fall): 0.9808
+2025-09-11 17:34:08,835 [INFO] Epoch 10/10 | Val F1 (Fall): 0.9824
+2025-09-11 17:34:15,611 [INFO] 
+--- Robustness Comparison ---
+2025-09-11 17:34:15,628 [INFO] 
+                Model  F1 on RGB-Absent Data
+Baseline (No Dropout)               0.000000
+Robust (With Dropout)               0.923077
+2025-09-11 17:34:15,628 [INFO] 
+--- Assignment 2: Gating Performance ---
+2025-09-11 17:34:18,356 [INFO] 
+--- Gating Performance (Threshold=0.5) ---
+2025-09-11 17:34:18,358 [INFO] 
+                    Metric  Value
+           F1-Score (Fall) 0.9807
+       Camera Trigger Rate 57.16%
+Cost Before Gating (Proxy)     21
+ Cost After Gating (Proxy)  12.43
+                   Savings 40.80%
+2025-09-11 17:34:18,358 [INFO] 
+--- Stretch Goal: Learn Threshold τ for 40% Energy Budget ---
+2025-09-11 17:34:24,314 [INFO] Learned Threshold τ = 0.6540 to meet 40% budget.
+2025-09-11 17:34:24,314 [INFO] Performance with learned τ: F1-Score=0.9698, Actual Trigger Rate=39.98%
+2025-09-11 17:34:24,315 [INFO] 
+✅ All simulations complete. Results saved in '/home/syed/PhD/UP-Fall-FL/Experimental_Scripts/Modules/output/Module5'.
