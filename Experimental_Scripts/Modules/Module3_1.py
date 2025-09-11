@@ -323,9 +323,9 @@ if __name__ == "__main__":
     FILE_PATH = '/home/syed/PhD/UP_Fall_Dataset/Sensor + Image/sensor.csv'
 
     base_config = {
-        'comm_rounds': 50,
+        'comm_rounds': 100,
         'local_epochs': 5,
-        'clients_per_round': 5,
+        'clients_per_round': 6,
         'learning_rate': 0.001,
         'target_f1': 0.75,
         'device': torch.device("cuda" if torch.cuda.is_available() else "cpu"),

@@ -71,3 +71,68 @@ This final section runs the three experiments sequentially and presents the resu
 1.  **Run Experiments**: It calls `run_federated_simulation` three times, once for each algorithm (FedAvg, FedProx, and SCAFFOLD), collecting the results.
 2.  **Display and Save Results**: It prints a final comparison table to the console and saves it to `final_comparison.csv`.
 3.  **Plotting**: It generates a plot of the F1-score vs. communication rounds for all three algorithms, making it easy to visually compare their convergence speed and stability. The plot is saved as `f1_vs_rounds.png`.
+
+
+---
+# Results
+
+## **What the Plot Shows**
+
+- **X-axis:** Communication Round (number of global aggregation steps in federated learning)
+- **Y-axis:** Global Test F1-Score (for the "Fall" class)
+- **Curves:**  
+  - **FedAvg** (blue, dashed): Standard federated averaging.
+  - **FedProx** (orange, dashed): FedAvg with a proximal term to stabilize training under client heterogeneity.
+  - **SCAFFOLD** (green, dashed): Algorithm designed to correct client drift in non-IID settings.
+  - **Red dotted line:** Target F1-score (0.75), a reference for desired performance.
+
+---
+
+## **Interpretation**
+
+### **FedAvg**
+- **Performance:**  
+  - Rapid initial improvement, reaching and sometimes exceeding the target F1-score (0.75) within the first 10–15 rounds.
+  - After the peak, the F1-score fluctuates and gradually declines, stabilizing just below the target.
+- **Implication:**  
+  - FedAvg can reach good performance quickly, but in non-IID settings, it may not maintain stability, possibly due to client drift or inconsistent updates.
+
+### **FedProx**
+- **Performance:**  
+  - Similar rapid rise as FedAvg, but with slightly higher peaks and more stability in later rounds.
+  - Maintains F1-score above the target line for more rounds, with less fluctuation.
+- **Implication:**  
+  - The proximal term in FedProx helps mitigate the negative effects of data heterogeneity, leading to more stable and generally better performance than vanilla FedAvg.
+
+### **SCAFFOLD**
+- **Performance:**  
+  - Starts lower and improves more slowly.
+  - Plateaus at a much lower F1-score (around 0.6–0.64), never reaching the target F1-score.
+- **Implication:**  
+  - SCAFFOLD, while theoretically designed to address client drift, may not be well-tuned for this dataset or scenario, or may require more communication rounds or different hyperparameters to be effective.
+  - Alternatively, the implementation or initialization of control variates may need adjustment.
+
+### **Target F1-Score**
+- **Reference:**  
+  - The red dotted line at 0.75 is a benchmark for satisfactory model performance.
+  - Only FedAvg and FedProx reach or exceed this target, with FedProx being more robust.
+
+---
+
+## **Key Takeaways**
+
+- **FedProx** is the most stable and effective method for this scenario, consistently achieving and maintaining high F1-scores.
+- **FedAvg** can reach high performance but is less stable over time.
+- **SCAFFOLD** underperforms in this experiment, suggesting the need for further tuning or that it may not be optimal for this particular data distribution or model.
+- **Federated learning in non-IID settings** benefits from methods that address client drift and heterogeneity (like FedProx).
+
+---
+
+## **Possible Next Steps**
+
+- **Tune SCAFFOLD hyperparameters** (e.g., learning rate, number of rounds, initialization).
+- **Experiment with more rounds** or different batch sizes.
+- **Analyze client-level performance** to see if some clients are particularly challenging.
+- **Try hybrid or personalized FL approaches** if client data is highly non-IID.
+
+
