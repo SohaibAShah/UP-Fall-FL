@@ -1,5 +1,3 @@
-***
-
 # Module 4: Multimodal Fusion
 
 ## Intuition 💡
@@ -77,10 +75,49 @@ This is the final part of the script that runs the entire experiment.
 4.  **Report Results**: It compiles the results into a pandas DataFrame, prints a final comparison table to the console, and saves it to a `.csv` file. The table clearly shows which model performed best and which was most robust to noise (had the smallest performance drop).
 5.  **Stretch Goal**: It takes the trained `ResidualFusionModel` and runs an evaluation loop to extract the gate's output values. It then creates and saves a scatter plot of these gate values against the motion intensity (calculated from the gyroscope data), visualizing if the model learned to trust the image data more or less depending on the motion.
 
+---
+# Results
 
+## **What the Plot Shows**
 
+- **X-axis:**  
+  **Motion Intensity (Avg. Gyro Magnitude)**  
+  This represents the average magnitude of the gyroscope signals in each data window. Higher values mean more intense or rapid movement.
 
+- **Y-axis:**  
+  **Average Gate Value (Trust in Image Modalities)**  
+  This is the average value of the gating mechanism in your Residual Fusion model. The gate controls how much the model "trusts" or relies on the image modalities (camera data) versus the IMU (sensor) data for making predictions.  
+  - **Higher gate value:** More reliance on image data.
+  - **Lower gate value:** More reliance on IMU/sensor data.
 
+---
+
+## **Interpretation**
+
+- **General Trend:**  
+  Most data points cluster at lower motion intensities (left side of the plot), with a wide spread of gate values. As motion intensity increases, the gate value distribution narrows and slightly increases, but remains moderate overall.
+
+- **What This Means:**  
+  - **Low Motion Intensity:**  
+    When the subject is relatively still, the model sometimes trusts the image data more (higher gate value), but also often relies on IMU data (lower gate value). This suggests that in calm situations, both modalities can be informative, and the model dynamically chooses.
+  - **High Motion Intensity:**  
+    As motion intensity increases, the gate value tends to stay moderate or slightly higher, indicating the model may rely a bit more on image data during rapid movements, but not exclusively. This could be because IMU data becomes noisier or less discriminative during intense motion, so the model leverages the complementary information from images.
+
+- **No Extreme Gate Values:**  
+  The gate rarely reaches the extremes (close to 0 or 1), indicating the model is blending both modalities rather than fully switching between them. This is a sign of robust fusion: the model is not overconfident in either modality.
+
+---
+
+## **Key Takeaways**
+
+- **Adaptive Fusion:**  
+  The Residual Fusion model is successfully learning to adaptively combine IMU and image data, depending on the motion context.
+- **Balanced Trust:**  
+  The model does not ignore either modality; it blends them, which is desirable for robustness, especially in noisy or ambiguous situations.
+- **Practical Implication:**  
+  Such a gating mechanism can help maintain high performance even when one modality (e.g., IMU or camera) is degraded or less informative.
+
+---
 
 
 

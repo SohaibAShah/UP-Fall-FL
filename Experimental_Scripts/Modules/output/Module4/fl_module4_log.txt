@@ -157,3 +157,162 @@ ResidualFusion         0.997720         0.496714          0.501007
 --- Running Stretch Goal: Visualizing Gate Values ---
 2025-08-24 17:23:06,441 [INFO] 
 ✅ All simulations complete. Results saved in '/home/syed/PhD/UP-Fall-FL/Experimental_Scripts/Modules/output/Module4'.
+2025-09-11 14:08:15,813 [INFO] Logging setup complete.
+2025-09-11 14:08:15,965 [INFO] Loading and processing data...
+2025-09-11 14:08:19,666 [INFO] Aligning timestamps (optimized method)...
+2025-09-11 14:08:20,412 [INFO] Timestamps aligned.
+2025-09-11 14:08:20,471 [INFO] Labels binarized.
+2025-09-11 14:08:20,472 [INFO] Random seed set to 42.
+2025-09-11 14:08:26,031 [INFO] Data loading complete. Train samples: 154867
+2025-09-11 14:08:30,181 [INFO] 
+--- Training EarlyFusion Model ---
+2025-09-11 14:08:30,181 [INFO] Starting model training...
+2025-09-11 14:09:04,427 [INFO] Epoch 1/10 | Val F1 (Fall): 0.9687
+2025-09-11 14:09:34,344 [INFO] Epoch 2/10 | Val F1 (Fall): 0.9824
+2025-09-11 14:10:03,829 [INFO] Epoch 3/10 | Val F1 (Fall): 0.9775
+2025-09-11 14:10:33,982 [INFO] Epoch 4/10 | Val F1 (Fall): 0.9849
+2025-09-11 14:11:03,786 [INFO] Epoch 5/10 | Val F1 (Fall): 0.9883
+2025-09-11 14:11:34,192 [INFO] Epoch 6/10 | Val F1 (Fall): 0.9907
+2025-09-11 14:12:04,264 [INFO] Epoch 7/10 | Val F1 (Fall): 0.9912
+2025-09-11 14:12:34,711 [INFO] Epoch 8/10 | Val F1 (Fall): 0.9929
+2025-09-11 14:13:05,081 [INFO] Epoch 9/10 | Val F1 (Fall): 0.9934
+2025-09-11 14:13:35,887 [INFO] Epoch 10/10 | Val F1 (Fall): 0.9941
+2025-09-11 14:13:35,887 [INFO] Model training complete.
+2025-09-11 14:13:35,889 [INFO] --- Evaluating EarlyFusion on Clean Data ---
+2025-09-11 14:13:38,042 [INFO] Evaluation complete.
+2025-09-11 14:13:38,087 [INFO] --- Evaluating EarlyFusion on Noisy Data ---
+2025-09-11 14:13:39,652 [INFO] Evaluation complete.
+2025-09-11 14:13:39,703 [INFO] 
+--- Training LateFusion Model ---
+2025-09-11 14:13:39,704 [INFO] Starting model training...
+2025-09-11 14:14:11,439 [INFO] Epoch 1/10 | Val F1 (Fall): 0.9718
+2025-09-11 14:14:43,240 [INFO] Epoch 2/10 | Val F1 (Fall): 0.9782
+2025-09-11 14:15:14,102 [INFO] Epoch 3/10 | Val F1 (Fall): 0.9899
+2025-09-11 14:15:45,896 [INFO] Epoch 4/10 | Val F1 (Fall): 0.9903
+2025-09-11 14:16:16,606 [INFO] Epoch 5/10 | Val F1 (Fall): 0.9956
+2025-09-11 14:16:49,337 [INFO] Epoch 6/10 | Val F1 (Fall): 0.9938
+2025-09-11 14:17:22,045 [INFO] Epoch 7/10 | Val F1 (Fall): 0.9966
+2025-09-11 14:17:54,188 [INFO] Epoch 8/10 | Val F1 (Fall): 0.9978
+2025-09-11 14:18:27,456 [INFO] Epoch 9/10 | Val F1 (Fall): 0.9979
+2025-09-11 14:18:59,850 [INFO] Epoch 10/10 | Val F1 (Fall): 0.9985
+2025-09-11 14:18:59,851 [INFO] Model training complete.
+2025-09-11 14:18:59,853 [INFO] --- Evaluating LateFusion on Clean Data ---
+2025-09-11 14:19:02,379 [INFO] Evaluation complete.
+2025-09-11 14:19:02,436 [INFO] --- Evaluating LateFusion on Noisy Data ---
+2025-09-11 14:19:04,866 [INFO] Evaluation complete.
+2025-09-11 14:19:04,916 [INFO] 
+--- Training ResidualFusion Model ---
+2025-09-11 14:19:04,917 [INFO] Starting model training...
+2025-09-11 14:19:41,106 [INFO] Epoch 1/10 | Val F1 (Fall): 0.9762
+2025-09-11 14:20:17,131 [INFO] Epoch 2/10 | Val F1 (Fall): 0.9801
+2025-09-11 14:20:52,198 [INFO] Epoch 3/10 | Val F1 (Fall): 0.9811
+2025-09-11 14:21:27,299 [INFO] Epoch 4/10 | Val F1 (Fall): 0.9823
+2025-09-11 14:22:02,796 [INFO] Epoch 5/10 | Val F1 (Fall): 0.9901
+2025-09-11 14:22:38,263 [INFO] Epoch 6/10 | Val F1 (Fall): 0.9933
+2025-09-11 14:23:15,097 [INFO] Epoch 7/10 | Val F1 (Fall): 0.9949
+2025-09-11 14:23:52,303 [INFO] Epoch 8/10 | Val F1 (Fall): 0.9967
+2025-09-11 14:24:30,774 [INFO] Epoch 9/10 | Val F1 (Fall): 0.9979
+2025-09-11 14:25:07,015 [INFO] Epoch 10/10 | Val F1 (Fall): 0.9978
+2025-09-11 14:25:07,016 [INFO] Model training complete.
+2025-09-11 14:25:07,018 [INFO] --- Evaluating ResidualFusion on Clean Data ---
+2025-09-11 14:25:09,733 [INFO] Evaluation complete.
+2025-09-11 14:25:09,778 [INFO] --- Evaluating ResidualFusion on Noisy Data ---
+2025-09-11 14:25:12,434 [INFO] Evaluation complete.
+2025-09-11 14:25:12,484 [INFO] 
+--- Final Comparison ---
+
+         Model  Clean F1 (Fall)  Noisy F1 (Fall)  Performance Drop
+   EarlyFusion         0.994525         0.474123          0.520402
+    LateFusion         0.998062         0.501316          0.496746
+ResidualFusion         0.997720         0.496714          0.501007
+2025-09-11 14:25:12,487 [INFO] 
+--- Running Stretch Goal: Visualizing Gate Values ---
+2025-09-11 14:25:57,922 [INFO] 
+✅ All simulations complete. Results saved in '/home/syed/PhD/UP-Fall-FL/Experimental_Scripts/Modules/output/Module4'.
+2025-09-11 16:19:38,276 [INFO] Logging setup complete.
+2025-09-11 16:19:38,443 [INFO] Loading and processing data...
+2025-09-11 16:19:41,655 [INFO] Aligning timestamps (optimized method)...
+2025-09-11 16:19:43,182 [INFO] Timestamps aligned.
+2025-09-11 16:19:43,317 [INFO] Labels binarized.
+2025-09-11 16:19:43,320 [INFO] Random seed set to 42.
+2025-09-11 16:19:49,522 [INFO] Data loading complete. Train samples: 154867
+2025-09-11 16:19:51,362 [INFO] Adding Gaussian noise to images with noise_level=0.5.
+2025-09-11 16:19:53,351 [INFO] Adding Gaussian noise to images with noise_level=0.5.
+2025-09-11 16:19:53,777 [INFO] 
+--- Training EarlyFusion Model ---
+2025-09-11 16:19:53,777 [INFO] Starting model training...
+2025-09-11 16:20:29,309 [INFO] Epoch 1/10 | Val F1 (Fall): 0.9687
+2025-09-11 16:21:00,135 [INFO] Epoch 2/10 | Val F1 (Fall): 0.9824
+2025-09-11 16:21:31,922 [INFO] Epoch 3/10 | Val F1 (Fall): 0.9775
+2025-09-11 16:22:04,357 [INFO] Epoch 4/10 | Val F1 (Fall): 0.9849
+2025-09-11 16:22:35,333 [INFO] Epoch 5/10 | Val F1 (Fall): 0.9883
+2025-09-11 16:23:06,830 [INFO] Epoch 6/10 | Val F1 (Fall): 0.9907
+2025-09-11 16:23:37,294 [INFO] Epoch 7/10 | Val F1 (Fall): 0.9912
+2025-09-11 16:24:08,465 [INFO] Epoch 8/10 | Val F1 (Fall): 0.9929
+2025-09-11 16:24:38,535 [INFO] Epoch 9/10 | Val F1 (Fall): 0.9934
+2025-09-11 16:25:09,497 [INFO] Epoch 10/10 | Val F1 (Fall): 0.9941
+2025-09-11 16:25:09,497 [INFO] Model training complete.
+2025-09-11 16:25:09,499 [INFO] --- Evaluating EarlyFusion on Clean Data ---
+2025-09-11 16:25:11,880 [INFO] Evaluation complete.
+2025-09-11 16:25:11,928 [INFO] --- Evaluating EarlyFusion on Noisy Data ---
+2025-09-11 16:25:14,256 [INFO] Evaluation complete.
+2025-09-11 16:25:14,304 [INFO] 
+--- Training LateFusion Model ---
+2025-09-11 16:25:14,305 [INFO] Starting model training...
+2025-09-11 16:25:45,533 [INFO] Epoch 1/10 | Val F1 (Fall): 0.9718
+2025-09-11 16:26:17,207 [INFO] Epoch 2/10 | Val F1 (Fall): 0.9782
+2025-09-11 16:26:48,606 [INFO] Epoch 3/10 | Val F1 (Fall): 0.9899
+2025-09-11 16:27:19,554 [INFO] Epoch 4/10 | Val F1 (Fall): 0.9903
+2025-09-11 16:27:51,728 [INFO] Epoch 5/10 | Val F1 (Fall): 0.9956
+2025-09-11 16:28:23,578 [INFO] Epoch 6/10 | Val F1 (Fall): 0.9938
+2025-09-11 16:28:54,599 [INFO] Epoch 7/10 | Val F1 (Fall): 0.9966
+2025-09-11 16:29:26,560 [INFO] Epoch 8/10 | Val F1 (Fall): 0.9978
+2025-09-11 16:29:58,566 [INFO] Epoch 9/10 | Val F1 (Fall): 0.9979
+2025-09-11 16:30:30,407 [INFO] Epoch 10/10 | Val F1 (Fall): 0.9985
+2025-09-11 16:30:30,407 [INFO] Model training complete.
+2025-09-11 16:30:30,410 [INFO] --- Evaluating LateFusion on Clean Data ---
+2025-09-11 16:30:32,800 [INFO] Evaluation complete.
+2025-09-11 16:30:32,849 [INFO] --- Evaluating LateFusion on Noisy Data ---
+2025-09-11 16:30:34,876 [INFO] Evaluation complete.
+2025-09-11 16:30:34,926 [INFO] 
+--- Training ResidualFusion Model ---
+2025-09-11 16:30:34,926 [INFO] Starting model training...
+2025-09-11 16:31:10,970 [INFO] Epoch 1/10 | Val F1 (Fall): 0.9762
+2025-09-11 16:31:47,086 [INFO] Epoch 2/10 | Val F1 (Fall): 0.9801
+2025-09-11 16:32:23,789 [INFO] Epoch 3/10 | Val F1 (Fall): 0.9811
+2025-09-11 16:33:00,668 [INFO] Epoch 4/10 | Val F1 (Fall): 0.9823
+2025-09-11 16:33:39,092 [INFO] Epoch 5/10 | Val F1 (Fall): 0.9901
+2025-09-11 16:34:14,965 [INFO] Epoch 6/10 | Val F1 (Fall): 0.9933
+2025-09-11 16:34:50,374 [INFO] Epoch 7/10 | Val F1 (Fall): 0.9949
+2025-09-11 16:35:26,142 [INFO] Epoch 8/10 | Val F1 (Fall): 0.9967
+2025-09-11 16:36:02,081 [INFO] Epoch 9/10 | Val F1 (Fall): 0.9979
+2025-09-11 16:36:40,795 [INFO] Epoch 10/10 | Val F1 (Fall): 0.9978
+2025-09-11 16:36:40,795 [INFO] Model training complete.
+2025-09-11 16:36:40,797 [INFO] --- Evaluating ResidualFusion on Clean Data ---
+2025-09-11 16:36:43,909 [INFO] Evaluation complete.
+2025-09-11 16:36:43,963 [INFO] --- Evaluating ResidualFusion on Noisy Data ---
+2025-09-11 16:36:47,342 [INFO] Evaluation complete.
+2025-09-11 16:36:47,409 [INFO] 
+--- Final Comparison ---
+
+         Model  Clean F1 (Fall)  Noisy F1 (Fall)  Performance Drop
+   EarlyFusion         0.994525         0.474123          0.520402
+    LateFusion         0.998062         0.501316          0.496746
+ResidualFusion         0.997720         0.496714          0.501007
+2025-09-11 16:36:47,415 [INFO] 
+--- Running Gate Analysis Experiments ---
+2025-09-11 16:36:50,431 [INFO] Pearson correlation (gate vs. motion): 0.247
+2025-09-11 16:36:50,431 [INFO] Spearman correlation (gate vs. motion): 0.309
+2025-09-11 16:36:50,475 [INFO] 
+Gate value stats by motion bin:
+            count      mean       std       min       25%       50%       75%       max
+bin                                                                                    
+Low       12938.0  0.588102  0.032845  0.468933  0.570175  0.593700  0.612434  0.664105
+Med-Low   12874.0  0.593193  0.031954  0.469004  0.578417  0.599148  0.614110  0.665666
+Med-High  12905.0  0.599921  0.032362  0.466075  0.585662  0.604262  0.622207  0.672346
+High      12906.0  0.611367  0.026458  0.472985  0.598668  0.615860  0.628956  0.671577
+2025-09-11 16:36:57,225 [INFO] Evaluation complete.
+2025-09-11 16:37:11,492 [INFO] 
+--- Gate Adaptation Under Noisy Images ---
+2025-09-11 16:37:47,562 [INFO] 
+✅ All simulations and analyses complete. Results saved in '/home/syed/PhD/UP-Fall-FL/Experimental_Scripts/Modules/output/Module4'.
