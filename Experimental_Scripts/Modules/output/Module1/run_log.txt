@@ -510,3 +510,129 @@ CNN-Attention  0.728167         0.558770            0.554817               0.554
 CNN-GAP        0.849112         0.746521            0.695370               0.695370
 CNN-Attention  0.844970         0.739044            0.687037               0.687037
 2025-09-11 11:23:22,143 [INFO] All results, logs, and plots saved to: /home/syed/PhD/UP-Fall-FL/Experimental_Scripts/Modules/output/Module1
+2025-09-13 17:08:29,971 [INFO] Using device: cuda
+2025-09-13 17:08:29,993 [INFO] Loading data from: /home/syed/PhD/UP_Fall_Dataset/Sensor + Image/sensor.csv
+2025-09-13 17:08:32,598 [INFO] Creating training windows...
+2025-09-13 17:08:32,759 [INFO] Creating testing windows...
+2025-09-13 17:08:33,407 [INFO] Train shape: (9425, 6, 200), Test shape: (3380, 6, 200)
+2025-09-13 17:08:33,408 [INFO] Fall events (0) in train: 3055, in test: 1080
+2025-09-13 17:08:33,485 [INFO] Training Model 1: CNN with Global Average Pooling
+2025-09-13 17:08:38,444 [INFO] Epoch 1/50 | Loss: 0.5720 | Accuracy: 0.7111
+2025-09-13 17:08:38,921 [INFO] Epoch 2/50 | Loss: 0.3664 | Accuracy: 0.8386
+2025-09-13 17:08:39,418 [INFO] Epoch 3/50 | Loss: 0.2871 | Accuracy: 0.8736
+2025-09-13 17:08:39,889 [INFO] Epoch 4/50 | Loss: 0.2645 | Accuracy: 0.8858
+2025-09-13 17:08:40,352 [INFO] Epoch 5/50 | Loss: 0.2522 | Accuracy: 0.8936
+2025-09-13 17:08:40,819 [INFO] Epoch 6/50 | Loss: 0.2457 | Accuracy: 0.8961
+2025-09-13 17:08:41,262 [INFO] Epoch 7/50 | Loss: 0.2370 | Accuracy: 0.9021
+2025-09-13 17:08:41,716 [INFO] Epoch 8/50 | Loss: 0.2350 | Accuracy: 0.9024
+2025-09-13 17:08:42,175 [INFO] Epoch 9/50 | Loss: 0.2310 | Accuracy: 0.9056
+2025-09-13 17:08:42,613 [INFO] Epoch 10/50 | Loss: 0.2270 | Accuracy: 0.9072
+2025-09-13 17:08:43,103 [INFO] Epoch 11/50 | Loss: 0.2240 | Accuracy: 0.9098
+2025-09-13 17:08:43,559 [INFO] Epoch 12/50 | Loss: 0.2212 | Accuracy: 0.9089
+2025-09-13 17:08:44,032 [INFO] Epoch 13/50 | Loss: 0.2188 | Accuracy: 0.9119
+2025-09-13 17:08:44,488 [INFO] Epoch 14/50 | Loss: 0.2178 | Accuracy: 0.9143
+2025-09-13 17:08:44,947 [INFO] Epoch 15/50 | Loss: 0.2121 | Accuracy: 0.9151
+2025-09-13 17:08:45,431 [INFO] Epoch 16/50 | Loss: 0.2121 | Accuracy: 0.9141
+2025-09-13 17:08:45,891 [INFO] Epoch 17/50 | Loss: 0.2105 | Accuracy: 0.9159
+2025-09-13 17:08:46,372 [INFO] Epoch 18/50 | Loss: 0.2060 | Accuracy: 0.9180
+2025-09-13 17:08:46,861 [INFO] Epoch 19/50 | Loss: 0.2084 | Accuracy: 0.9197
+2025-09-13 17:08:47,308 [INFO] Epoch 20/50 | Loss: 0.2017 | Accuracy: 0.9210
+2025-09-13 17:08:47,776 [INFO] Epoch 21/50 | Loss: 0.2025 | Accuracy: 0.9190
+2025-09-13 17:08:48,239 [INFO] Epoch 22/50 | Loss: 0.2002 | Accuracy: 0.9204
+2025-09-13 17:08:48,737 [INFO] Epoch 23/50 | Loss: 0.1966 | Accuracy: 0.9250
+2025-09-13 17:08:49,187 [INFO] Epoch 24/50 | Loss: 0.1966 | Accuracy: 0.9249
+2025-09-13 17:08:49,717 [INFO] Epoch 25/50 | Loss: 0.1979 | Accuracy: 0.9232
+2025-09-13 17:08:50,170 [INFO] Epoch 26/50 | Loss: 0.1945 | Accuracy: 0.9228
+2025-09-13 17:08:50,654 [INFO] Epoch 27/50 | Loss: 0.1917 | Accuracy: 0.9236
+2025-09-13 17:08:51,115 [INFO] Epoch 28/50 | Loss: 0.1900 | Accuracy: 0.9256
+2025-09-13 17:08:51,592 [INFO] Epoch 29/50 | Loss: 0.1944 | Accuracy: 0.9259
+2025-09-13 17:08:52,064 [INFO] Epoch 30/50 | Loss: 0.1928 | Accuracy: 0.9240
+2025-09-13 17:08:52,611 [INFO] Epoch 31/50 | Loss: 0.1878 | Accuracy: 0.9300
+2025-09-13 17:08:53,120 [INFO] Epoch 32/50 | Loss: 0.1909 | Accuracy: 0.9247
+2025-09-13 17:08:53,691 [INFO] Epoch 33/50 | Loss: 0.1873 | Accuracy: 0.9265
+2025-09-13 17:08:54,194 [INFO] Epoch 34/50 | Loss: 0.1838 | Accuracy: 0.9295
+2025-09-13 17:08:54,677 [INFO] Epoch 35/50 | Loss: 0.1813 | Accuracy: 0.9290
+2025-09-13 17:08:55,142 [INFO] Epoch 36/50 | Loss: 0.1840 | Accuracy: 0.9299
+2025-09-13 17:08:55,620 [INFO] Epoch 37/50 | Loss: 0.1796 | Accuracy: 0.9310
+2025-09-13 17:08:56,141 [INFO] Epoch 38/50 | Loss: 0.1815 | Accuracy: 0.9304
+2025-09-13 17:08:56,624 [INFO] Epoch 39/50 | Loss: 0.1809 | Accuracy: 0.9322
+2025-09-13 17:08:57,198 [INFO] Epoch 40/50 | Loss: 0.1792 | Accuracy: 0.9317
+2025-09-13 17:08:57,670 [INFO] Epoch 41/50 | Loss: 0.1780 | Accuracy: 0.9317
+2025-09-13 17:08:58,172 [INFO] Epoch 42/50 | Loss: 0.1775 | Accuracy: 0.9332
+2025-09-13 17:08:58,672 [INFO] Epoch 43/50 | Loss: 0.1780 | Accuracy: 0.9326
+2025-09-13 17:08:59,180 [INFO] Epoch 44/50 | Loss: 0.1811 | Accuracy: 0.9308
+2025-09-13 17:08:59,682 [INFO] Epoch 45/50 | Loss: 0.1744 | Accuracy: 0.9335
+2025-09-13 17:09:00,203 [INFO] Epoch 46/50 | Loss: 0.1762 | Accuracy: 0.9337
+2025-09-13 17:09:00,694 [INFO] Epoch 47/50 | Loss: 0.1776 | Accuracy: 0.9314
+2025-09-13 17:09:01,199 [INFO] Epoch 48/50 | Loss: 0.1753 | Accuracy: 0.9360
+2025-09-13 17:09:01,721 [INFO] Epoch 49/50 | Loss: 0.1745 | Accuracy: 0.9332
+2025-09-13 17:09:02,206 [INFO] Epoch 50/50 | Loss: 0.1696 | Accuracy: 0.9367
+2025-09-13 17:09:02,206 [INFO] Training complete.
+2025-09-13 17:09:02,206 [INFO] Evaluating Model 1...
+2025-09-13 17:09:02,321 [INFO] [CNN-GAP] Accuracy: 0.8479
+2025-09-13 17:09:02,321 [INFO] [CNN-GAP] F1-Score (Fall): 0.7427
+2025-09-13 17:09:02,321 [INFO] [CNN-GAP] Sensitivity (Fall): 0.6870
+2025-09-13 17:09:02,321 [INFO] [CNN-GAP] Specificity (No Fall): 0.6870
+2025-09-13 17:09:02,790 [INFO] Training Model 2: CNN with Temporal Attention
+2025-09-13 17:09:03,580 [INFO] Epoch 1/50 | Loss: 0.5050 | Accuracy: 0.7473
+2025-09-13 17:09:04,247 [INFO] Epoch 2/50 | Loss: 0.2521 | Accuracy: 0.8981
+2025-09-13 17:09:04,946 [INFO] Epoch 3/50 | Loss: 0.2093 | Accuracy: 0.9189
+2025-09-13 17:09:05,585 [INFO] Epoch 4/50 | Loss: 0.1883 | Accuracy: 0.9245
+2025-09-13 17:09:06,247 [INFO] Epoch 5/50 | Loss: 0.1740 | Accuracy: 0.9316
+2025-09-13 17:09:06,871 [INFO] Epoch 6/50 | Loss: 0.1616 | Accuracy: 0.9360
+2025-09-13 17:09:07,454 [INFO] Epoch 7/50 | Loss: 0.1524 | Accuracy: 0.9418
+2025-09-13 17:09:08,102 [INFO] Epoch 8/50 | Loss: 0.1423 | Accuracy: 0.9443
+2025-09-13 17:09:08,735 [INFO] Epoch 9/50 | Loss: 0.1317 | Accuracy: 0.9485
+2025-09-13 17:09:09,344 [INFO] Epoch 10/50 | Loss: 0.1250 | Accuracy: 0.9515
+2025-09-13 17:09:09,981 [INFO] Epoch 11/50 | Loss: 0.1157 | Accuracy: 0.9567
+2025-09-13 17:09:10,618 [INFO] Epoch 12/50 | Loss: 0.1119 | Accuracy: 0.9601
+2025-09-13 17:09:11,255 [INFO] Epoch 13/50 | Loss: 0.1056 | Accuracy: 0.9603
+2025-09-13 17:09:11,896 [INFO] Epoch 14/50 | Loss: 0.1012 | Accuracy: 0.9612
+2025-09-13 17:09:12,512 [INFO] Epoch 15/50 | Loss: 0.0947 | Accuracy: 0.9648
+2025-09-13 17:09:13,140 [INFO] Epoch 16/50 | Loss: 0.0908 | Accuracy: 0.9660
+2025-09-13 17:09:13,800 [INFO] Epoch 17/50 | Loss: 0.0894 | Accuracy: 0.9651
+2025-09-13 17:09:14,431 [INFO] Epoch 18/50 | Loss: 0.0801 | Accuracy: 0.9710
+2025-09-13 17:09:15,046 [INFO] Epoch 19/50 | Loss: 0.0750 | Accuracy: 0.9727
+2025-09-13 17:09:15,654 [INFO] Epoch 20/50 | Loss: 0.0701 | Accuracy: 0.9749
+2025-09-13 17:09:16,301 [INFO] Epoch 21/50 | Loss: 0.0707 | Accuracy: 0.9749
+2025-09-13 17:09:16,932 [INFO] Epoch 22/50 | Loss: 0.0670 | Accuracy: 0.9753
+2025-09-13 17:09:17,536 [INFO] Epoch 23/50 | Loss: 0.0623 | Accuracy: 0.9788
+2025-09-13 17:09:18,176 [INFO] Epoch 24/50 | Loss: 0.0597 | Accuracy: 0.9776
+2025-09-13 17:09:18,747 [INFO] Epoch 25/50 | Loss: 0.0513 | Accuracy: 0.9820
+2025-09-13 17:09:19,317 [INFO] Epoch 26/50 | Loss: 0.0501 | Accuracy: 0.9827
+2025-09-13 17:09:19,900 [INFO] Epoch 27/50 | Loss: 0.0506 | Accuracy: 0.9826
+2025-09-13 17:09:20,491 [INFO] Epoch 28/50 | Loss: 0.0510 | Accuracy: 0.9822
+2025-09-13 17:09:21,081 [INFO] Epoch 29/50 | Loss: 0.0503 | Accuracy: 0.9816
+2025-09-13 17:09:21,706 [INFO] Epoch 30/50 | Loss: 0.0449 | Accuracy: 0.9856
+2025-09-13 17:09:22,358 [INFO] Epoch 31/50 | Loss: 0.0457 | Accuracy: 0.9842
+2025-09-13 17:09:22,953 [INFO] Epoch 32/50 | Loss: 0.0403 | Accuracy: 0.9860
+2025-09-13 17:09:23,540 [INFO] Epoch 33/50 | Loss: 0.0383 | Accuracy: 0.9879
+2025-09-13 17:09:24,169 [INFO] Epoch 34/50 | Loss: 0.0343 | Accuracy: 0.9876
+2025-09-13 17:09:24,776 [INFO] Epoch 35/50 | Loss: 0.0443 | Accuracy: 0.9855
+2025-09-13 17:09:25,389 [INFO] Epoch 36/50 | Loss: 0.0341 | Accuracy: 0.9889
+2025-09-13 17:09:26,036 [INFO] Epoch 37/50 | Loss: 0.0350 | Accuracy: 0.9881
+2025-09-13 17:09:26,627 [INFO] Epoch 38/50 | Loss: 0.0347 | Accuracy: 0.9875
+2025-09-13 17:09:27,173 [INFO] Epoch 39/50 | Loss: 0.0362 | Accuracy: 0.9876
+2025-09-13 17:09:27,722 [INFO] Epoch 40/50 | Loss: 0.0332 | Accuracy: 0.9890
+2025-09-13 17:09:28,370 [INFO] Epoch 41/50 | Loss: 0.0295 | Accuracy: 0.9910
+2025-09-13 17:09:28,940 [INFO] Epoch 42/50 | Loss: 0.0248 | Accuracy: 0.9921
+2025-09-13 17:09:29,632 [INFO] Epoch 43/50 | Loss: 0.0268 | Accuracy: 0.9909
+2025-09-13 17:09:30,232 [INFO] Epoch 44/50 | Loss: 0.0291 | Accuracy: 0.9908
+2025-09-13 17:09:30,796 [INFO] Epoch 45/50 | Loss: 0.0290 | Accuracy: 0.9914
+2025-09-13 17:09:31,361 [INFO] Epoch 46/50 | Loss: 0.0297 | Accuracy: 0.9908
+2025-09-13 17:09:31,959 [INFO] Epoch 47/50 | Loss: 0.0299 | Accuracy: 0.9896
+2025-09-13 17:09:32,508 [INFO] Epoch 48/50 | Loss: 0.0245 | Accuracy: 0.9923
+2025-09-13 17:09:33,096 [INFO] Epoch 49/50 | Loss: 0.0263 | Accuracy: 0.9921
+2025-09-13 17:09:33,662 [INFO] Epoch 50/50 | Loss: 0.0247 | Accuracy: 0.9929
+2025-09-13 17:09:33,662 [INFO] Training complete.
+2025-09-13 17:09:33,662 [INFO] Evaluating Model 2...
+2025-09-13 17:09:33,778 [INFO] [CNN-Attention] Accuracy: 0.8485
+2025-09-13 17:09:33,778 [INFO] [CNN-Attention] F1-Score (Fall): 0.7453
+2025-09-13 17:09:33,778 [INFO] [CNN-Attention] Sensitivity (Fall): 0.6935
+2025-09-13 17:09:33,778 [INFO] [CNN-Attention] Specificity (No Fall): 0.6935
+2025-09-13 17:09:34,094 [INFO] Final Comparison:
+2025-09-13 17:09:34,115 [INFO] 
+               Accuracy  F1-Score (Fall)  Sensitivity (Fall)  Specificity (No Fall)
+CNN-GAP        0.847929         0.742743            0.687037               0.687037
+CNN-Attention  0.848521         0.745274            0.693519               0.693519
+2025-09-13 17:09:34,115 [INFO] All results, logs, and plots saved to: /home/syed/PhD/UP-Fall-FL/Experimental_Scripts/Modules/output/Module1

@@ -17,8 +17,8 @@ def set_seed(seed=42):
         torch.backends.cudnn.deterministic = True
         torch.backends.cudnn.benchmark = False
 
-file_path = '/home/syed/PhD/UP-Fall-FL/dataset/Sensor + Image/sensor.csv'
-image_data_path = '/home/syed/PhD/UP-Fall-FL/dataset/Sensor + Image'
+file_path = '/home/syed/PhD/UP_Fall_Dataset/Sensor + Image/sensor.csv'
+image_data_path = '/home/syed/PhD/UP_Fall_Dataset/Sensor + Image'
 
 
 def loadSensorIMGClientsData(file_path, image_data_path):
