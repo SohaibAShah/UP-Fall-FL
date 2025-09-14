@@ -1,0 +1,73 @@
+2025-09-14 21:03:06,320 [INFO] --- Step 1: Loading and Aligning Raw Data ---
+2025-09-14 21:06:08,476 [INFO] --- Step 1: Loading and Aligning Raw Data ---
+2025-09-14 21:10:09,836 [INFO] --- Step 1: Loading and Aligning Raw Data ---
+2025-09-14 21:10:15,565 [INFO] --- Step 2: Creating Binary Labels and Splitting Data by Subject ---
+2025-09-14 21:10:15,733 [INFO] --- Step 3: Scaling Features ---
+2025-09-14 21:10:15,798 [INFO] --- Step 4: Creating Global Test Set ---
+2025-09-14 21:10:19,333 [INFO] --- Step 5: Partitioning Data into Federated Clients ---
+2025-09-14 21:10:27,641 [INFO] Data loading complete. 11 clients created.
+2025-09-14 21:10:27,824 [INFO] --- Running Federated Learning Experiment: FEDAVG ---
+2025-09-14 21:10:27,824 [WARNING] DEPRECATED FEATURE: flwr.simulation.start_simulation() is deprecated.
+	Instead, use the `flwr run` CLI command to start a local simulation in your Flower app, as shown for example below:
+
+		$ flwr new  # Create a new Flower app from a template
+
+		$ flwr run  # Run the Flower app in Simulation Mode
+
+	Using `start_simulation()` is deprecated.
+
+            This is a deprecated feature. It will be removed
+            entirely in future versions of Flower.
+        
+2025-09-14 21:10:27,825 [INFO] Starting Flower simulation, config: num_rounds=20, no round_timeout
+2025-09-14 21:10:33,157 [INFO] Flower VCE: Ray initialized with resources: {'accelerator_type:G': 1.0, 'node:172.30.170.62': 1.0, 'node:__internal_head__': 1.0, 'CPU': 16.0, 'object_store_memory': 5182448025.0, 'memory': 10364896052.0, 'GPU': 1.0}
+2025-09-14 21:10:33,157 [INFO] Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+2025-09-14 21:10:33,158 [INFO] Flower VCE: Resources for each Virtual Client: {'num_cpus': 2, 'num_gpus': 0.5}
+2025-09-14 21:10:33,177 [INFO] Flower VCE: Creating VirtualClientEngineActorPool with 2 actors
+2025-09-14 21:10:33,178 [INFO] [INIT]
+2025-09-14 21:10:33,178 [INFO] Using initial global parameters provided by strategy
+2025-09-14 21:10:33,178 [INFO] Starting evaluation of initial global parameters
+2025-09-14 21:10:35,026 [ERROR] Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [128, 1, 200, 32, 32]
+2025-09-14 21:10:35,034 [ERROR] Traceback (most recent call last):
+  File "/home/syed/miniconda3/envs/flwr/lib/python3.10/site-packages/flwr/simulation/legacy_app.py", line 361, in start_simulation
+    hist = run_fl(
+  File "/home/syed/miniconda3/envs/flwr/lib/python3.10/site-packages/flwr/server/server.py", line 492, in run_fl
+    hist, elapsed_time = server.fit(
+  File "/home/syed/miniconda3/envs/flwr/lib/python3.10/site-packages/flwr/server/server.py", line 95, in fit
+    res = self.strategy.evaluate(0, parameters=self.parameters)
+  File "/home/syed/miniconda3/envs/flwr/lib/python3.10/site-packages/flwr/server/strategy/fedavg.py", line 167, in evaluate
+    eval_res = self.evaluate_fn(server_round, parameters_ndarrays, {})
+  File "/home/syed/PhD/UP-Fall-FL/FL_Apps/module3/module3/server_app.py", line 29, in evaluate
+    outputs = model(x_csv.to(device), x_img1.to(device), x_img2.to(device))
+  File "/home/syed/miniconda3/envs/flwr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/syed/miniconda3/envs/flwr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/syed/PhD/UP-Fall-FL/FL_Apps/module3/module3/models.py", line 70, in forward
+    f_img_combined = F.relu(self.img_fusion(torch.cat((self.img_encoder1(x_img1), self.img_encoder2(x_img2)), dim=1)))
+  File "/home/syed/miniconda3/envs/flwr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/syed/miniconda3/envs/flwr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/syed/PhD/UP-Fall-FL/FL_Apps/module3/module3/models.py", line 25, in forward
+    x = F.relu(F.max_pool2d(self.conv1(x), 2)); x = F.relu(F.max_pool2d(self.conv2(x), 2))
+  File "/home/syed/miniconda3/envs/flwr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/syed/miniconda3/envs/flwr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/syed/miniconda3/envs/flwr/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 554, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/home/syed/miniconda3/envs/flwr/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 549, in _conv_forward
+    return F.conv2d(
+RuntimeError: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [128, 1, 200, 32, 32]
+
+2025-09-14 21:10:35,034 [ERROR] Your simulation crashed :(. This could be because of several reasons. The most common are: 
+	 > Sometimes, issues in the simulation code itself can cause crashes. It's always a good idea to double-check your code for any potential bugs or inconsistencies that might be contributing to the problem. For example: 
+		 - You might be using a class attribute in your clients that hasn't been defined.
+		 - There could be an incorrect method call to a 3rd party library (e.g., PyTorch).
+		 - The return types of methods in your clients/strategies might be incorrect.
+	 > Your system couldn't fit a single VirtualClient: try lowering `client_resources`.
+	 > All the actors in your pool crashed. This could be because: 
+		 - You clients hit an out-of-memory (OOM) error and actors couldn't recover from it. Try launching your simulation with more generous `client_resources` setting (i.e. it seems {'num_cpus': 2, 'num_gpus': 0.5} is not enough for your run). Use fewer concurrent actors. 
+		 - You were running a multi-node simulation and all worker nodes disconnected. The head node might still be alive but cannot accommodate any actor with resources: {'num_cpus': 2, 'num_gpus': 0.5}.
+Take a look at the Flower simulation examples for guidance <https://flower.ai/docs/framework/how-to-run-simulations.html>.

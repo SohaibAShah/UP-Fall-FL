@@ -8,9 +8,9 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "module3"
+name = "fl01"
 version = "1.0.0"
-description = ""
+description = "A Flower app for Fall Detection with FedAvg, FedProx, and SCAFFOLD."
 license = "Apache-2.0"
 # Dependencies for your Flower App
 dependencies = [
@@ -29,14 +29,23 @@ publisher = "shah"
 # Point to your ServerApp and ClientApp objects
 # Format: "<module>:<object>"
 [tool.flwr.app.components]
-serverapp = "module3.server_app:app"
-clientapp = "module3.client_app:app"
+serverapp = "fl01.server_app:app"
+clientapp = "fl01.client_app:app"
 
 # Custom config values accessible via `context.run_config`
 [tool.flwr.app.config]
-num-server-rounds = 3
-fraction-fit = 0.5
+# --- CHOOSE YOUR ALGORITHM HERE ---
+# Options: "fedavg", "fedprox", "scaffold"
+algorithm = "fedavg"
+
+# --- Hyperparameters ---
+num-server-rounds = 5
+num-clients = 11
+clients-per-round = 2
 local-epochs = 1
+learning-rate = 0.001
+mu = 0.01 # FedProx proximal term
+target-f1 = 0.75
 
 # Default federation to use when running the app
 [tool.flwr.federations]
@@ -44,7 +53,7 @@ default = "local-simulation"
 
 # Local simulation federation with 10 virtual SuperNodes
 [tool.flwr.federations.local-simulation]
-options.num-supernodes = 12
+options.num-supernodes = 10
 options.backend.client-resources.num-cpus = 4
 options.backend.client-resources.num-gpus = 1.0
 
