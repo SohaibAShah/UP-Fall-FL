@@ -5,8 +5,10 @@ from flwr.server import ServerApp, ServerAppComponents, ServerConfig
 from flwr.server.strategy import FedAvg
 from practise.task import Net, get_weights
 
+print("[server_app.py] Module loaded.")
 
 def server_fn(context: Context):
+    print("[server_app.py] server_fn() called")
     # Read from config
     num_rounds = context.run_config["num-server-rounds"]
     fraction_fit = context.run_config["fraction-fit"]
@@ -26,6 +28,6 @@ def server_fn(context: Context):
 
     return ServerAppComponents(strategy=strategy, config=config)
 
-
+print("[server_app.py] ServerApp ready.")
 # Create ServerApp
 app = ServerApp(server_fn=server_fn)

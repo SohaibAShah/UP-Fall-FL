@@ -11,9 +11,13 @@ from torch.utils.data import DataLoader, TensorDataset
 
 from .task import CNN_Attention, test, get_weights
 
+print("[server_app.py] Module loaded.")
+
 # Custom SCAFFOLD Strategy
 class Scaffold(FedAvg):
     def __init__(self, **kwargs):
+        print("[server_app.py] Scaffold strategy initialized.")
+
         super().__init__(**kwargs)
         self.server_control_variate = [np.zeros_like(p) for p in self.initial_parameters.tensors]
     def configure_fit(self, server_round, parameters, client_manager):
@@ -33,6 +37,8 @@ class Scaffold(FedAvg):
 
 # Server-side evaluation function
 def evaluate(server_round: int, parameters: fl.common.NDArrays, config: Dict[str, fl.common.Scalar]) -> Optional[Tuple[float, Dict[str, fl.common.Scalar]]]:
+    print("[server_app.py] Server-side evaluate() called.")
+
     partitions_dir = os.path.join(os.path.dirname(__file__), "..", "partitions")
     with open(os.path.join(partitions_dir, 'num_features.txt'), 'r') as f:
         num_features = int(f.read())
@@ -56,6 +62,7 @@ def evaluate(server_round: int, parameters: fl.common.NDArrays, config: Dict[str
 
 # Define server_fn
 def server_fn(context: Context):
+    print("[server_app.py] server_fn called.")
     # This server_fn does not need to load data itself.
     # The 'evaluate' function handles loading the test set when called by the strategy.
     num_rounds = context.run_config["num-server-rounds"]
@@ -77,15 +84,18 @@ def server_fn(context: Context):
         "mu": context.run_config.get("mu", 0.01),
     }
 
-    if algorithm == "scaffold":
-        strategy = Scaffold(fraction_fit=clients_per_round/num_clients, min_available_clients=num_clients,
-                            initial_parameters=parameters, evaluate_fn=evaluate, on_fit_config_fn=fit_config_fn)
-    else:
-        strategy = FedAvg(fraction_fit=clients_per_round/num_clients, min_available_clients=num_clients,
-                          initial_parameters=parameters, evaluate_fn=evaluate, on_fit_config_fn=fit_config_fn)
+    strategy = FedAvg(
+        fraction_fit=clients_per_round/num_clients, 
+        min_available_clients=num_clients,
+        initial_parameters=parameters, 
+        evaluate_fn=evaluate, 
+        on_fit_config_fn=fit_config_fn
+        )
 
     config = ServerConfig(num_rounds=num_rounds)
     return ServerAppComponents(strategy=strategy, config=config)
 
+
+print("[server_app.py] ServerApp ready.")
 # Create ServerApp
 app = ServerApp(server_fn=server_fn)

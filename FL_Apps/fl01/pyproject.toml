@@ -39,7 +39,7 @@ clientapp = "fl01.client_app:app"
 algorithm = "fedavg"
 
 # --- Hyperparameters ---
-num-server-rounds = 5
+num-server-rounds = 50
 num-clients = 11
 clients-per-round = 2
 local-epochs = 1
@@ -49,7 +49,7 @@ target-f1 = 0.75
 
 # Default federation to use when running the app
 [tool.flwr.federations]
-default = "local-simulation"
+default = "local-deployment"
 
 # Local simulation federation with 10 virtual SuperNodes
 [tool.flwr.federations.local-simulation]
@@ -62,3 +62,7 @@ options.backend.client-resources.num-gpus = 1.0
 address = "<SUPERLINK-ADDRESS>:<PORT>"
 insecure = true  # Remove this line to enable TLS
 # root-certificates = "<PATH/TO/ca.crt>"  # For TLS setup
+
+[tool.flwr.federations.local-deployment]
+address = "127.0.0.1:9093"
+insecure = true

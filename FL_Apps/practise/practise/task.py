@@ -10,6 +10,8 @@ from flwr_datasets.partitioner import IidPartitioner
 from torch.utils.data import DataLoader
 from torchvision.transforms import Compose, Normalize, ToTensor
 
+print("[task.py] Module loaded.")
+
 
 class Net(nn.Module):
     """Model (simple CNN adapted from 'PyTorch: A 60 Minute Blitz')"""
@@ -65,6 +67,8 @@ def load_data(partition_id: int, num_partitions: int):
 
 def train(net, trainloader, epochs, device):
     """Train the model on the training set."""
+    print("[task.py] train() called")
+
     net.to(device)  # move model to GPU if available
     criterion = torch.nn.CrossEntropyLoss().to(device)
     optimizer = torch.optim.Adam(net.parameters(), lr=0.01)
@@ -86,6 +90,8 @@ def train(net, trainloader, epochs, device):
 
 def test(net, testloader, device):
     """Validate the model on the test set."""
+    print("[task.py] test() called")
+
     net.to(device)
     criterion = torch.nn.CrossEntropyLoss()
     correct, loss = 0, 0.0
@@ -102,10 +108,12 @@ def test(net, testloader, device):
 
 
 def get_weights(net):
+    print("[task.py] get_weights() called")
     return [val.cpu().numpy() for _, val in net.state_dict().items()]
 
 
 def set_weights(net, parameters):
+    print("[task.py] set_weights() called")
     params_dict = zip(net.state_dict().keys(), parameters)
     state_dict = OrderedDict({k: torch.tensor(v) for k, v in params_dict})
     net.load_state_dict(state_dict, strict=True)

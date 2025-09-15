@@ -7,14 +7,18 @@ import os
 
 from .task import CNN_Attention, set_weights, test, train, get_weights
 
+print("[client_app.py] Module loaded.")
+
 # Define Flower Client
 class FlowerClient(NumPyClient):
     def __init__(self, cid, device, net, trainloader, valloader, control_variate=None):
+        print(f"[client_app.py] FlowerClient initialized with cid={cid}")
         self.cid = cid; self.device = device; self.net = net
         self.trainloader = trainloader; self.valloader = valloader
         self.control_variate = control_variate
 
     def fit(self, parameters, config):
+        print(f"[client_app.py] Client fit() {self.cid} starting training with config: {config}")
         set_weights(self.net, parameters)
         initial_params = [torch.tensor(p, device=self.device) for p in parameters]
         train(self.net, self.trainloader, self.device, config, initial_params, self.control_variate)
@@ -34,12 +38,15 @@ class FlowerClient(NumPyClient):
         return get_weights(self.net), len(self.trainloader.dataset), {}
 
     def evaluate(self, parameters, config):
+        print(f"[client_app.py] evaluate() called for cid={self.cid}")
+
         set_weights(self.net, parameters)
         loss, metrics = test(self.net, self.valloader, self.device)
         return float(loss), len(self.valloader.dataset), metrics
 
 # Define client_fn
 def client_fn(context: Context):
+    print("[client_app.py] client_fn() called")
     partition_id = context.node_config["partition-id"]
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     
@@ -61,6 +68,7 @@ def client_fn(context: Context):
     
     return FlowerClient(partition_id, device, net, trainloader, trainloader).to_client()
 
+print("[client_app.py] ClientApp ready.")
 # Flower ClientApp
 app = ClientApp(
     client_fn=client_fn,
