@@ -1,43 +1,28 @@
-"""FL01: A Flower / PyTorch app."""
-
 import torch
 from flwr.client import ClientApp, NumPyClient
 from flwr.common import Context
 from torch.utils.data import DataLoader, TensorDataset
 import numpy as np
-import logging
+import os
 
-from .task import CNN_Attention, load_data, get_num_features, set_weights, test, train, get_weights
+from .task import CNN_Attention, set_weights, test, train, get_weights
 
 # Define Flower Client
 class FlowerClient(NumPyClient):
     def __init__(self, cid, device, net, trainloader, valloader, control_variate=None):
-        self.cid = cid
-        self.device = device
-        self.net = net
-        self.trainloader = trainloader
-        self.valloader = valloader
+        self.cid = cid; self.device = device; self.net = net
+        self.trainloader = trainloader; self.valloader = valloader
         self.control_variate = control_variate
 
     def fit(self, parameters, config):
-        # --- TRACE ---
-        logging.info(f"[Client {self.cid}] received parameters and starting local training (fit).")
-        
         set_weights(self.net, parameters)
-        
         initial_params = [torch.tensor(p, device=self.device) for p in parameters]
-        
         train(self.net, self.trainloader, self.device, config, initial_params, self.control_variate)
 
-        # --- TRACE ---
-        logging.info(f"[Client {self.cid}] finished local training.")
-        
         if config["algorithm"] == "scaffold":
             final_params = list(self.net.parameters())
             model_delta = [(p_final.cpu() - p_initial.cpu()).detach().numpy() for p_final, p_initial in zip(final_params, initial_params)]
-            
-            new_control_variate = []
-            control_variate_delta = []
+            new_control_variate, control_variate_delta = [], []
             coef = 1 / (config['local-epochs'] * len(self.trainloader) * config['learning-rate'])
             for ccv, scv, p_final, p_initial in zip(self.control_variate, config['server_cv'], final_params, initial_params):
                 ccv_new = ccv - torch.tensor(scv).to(self.device) + coef * (p_initial - p_final)
@@ -49,8 +34,6 @@ class FlowerClient(NumPyClient):
         return get_weights(self.net), len(self.trainloader.dataset), {}
 
     def evaluate(self, parameters, config):
-        # --- TRACE ---
-        logging.info(f"[Client {self.cid}] received parameters for local evaluation (evaluate).")
         set_weights(self.net, parameters)
         loss, metrics = test(self.net, self.valloader, self.device)
         return float(loss), len(self.valloader.dataset), metrics
@@ -58,15 +41,20 @@ class FlowerClient(NumPyClient):
 # Define client_fn
 def client_fn(context: Context):
     partition_id = context.node_config["partition-id"]
-    # --- TRACE ---
-    logging.info(f"[Client Factory] Creating client for partition-id: {partition_id}")
-    
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     
-    client_data = load_data(partition_id=partition_id, num_partitions=context.run_config["num_clients"])
-    num_features = get_num_features()
+    partitions_dir = os.path.join(os.path.dirname(__file__), "..", "partitions")
+    client_ids = sorted([int(fname.split('_')[-1].split('.')[0]) for fname in os.listdir(partitions_dir) if fname.startswith('X_client_')])
+    cid_to_load = client_ids[partition_id]
     
-    X_client, y_client = client_data
+    # **FIX:** Added weights_only=False to allow loading NumPy arrays
+    X_client, y_client = torch.load(os.path.join(partitions_dir, f'client_{cid_to_load}.pt'), weights_only=False)
+    
+    X_client = np.transpose(X_client, (0, 2, 1))
+    
+    with open(os.path.join(partitions_dir, 'num_features.txt'), 'r') as f:
+        num_features = int(f.read())
+    
     trainloader = DataLoader(TensorDataset(torch.from_numpy(X_client).float(), torch.from_numpy(y_client).long()), batch_size=32, shuffle=True)
     
     net = CNN_Attention(num_features).to(device)
