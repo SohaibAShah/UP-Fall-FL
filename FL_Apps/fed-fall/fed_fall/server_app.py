@@ -5,7 +5,7 @@ from flwr.app import ArrayRecord, ConfigRecord, Context
 from flwr.serverapp import Grid, ServerApp
 from flwr.serverapp.strategy import FedAvg, FedAdam
 
-from .task import Net, ConvLSTMNet
+from .task import Net
 
 # Create ServerApp
 app = ServerApp()
@@ -24,7 +24,7 @@ def main(grid: Grid, context: Context) -> None:
     NUM_FEATURES = 10 # <-- IMPORTANT: Set this value manually
 
     # Load global model
-    global_model = ConvLSTMNet(num_features=NUM_FEATURES)
+    global_model = Net(num_csv_features=NUM_FEATURES)
     arrays = ArrayRecord(global_model.state_dict())
 
     # Initialize FedAvg strategy

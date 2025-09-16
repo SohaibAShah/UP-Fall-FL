@@ -7,6 +7,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import DataLoader, TensorDataset
 import numpy as np
+from sklearn.metrics import precision_score, recall_score, f1_score
 
 # =========================
 # 1. MODEL ARCHITECTURE
@@ -101,6 +102,7 @@ def train(net, trainloader, epochs, lr, device):
     criterion = torch.nn.CrossEntropyLoss().to(device)
     optimizer = torch.optim.Adam(net.parameters(), lr=lr)
     net.train()
+    running_loss = 0.0
     for _ in range(epochs):
         for x_csv, x_img1, x_img2, labels in trainloader:
             x_csv, x_img1, x_img2, labels = x_csv.to(device), x_img1.to(device), x_img2.to(device), labels.to(device)
@@ -108,20 +110,46 @@ def train(net, trainloader, epochs, lr, device):
             loss = criterion(net(x_csv, x_img1, x_img2), labels)
             loss.backward()
             optimizer.step()
+            running_loss += loss.item()
+
+    avg_trainloss = running_loss / len(trainloader) if len(trainloader) > 0 else 0.0
+    return avg_trainloss
 
 def test(net, testloader, device):
     """Validate the model on the test set."""
     net.to(device)
     criterion = torch.nn.CrossEntropyLoss()
-    correct, loss = 0, 0.0
+    correct, total, loss = 0, 0, 0.0
+    
+    all_labels = []
+    all_predicted = []
+
+    net.eval()
     with torch.no_grad():
         for x_csv, x_img1, x_img2, labels in testloader:
             x_csv, x_img1, x_img2, labels = x_csv.to(device), x_img1.to(device), x_img2.to(device), labels.to(device)
             outputs = net(x_csv, x_img1, x_img2)
             loss += criterion(outputs, labels).item()
-            correct += (torch.max(outputs.data, 1)[1] == labels).sum().item()
-    accuracy = correct / len(testloader.dataset)
-    return loss, accuracy
+
+            _, predicted = torch.max(outputs.data, 1)
+            total += labels.size(0)
+            correct += (predicted == labels).sum().item()
+            
+            # Append batch results for final metric calculation
+            all_labels.extend(labels.cpu().numpy())
+            all_predicted.extend(predicted.cpu().numpy())
+
+    accuracy = correct / total if total > 0 else 0.0
+    avg_loss = loss / len(testloader) if len(testloader) > 0 else 0.0
+    
+    # Calculate Precision, Recall, and F1-Score for the "Fall" class (label 0)
+    # zero_division=0 ensures that if a metric is not well-defined (e.g., no 'Fall' predictions), it returns 0 instead of an error.
+    precision = precision_score(all_labels, all_predicted, pos_label=0, zero_division=0)
+    recall = recall_score(all_labels, all_predicted, pos_label=0, zero_division=0)
+    f1 = f1_score(all_labels, all_predicted, pos_label=0, zero_division=0)
+
+    # Return the new metrics
+    return avg_loss, accuracy, {"precision": precision, "recall": recall, "f1_score": f1}
 
 # =========================
 # 4. WEIGHTS HELPERS

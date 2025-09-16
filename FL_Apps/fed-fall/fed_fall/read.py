@@ -27,7 +27,7 @@ def analyze_class_distribution(file_path):
 
 def main():
     """Main function to find .pt files, analyze them, and plot the results."""
-    partitions_dir = '/home/syed/PhD/UP-Fall-FL/FL_Apps/waooowooo/waooowooo/partitions'
+    partitions_dir = '/home/syed/PhD/UP-Fall-FL/FL_Apps/fed-fall/fed_fall/UP_Fall_partitions'
     if not os.path.isdir(partitions_dir):
         print(f"Error: Directory '{partitions_dir}' not found. Make sure you are in the correct directory.")
         return

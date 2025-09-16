@@ -4,9 +4,21 @@ import torch
 from flwr.app import ArrayRecord, Context, Message, MetricRecord, RecordDict
 from flwr.clientapp import ClientApp
 
-from .task import Net, load_data, ConvLSTMNet
+from .task import Net, load_data
 from .task import test as test_fn
 from .task import train as train_fn
+
+import csv
+import os
+
+def append_metrics_to_csv(filename, metrics, fieldnames):
+    file_exists = os.path.isfile(filename)
+    with open(filename, mode='a', newline='') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        if not file_exists:
+            writer.writeheader()
+        writer.writerow(metrics)
+
 
 # Flower ClientApp
 app = ClientApp()
@@ -25,11 +37,11 @@ def train(msg: Message, context: Context):
        # Load the data
     partition_id = context.node_config["partition-id"]
     num_partitions = context.node_config["num-partitions"]
-    trainloader, valloader, num_features = load_data(partition_id=partition_id)
+    trainloader, valloader, num_features = load_data(partition_id=partition_id, num_partitions=num_partitions)
 
 
     # Load the model and initialize it with the received weights
-    model = ConvLSTMNet(num_features=num_features)
+    model = Net(num_csv_features=num_features)
     model.load_state_dict(msg.content["arrays"].to_torch_state_dict())
     model.to(device)
 
@@ -48,6 +60,9 @@ def train(msg: Message, context: Context):
         "train_loss": train_loss,
         "num-examples": len(trainloader.dataset),
     }
+    
+    append_metrics_to_csv(f"client_{partition_id}_train_metrics.csv", metrics, metrics.keys())
+
     metric_record = MetricRecord(metrics)
     content = RecordDict({"arrays": model_record, "metrics": metric_record})
     return Message(content=content, reply_to=msg)
@@ -60,10 +75,10 @@ def evaluate(msg: Message, context: Context):
        # Load the data
     partition_id = context.node_config["partition-id"]
     num_partitions = context.node_config["num-partitions"]
-    _, valloader, num_features = load_data(partition_id=partition_id)
+    _, valloader, num_features = load_data(partition_id=partition_id, num_partitions=num_partitions)
 
      # Load the model and initialize it with the received weights
-    model = ConvLSTMNet(num_features=num_features)
+    model = Net(num_csv_features=num_features)
     model.load_state_dict(msg.content["arrays"].to_torch_state_dict())
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     model.to(device)
@@ -84,6 +99,7 @@ def evaluate(msg: Message, context: Context):
         "Precision": advanced_metrics["precision"],
         "Recall": advanced_metrics["recall"]
     }
+    append_metrics_to_csv(f"client_{partition_id}_eval_metrics.csv", metrics, metrics.keys())
     metric_record = MetricRecord(metrics)
     content = RecordDict({"metrics": metric_record})
     return Message(content=content, reply_to=msg)
