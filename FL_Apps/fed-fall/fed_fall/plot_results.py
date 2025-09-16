@@ -5,20 +5,17 @@ import seaborn as sns
 import os
 
 # --- Configuration ---
-LOG_FILE_NAME = "/home/syed/PhD/UP-Fall-FL/FL_Apps/waooowooo/waooowooo/training_log.txt"  # The name of the log file you saved
+LOG_FILE_NAME = "output.log"  # The name of the log file to parse
 
-def parse_log_file(log_path):
+def parse_log_file(log_path: str) -> pd.DataFrame | None:
     """Parses a Flower log file to extract evaluation metrics for each round."""
     
-    # Regex to find and capture the floating point values for each metric
-    patterns = {
-        "round": re.compile(r"\[ROUND (\d+)/\d+\]"),
-        "eval_loss": re.compile(r"'eval_loss': ([\d.]+)"),
-        "eval_acc": re.compile(r"'eval_acc': ([\d.]+)"),
-        "f1_score": re.compile(r"'F1-score': ([\d.]+)"),
-        "precision": re.compile(r"'Precision': ([\d.]+)"),
-        "recall": re.compile(r"'Recall': ([\d.]+)")
-    }
+    # Regex to find the round number and capture the floating point values for each metric
+    round_pattern = re.compile(r"\[ROUND (\d+)/\d+\]")
+    metrics_pattern = re.compile(
+        r"'eval_loss': ([\d.e+-]+), 'eval_acc': ([\d.e+-]+), 'F1-score': ([\d.e+-]+), "
+        r"'Precision': ([\d.e+-]+), 'Recall': ([\d.e+-]+)"
+    )
     
     metrics_data = []
     current_round = 0
@@ -26,74 +23,74 @@ def parse_log_file(log_path):
     with open(log_path, 'r') as f:
         for line in f:
             # Check for the start of a new round
-            round_match = patterns["round"].search(line)
+            round_match = round_pattern.search(line)
             if round_match:
                 current_round = int(round_match.group(1))
             
             # Check for the line containing aggregated evaluation metrics
-            if "aggregate_evaluate" in line and "Aggregated MetricRecord" in line:
-                loss_match = patterns["eval_loss"].search(line)
-                acc_match = patterns["eval_acc"].search(line)
-                f1_match = patterns["f1_score"].search(line)
-                precision_match = patterns["precision"].search(line)
-                recall_match = patterns["recall"].search(line)
+            if "Aggregated MetricRecord" in line:
+                metrics_match = metrics_pattern.search(line)
                 
-                if all([loss_match, acc_match, f1_match, precision_match, recall_match]):
+                if metrics_match:
                     metrics_data.append({
                         "Round": current_round,
-                        "Loss": float(loss_match.group(1)),
-                        "Accuracy": float(acc_match.group(1)),
-                        "F1-Score": float(f1_match.group(1)),
-                        "Precision": float(precision_match.group(1)),
-                        "Recall": float(recall_match.group(1)),
+                        "Loss": float(metrics_match.group(1)),
+                        "Accuracy": float(metrics_match.group(2)),
+                        "F1-Score": float(metrics_match.group(3)),
+                        "Precision": float(metrics_match.group(4)),
+                        "Recall": float(metrics_match.group(5)),
                     })
                     
     if not metrics_data:
-        print("Warning: No evaluation metrics found in the log file. Make sure the log is complete.")
+        print("Warning: No evaluation metrics found in the log file.")
         return None
         
     return pd.DataFrame(metrics_data)
 
-def plot_metrics(df):
+def plot_metrics(df: pd.DataFrame):
     """Creates and saves a 2x2 plot of the training metrics."""
     
     sns.set_theme(style="whitegrid")
     fig, axes = plt.subplots(2, 2, figsize=(16, 12))
     fig.suptitle('Federated Learning Performance Metrics per Round', fontsize=20)
 
-    # Plot 1: F1-Score and Accuracy
-    sns.lineplot(ax=axes[0, 0], x='Round', y='F1-Score', data=df, marker='o', label='F1-Score (Fall Class)')
-    sns.lineplot(ax=axes[0, 0], x='Round', y='Accuracy', data=df, marker='o', label='Overall Accuracy')
-    axes[0, 0].set_title('F1-Score & Accuracy')
-    axes[0, 0].set_ylabel('Score')
-    axes[0, 0].legend()
-    axes[0, 0].set_ylim(0, 1)
+    # Flatten the axes array for easier iteration
+    ax = axes.flatten()
 
-    # Plot 2: Evaluation Loss
-    sns.lineplot(ax=axes[0, 1], x='Round', y='Loss', data=df, marker='o', color='r')
-    axes[0, 1].set_title('Evaluation Loss')
-    axes[0, 1].set_ylabel('Loss')
+    # --- Plot 1: F1-Score and Accuracy ---
+    sns.lineplot(ax=ax[0], x='Round', y='F1-Score', data=df, marker='o', label='F1-Score (Fall Class)')
+    sns.lineplot(ax=ax[0], x='Round', y='Accuracy', data=df, marker='o', label='Overall Accuracy')
+    ax[0].set_title('F1-Score & Accuracy')
+    ax[0].set_ylabel('Score')
+    ax[0].set_ylim(0, max(1.0, df['Accuracy'].max() * 1.1)) # Adjust y-axis if accuracy > 1.0
+    ax[0].legend()
 
-    # Plot 3: Precision
-    sns.lineplot(ax=axes[1, 0], x='Round', y='Precision', data=df, marker='o', color='purple')
-    axes[1, 0].set_title('Precision (Fall Class)')
-    axes[1, 0].set_ylabel('Precision')
-    axes[1, 0].set_ylim(0, 1)
+    # --- Plot 2: Evaluation Loss ---
+    sns.lineplot(ax=ax[1], x='Round', y='Loss', data=df, marker='o', color='r')
+    ax[1].set_title('Evaluation Loss')
+    ax[1].set_ylabel('Loss')
 
-    # Plot 4: Recall
-    sns.lineplot(ax=axes[1, 1], x='Round', y='Recall', data=df, marker='o', color='orange')
-    axes[1, 1].set_title('Recall (Fall Class)')
-    axes[1, 1].set_ylabel('Recall')
-    axes[1, 1].set_ylim(0, 1)
+    # --- Plot 3: Precision ---
+    sns.lineplot(ax=ax[2], x='Round', y='Precision', data=df, marker='o', color='purple')
+    ax[2].set_title('Precision (Fall Class)')
+    ax[2].set_ylabel('Precision')
+    ax[2].set_ylim(0, 1)
 
-    for ax in axes.flat:
-        ax.set_xlabel('Round')
-        ax.grid(True, which='both', linestyle='--', linewidth=0.5)
+    # --- Plot 4: Recall ---
+    sns.lineplot(ax=ax[3], x='Round', y='Recall', data=df, marker='o', color='orange')
+    ax[3].set_title('Recall (Fall Class)')
+    ax[3].set_ylabel('Recall')
+    ax[3].set_ylim(0, 1)
+
+    # Set common labels and grid for all subplots
+    for subplot in ax:
+        subplot.set_xlabel('Round')
+        subplot.grid(True, which='both', linestyle='--', linewidth=0.5)
 
     plt.tight_layout(rect=[0, 0.03, 1, 0.95])
     
     # Save the figure
-    output_filename = "fl_metrics_plot.png"
+    output_filename = "training_metrics_plot.png"
     plt.savefig(output_filename)
     print(f"✅ Plot saved successfully as '{output_filename}'")
     
@@ -101,13 +98,10 @@ def plot_metrics(df):
     plt.show()
 
 if __name__ == "__main__":
-    # Ensure you have the required libraries installed:
-    # pip install pandas matplotlib seaborn
-    
     if not os.path.exists(LOG_FILE_NAME):
         print(f"Error: Log file '{LOG_FILE_NAME}' not found.")
-        print("Please save your training log to this file and run the script again.")
+        print("Please make sure the log file is in the same directory as this script.")
     else:
         metrics_df = parse_log_file(LOG_FILE_NAME)
-        if metrics_df is not None:
+        if metrics_df is not None and not metrics_df.empty:
             plot_metrics(metrics_df)

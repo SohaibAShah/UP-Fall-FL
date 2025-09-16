@@ -139,7 +139,7 @@ def test(net, testloader, device):
             all_labels.extend(labels.cpu().numpy())
             all_predicted.extend(predicted.cpu().numpy())
 
-    accuracy = correct / total if total > 0 else 0.0
+    accuracy = correct / len(testloader.dataset) if len(testloader.dataset) > 0 else 0.0
     avg_loss = loss / len(testloader) if len(testloader) > 0 else 0.0
     
     # Calculate Precision, Recall, and F1-Score for the "Fall" class (label 0)
