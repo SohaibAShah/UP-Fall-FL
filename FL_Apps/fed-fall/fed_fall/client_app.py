@@ -4,7 +4,7 @@ import torch
 from flwr.app import ArrayRecord, Context, Message, MetricRecord, RecordDict
 from flwr.clientapp import ClientApp
 
-from .task import Net, load_data
+from .task import Net, load_data, ConvLSTMNet
 from .task import test as test_fn
 from .task import train as train_fn
 
@@ -29,7 +29,7 @@ def train(msg: Message, context: Context):
 
 
     # Load the model and initialize it with the received weights
-    model = Net(num_features=num_features)
+    model = ConvLSTMNet(num_features=num_features)
     model.load_state_dict(msg.content["arrays"].to_torch_state_dict())
     model.to(device)
 
@@ -63,7 +63,7 @@ def evaluate(msg: Message, context: Context):
     _, valloader, num_features = load_data(partition_id=partition_id)
 
      # Load the model and initialize it with the received weights
-    model = Net(num_features=num_features)
+    model = ConvLSTMNet(num_features=num_features)
     model.load_state_dict(msg.content["arrays"].to_torch_state_dict())
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     model.to(device)

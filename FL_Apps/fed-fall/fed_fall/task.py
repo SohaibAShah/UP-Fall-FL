@@ -14,6 +14,70 @@ print("[task.py] Module loaded.")
 
 # In task.py
 
+class ConvLSTMNet(nn.Module):
+    """
+    A hybrid 1D CNN and LSTM model for time-series classification.
+    
+    The CNN layers act as a feature extractor, and the LSTM layer
+    learns the temporal dependencies between those features.
+    """
+    def __init__(self, num_features: int, num_classes: int = 2):
+        super(ConvLSTMNet, self).__init__()
+        
+        # --- CNN Feature Extractor ---
+        self.conv1 = nn.Conv1d(in_channels=num_features, out_channels=64, kernel_size=5, padding="same")
+        self.pool1 = nn.MaxPool1d(kernel_size=2)
+        self.conv2 = nn.Conv1d(in_channels=64, out_channels=128, kernel_size=5, padding="same")
+        self.pool2 = nn.MaxPool1d(kernel_size=2)
+        
+        # --- LSTM Sequence Processor ---
+        # The input features for the LSTM will be the number of output channels from the last conv layer (128)
+        self.lstm = nn.LSTM(
+            input_size=128, 
+            hidden_size=128, 
+            num_layers=2, 
+            batch_first=True, # Makes tensor shapes more intuitive
+            dropout=0.2
+        )
+        
+        # --- Classifier Head ---
+        self.fc1 = nn.Linear(128, 64) # Takes the last hidden state of the LSTM
+        self.dropout = nn.Dropout(p=0.5)
+        self.fc2 = nn.Linear(64, num_classes)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        # Input shape: [batch_size, num_features, 200]
+        
+        # Pass through CNN layers
+        x = F.relu(self.conv1(x))
+        x = self.pool1(x)
+        # Shape: [batch_size, 64, 100]
+        
+        x = F.relu(self.conv2(x))
+        x = self.pool2(x)
+        # Shape: [batch_size, 128, 50]
+
+        # --- Prepare for LSTM ---
+        # LSTM expects input of shape [batch_size, seq_len, features].
+        # We need to swap the last two dimensions.
+        x = x.permute(0, 2, 1)
+        # Shape: [batch_size, 50, 128]
+        
+        # Pass through LSTM
+        # We only need the output of the last hidden state for classification
+        _, (h_n, _) = self.lstm(x)
+        
+        # Get the hidden state of the last layer
+        x = h_n[-1]
+        # Shape: [batch_size, 128]
+
+        # Pass through the final classifier
+        x = F.relu(self.fc1(x))
+        x = self.dropout(x)
+        x = self.fc2(x)
+        
+        return x
+
 class Net(nn.Module):
     """
     A deeper 1D CNN model with increased capacity.
