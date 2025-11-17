@@ -12,7 +12,7 @@ from torch.utils.data import DataLoader, TensorDataset
 import numpy as np
 from collections import OrderedDict
 from sklearn.metrics import precision_score, recall_score, f1_score
-import wandb
+#import wandb
 from .task import Net, load_data, get_num_features
 
 # ===================================================================
@@ -84,7 +84,7 @@ def main(grid: Grid, context: Context) -> None:
     config = context.run_config
     num_rounds = config["num-server-rounds"]
     
-    wandb.init(project="federated-fall-detection", name=f"Final-Run-Rounds-{num_rounds}", config=config)
+#    wandb.init(project="federated-fall-detection", name=f"Final-Run-Rounds-{num_rounds}", config=config)
 
     NUM_FEATURES = get_num_features()
     global_model = Net(num_csv_features=NUM_FEATURES)
