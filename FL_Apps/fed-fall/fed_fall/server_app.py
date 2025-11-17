@@ -70,8 +70,8 @@ class CustomStrategy(FedAdam):
         if self.server_eval_fn:
             loss, metrics = self.server_eval_fn(server_round, parameters, {})
             print(f"Round {server_round} SERVER-SIDE evaluation: loss {loss}, metrics {metrics}")
-            wandb_metrics = {f"server_{k}": v for k, v in metrics.items()}
-            wandb.log(wandb_metrics, step=server_round)
+            #wandb_metrics = {f"server_{k}": v for k, v in metrics.items()}
+            #wandb.log(wandb_metrics, step=server_round)
         return super().evaluate(server_round, parameters)
 
 # ===================================================================
@@ -105,7 +105,7 @@ def main(grid: Grid, context: Context) -> None:
 
     result = strategy.start(grid=grid, initial_arrays=arrays, train_config=ConfigRecord({"lr": config["lr"]}), num_rounds=num_rounds)
     
-    wandb.finish()
+    #wandb.finish()
 
     print("\nSaving final model to disk...")
     state_dict = result.arrays.to_torch_state_dict()
