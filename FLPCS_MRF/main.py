@@ -19,7 +19,8 @@ def main():
     parser.add_argument(
         '--model_name', 
         type=str, 
-        required=True, 
+        #required=True,
+        default='CSVIMG1Model',
         choices=['SensorModel', 'Img1Model', 'Img2Model', 'CSVIMG1Model', 'CSVIMG2Model'],
         help='The name of the model to train. This determines which training function is called.'
     )
